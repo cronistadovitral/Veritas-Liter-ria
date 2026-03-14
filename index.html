@@ -252,14 +252,43 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:rgba(201,168,76,0.18);border-radius:2px;}
 
-/* RESPONSIVE */
+/* ── MOBILE BOTTOM NAV ── */
+#mobileNav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(12,9,6,0.98);border-top:1px solid var(--border2);padding:0;box-shadow:0 -4px 20px rgba(0,0,0,0.5);}
+.mob-nav-bar{display:flex;align-items:stretch;}
+.mob-nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 4px 6px;cursor:pointer;border:none;background:none;color:var(--text3);font-family:var(--font-sans);font-size:9px;letter-spacing:0.03em;gap:4px;transition:color 0.15s;min-height:56px;}
+.mob-nav-btn svg{width:20px;height:20px;flex-shrink:0;}
+.mob-nav-btn.active{color:var(--gold2);}
+.mob-nav-btn:hover{color:var(--text2);}
+.mob-more-menu{position:fixed;bottom:56px;right:0;left:0;background:rgba(16,13,10,0.98);border-top:1px solid var(--border2);z-index:99;padding:0.75rem 0;box-shadow:0 -4px 20px rgba(0,0,0,0.6);}
+.mob-more-item{display:flex;align-items:center;gap:12px;padding:0.7rem 1.25rem;cursor:pointer;font-family:var(--font-sans);font-size:14px;color:var(--text2);transition:background 0.15s;}
+.mob-more-item:hover{background:rgba(201,168,76,0.06);color:var(--gold2);}
+.mob-more-item svg{width:18px;height:18px;flex-shrink:0;}
+
+/* ── RESPONSIVE ── */
 @media(max-width:780px){
-  .sidebar{width:52px;}
-  .nav-item .nav-label{display:none;}
-  .sidebar-logo,.sidebar-banner,.sidebar-user{display:none;}
-  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}
+  .sidebar{display:none!important;}
+  .app{flex-direction:column;}
+  .main{overflow-y:auto;padding-bottom:64px;}
+  .page{padding:1rem;}
+  #mobileNav{display:block;}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr!important;}
   .tensiv-grid{grid-template-columns:1fr;}
   .question-options{flex-wrap:wrap;}
+  .modal{width:96vw!important;max-width:96vw!important;padding:1.25rem;}
+  .login-box{width:92vw;padding:0 1.25rem 1.5rem;}
+  .card{padding:0.875rem;}
+  .btn{font-size:13px;}
+  .page-title{font-size:18px;}
+  table{font-size:12px;}
+  th,td{padding:7px 8px;}
+  /* stacked card headers */
+  .card-header{flex-wrap:wrap;gap:8px;}
+  .rank-entry{flex-wrap:wrap;}
+  .rank-score-big{font-size:18px;}
+}
+@media(max-width:480px){
+  .page{padding:0.75rem;}
+  .btn-sm{padding:5px 10px;font-size:12px;}
 }
 </style>
 </head>
@@ -337,6 +366,10 @@ tr:hover td{background:rgba(201,168,76,0.02);}
         <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="5" rx="1"/><rect x="2" y="11" width="20" height="5" rx="1"/><rect x="2" y="19" width="20" height="3" rx="1"/><circle cx="6" cy="5.5" r="0.8" fill="currentColor"/><circle cx="6" cy="13.5" r="0.8" fill="currentColor"/></svg>
         <span class="nav-label">Servidor</span>
       </div>
+      <div class="nav-item" onclick="goTo('firebase')" data-page="firebase" id="navFirebase">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 19h20L12 2z"/><path d="M12 8v4M12 16h.01"/></svg>
+        <span class="nav-label">Firebase</span>
+      </div>
       <div class="nav-item" onclick="goTo('customizar')" data-page="customizar" id="navCustom">
         <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
         <span class="nav-label">Customizar</span>
@@ -378,7 +411,11 @@ tr:hover td{background:rgba(201,168,76,0.02);}
     <!-- RANKING -->
     <div id="page-ranking" class="page">
       <div class="page-header"><div class="page-title">Ranking</div><div class="page-sub">Classificação por evento</div></div>
-      <div style="margin-bottom:1.25rem"><select id="rankingEvento" style="width:260px" onchange="renderRanking()"><option value="">— Selecionar evento —</option></select></div>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:flex-end;margin-bottom:1.25rem">
+        <div><select id="rankingEvento" style="width:260px" onchange="renderRanking()"><option value="">— Selecionar evento —</option></select></div>
+        <button class="btn btn-sm" onclick="exportRankingImage()" title="Salvar como imagem">📸 Print do Ranking</button>
+        <button class="btn btn-sm" onclick="exportInstagramBanner()" title="Banner 1080×1080 para Instagram" style="border-color:var(--gold);color:var(--gold)">📱 Banner Instagram</button>
+      </div>
       <div id="rankingContent"></div>
     </div>
 
@@ -409,6 +446,12 @@ tr:hover td{background:rgba(201,168,76,0.02);}
     <div id="page-publico" class="page">
       <div class="page-header"><div class="page-title">Portal do Participante</div><div class="page-sub">Links de acesso por evento — sem senha necessária</div></div>
       <div id="publicoContent"></div>
+    </div>
+
+    <!-- FIREBASE -->
+    <div id="page-firebase" class="page">
+      <div class="page-header"><div class="page-title">Firebase / Sincronização</div><div class="page-sub">Configure o Firebase para dados em tempo real entre todos os dispositivos</div></div>
+      <div id="firebaseContent"></div>
     </div>
 
     <!-- SERVIDOR -->
@@ -654,8 +697,9 @@ function doLogin(){
   document.getElementById('sidebarRole').textContent=u.role;
   document.getElementById('loginScreen').classList.add('hidden');
   document.getElementById('appShell').classList.remove('hidden');
-  document.getElementById('btnNewEvento').style.display=u.id==='admin'?'':'none';
+  document.getElementById('btnNewEvento').style.display=''; // all users can create events
   document.getElementById('navCustom').style.display=u.id==='admin'?'':'none';
+  const nfb=document.getElementById('navFirebase');if(nfb)nfb.style.display=u.id==='admin'?'':'none';
   document.getElementById('navServidor').style.display=u.id==='admin'?'':'none';
   const navRev=document.getElementById('navRevisao');if(navRev)navRev.style.display=u.id==='admin'?'':'none';
   // Admin cannot evaluate directly
@@ -663,6 +707,7 @@ function doLogin(){
   if(navAv) navAv.style.display=u.id==='admin'?'none':'';
   applyCustomization();
   renderAll();
+  updateMobNav();
 }
 function doLogout(){
   currentUser=null;
@@ -674,6 +719,7 @@ function doLogout(){
   const navAv=document.querySelector('[data-page="avaliar"]');
   if(navAv) navAv.style.display='';
   const navRev=document.getElementById('navRevisao');if(navRev)navRev.style.display='none';
+  updateMobNav();
 }
 document.getElementById('loginPass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
 
@@ -692,12 +738,13 @@ function goTo(page){
   if(page==='publico') renderPublicoPage();
   if(page==='customizar') renderCustomizer();
   if(page==='servidor') renderServidor();
+  if(page==='firebase') renderFirebasePage();
   if(page==='revisao') renderRevisao();
 }
 function showModal(id){document.getElementById(id).classList.remove('hidden');}
 function closeModal(id){document.getElementById(id).classList.add('hidden');}
 function closeModalClick(e,id){if(e.target.id===id)closeModal(id);}
-function openNewEvent(){if(currentUser&&currentUser.id==='admin')showModal('modalNewEvent');}
+function openNewEvent(){if(currentUser)showModal('modalNewEvent');else alert('Faça login para criar um evento.');}
 
 // ════════════════════════════════════════
 // EVENTOS
@@ -761,7 +808,7 @@ function renderEventos(){
         </div>
         <div style="display:flex;gap:5px;flex-wrap:wrap">
           <button class="btn btn-primary btn-sm" onclick="openEventDetail('${ev.id}')">📂 Ver Submissões</button>
-          ${editalBtn}${pubLink}${finalBtn}
+          ${editalBtn}${pubLink}<button class="btn btn-sm" onclick="openEditEvent('${ev.id}')" style="font-size:10px">✏️ Editar</button>${finalBtn}
         </div>
       </div>
     </div>`;
@@ -1873,6 +1920,412 @@ function removeCertRepo(evId,pos){
   openCertRepo(evId);
 }
 
+
+// ════════════════════════════════════════
+// MOBILE NAV
+// ════════════════════════════════════════
+function mobGoTo(page, btn){
+  goTo(page);
+  document.querySelectorAll('.mob-nav-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  closeMobMore();
+}
+function toggleMobMore(){
+  const m=document.getElementById('mobMoreMenuEl');
+  if(m) m.style.display=m.style.display==='none'?'block':'none';
+}
+function closeMobMore(){
+  const m=document.getElementById('mobMoreMenuEl');
+  if(m) m.style.display='none';
+}
+function updateMobNav(){
+  const isAdmin=currentUser&&currentUser.id==='admin';
+  const isLoggedIn=!!currentUser;
+  const ri=document.getElementById('mobRevisaoItem');if(ri)ri.style.display=isAdmin?'':'none';
+  const si=document.getElementById('mobServidorItem');if(si)si.style.display=isAdmin?'':'none';
+  const ci=document.getElementById('mobCustomItem');if(ci)ci.style.display=isAdmin?'':'none';
+  const fi=document.getElementById('mobFirebaseItem');if(fi)fi.style.display=isAdmin?'':'none';
+  const li=document.getElementById('mobLogoutItem');if(li)li.style.display=isLoggedIn?'':'none';
+  const ma=document.getElementById('mobBtnAvaliar');if(ma)ma.style.display=isAdmin?'none':'';
+}
+
+// ════════════════════════════════════════
+// EDIT EVENT
+// ════════════════════════════════════════
+let editingEventId = null;
+
+function openEditEvent(evId){
+  const ev=DB.eventos.find(e=>e.id===evId);if(!ev) return;
+  editingEventId=evId;
+  // Populate modal fields with existing values
+  document.getElementById('evNome').value=ev.nome||'';
+  document.getElementById('evDesc').value=ev.desc||'';
+  document.getElementById('evStart').value=ev.start||'';
+  document.getElementById('evEnd').value=ev.end||'';
+  document.getElementById('evMax').value=ev.max||10;
+  document.getElementById('evWords').value=ev.words||4000;
+  document.getElementById('evTierMin').value=ev.tierMin||'none';
+  // Change modal title and button
+  document.querySelector('#modalNewEvent h3').textContent='Editar Evento';
+  document.querySelector('#modalNewEvent .btn-primary').textContent='Salvar Alterações';
+  if(ev.cover){
+    pendingEvCover=ev.cover;
+    document.getElementById('evCoverImg').src=ev.cover;
+    document.getElementById('evCoverPreview').style.display='block';
+  }
+  showModal('modalNewEvent');
+}
+
+// Patch saveEvento to handle both create and edit
+const _origSaveEvento = saveEvento;
+function saveEvento(){
+  const nome=document.getElementById('evNome').value.trim();
+  const desc=document.getElementById('evDesc').value.trim();
+  const start=document.getElementById('evStart').value;
+  const end=document.getElementById('evEnd').value;
+  const max=parseInt(document.getElementById('evMax').value)||10;
+  const words=parseInt(document.getElementById('evWords').value)||4000;
+  const tierMin=document.getElementById('evTierMin').value;
+  const err=document.getElementById('evErr');
+  if(!nome){err.textContent='Nome obrigatório.';err.classList.remove('hidden');return;}
+  err.classList.add('hidden');
+  if(editingEventId){
+    // EDIT MODE
+    const ev=DB.eventos.find(e=>e.id===editingEventId);
+    if(ev){
+      ev.nome=nome;ev.desc=desc;ev.start=start;ev.end=end;
+      ev.max=max;ev.words=words;ev.tierMin=tierMin;
+      if(pendingEvCover) ev.cover=pendingEvCover;
+    }
+    editingEventId=null;
+  } else {
+    // CREATE MODE
+    const token='ev_'+Math.random().toString(36).substr(2,9);
+    DB.eventos.push({id:'ev_'+Date.now(),nome,desc,start,end,max,words,tierMin,finalized:false,cover:pendingEvCover||null,token,criado:new Date().toISOString()});
+  }
+  pendingEvCover=null;
+  saveDB();closeModal('modalNewEvent');renderEventos();populateAllSelects();
+  // Reset modal title
+  document.querySelector('#modalNewEvent h3').textContent='Novo Evento Literário';
+  document.querySelector('#modalNewEvent .btn-primary').textContent='Criar Evento';
+  document.getElementById('evNome').value='';document.getElementById('evDesc').value='';
+  document.getElementById('evCoverInput').value='';document.getElementById('evCoverPreview').style.display='none';
+}
+
+// ════════════════════════════════════════
+// EXPORT IMAGES — html2canvas via CDN
+// ════════════════════════════════════════
+function loadHtml2Canvas(cb){
+  if(window.html2canvas){cb();return;}
+  const s=document.createElement('script');
+  s.src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+  s.onload=cb;s.onerror=()=>alert('Não foi possível carregar html2canvas. Verifique sua conexão.');
+  document.head.appendChild(s);
+}
+
+function exportRankingImage(){
+  const evId=document.getElementById('rankingEvento').value;
+  if(!evId){alert('Selecione um evento primeiro.');return;}
+  loadHtml2Canvas(()=>{
+    const el=document.getElementById('rankingContent');
+    if(!el||!el.children.length){alert('Gere o ranking primeiro.');return;}
+    html2canvas(el,{backgroundColor:'#0d0b09',scale:2,useCORS:true,logging:false}).then(canvas=>{
+      const link=document.createElement('a');
+      const ev=DB.eventos.find(e=>e.id===evId);
+      link.download=`ranking_${(ev?ev.nome:'evento').replace(/\s/g,'_')}.png`;
+      link.href=canvas.toDataURL('image/png');
+      link.click();
+    });
+  });
+}
+
+function exportInstagramBanner(){
+  const evId=document.getElementById('rankingEvento').value;
+  if(!evId){alert('Selecione um evento primeiro.');return;}
+  const ev=DB.eventos.find(e=>e.id===evId);if(!ev) return;
+  const ranked=getRanked(evId);
+  // Build a 1080×1080 canvas directly
+  const canvas=document.createElement('canvas');
+  canvas.width=1080;canvas.height=1080;
+  const ctx=canvas.getContext('2d');
+  // Background gradient
+  const grad=ctx.createRadialGradient(200,400,0,540,540,900);
+  grad.addColorStop(0,'#1a0f06');grad.addColorStop(0.5,'#100c08');grad.addColorStop(1,'#0d0b09');
+  ctx.fillStyle=grad;ctx.fillRect(0,0,1080,1080);
+  // Decorative border
+  ctx.strokeStyle='rgba(201,168,76,0.6)';ctx.lineWidth=3;
+  ctx.strokeRect(30,30,1020,1020);
+  ctx.strokeStyle='rgba(201,168,76,0.25)';ctx.lineWidth=1;
+  ctx.strokeRect(44,44,992,992);
+  // Corner ornaments
+  [[60,60],[1020,60],[60,1020],[1020,1020]].forEach(([x,y])=>{
+    ctx.strokeStyle='rgba(201,168,76,0.5)';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(x-18,y);ctx.lineTo(x+18,y);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x,y-18);ctx.lineTo(x,y+18);ctx.stroke();
+  });
+  // Title
+  ctx.fillStyle='#e8c96a';ctx.textAlign='center';
+  ctx.font='bold 52px Georgia, serif';
+  ctx.fillText(ev.nome,540,160);
+  // Subtitle
+  ctx.fillStyle='rgba(201,168,76,0.5)';ctx.font='28px Georgia, serif';
+  ctx.fillText('✦  Resultados Oficiais  ✦',540,215);
+  // Separator line
+  ctx.strokeStyle='rgba(201,168,76,0.4)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(100,250);ctx.lineTo(980,250);ctx.stroke();
+  // Medals
+  const medals=['🥇','🥈','🥉'];
+  const podColors=['#e8c96a','#c0c0c0','#d4864a'];
+  ranked.slice(0,3).forEach((s,i)=>{
+    const y=320+i*220;
+    // Medal bg pill
+    ctx.fillStyle=`rgba(${i===0?'201,168,76':i===1?'180,180,180':'180,110,50'},0.12)`;
+    roundRect(ctx,80,y-40,920,180,12);ctx.fill();
+    ctx.strokeStyle=`rgba(${i===0?'201,168,76':i===1?'180,180,180':'180,110,50'},0.35)`;ctx.lineWidth=1;
+    roundRect(ctx,80,y-40,920,180,12);ctx.stroke();
+    // Position number
+    ctx.fillStyle=podColors[i];ctx.font='bold 64px Georgia, serif';ctx.textAlign='left';
+    ctx.fillText(['1º','2º','3º'][i],110,y+60);
+    // Title
+    ctx.fillStyle='#e8e3d8';ctx.font='bold 36px Georgia, serif';ctx.textAlign='left';
+    const titulo=s.titulo.length>32?s.titulo.substring(0,32)+'…':s.titulo;
+    ctx.fillText(titulo,230,y+25);
+    // Author
+    ctx.fillStyle='rgba(168,160,152,0.9)';ctx.font='italic 26px Georgia, serif';
+    ctx.fillText(s.autor,230,y+65);
+    // Score
+    ctx.fillStyle=podColors[i];ctx.font='bold 56px Georgia, serif';ctx.textAlign='right';
+    ctx.fillText(s.avg.toFixed(2),960,y+50);
+  });
+  // Footer
+  ctx.strokeStyle='rgba(201,168,76,0.3)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(100,990);ctx.lineTo(980,990);ctx.stroke();
+  ctx.fillStyle='rgba(201,168,76,0.4)';ctx.font='22px Georgia, serif';ctx.textAlign='center';
+  ctx.fillText('Veritas Literário • cronistadovitral.substack.com',540,1035);
+  // Download
+  const link=document.createElement('a');
+  link.download=`banner_instagram_${ev.nome.replace(/\s/g,'_')}.png`;
+  link.href=canvas.toDataURL('image/png');link.click();
+}
+
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);
+  ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);
+  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);
+  ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);
+  ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
+}
+
+// ════════════════════════════════════════
+// FIREBASE INTEGRATION PAGE
+// ════════════════════════════════════════
+function renderFirebasePage(){
+  const cont=document.getElementById('firebaseContent');
+  const cfg=DB.firebaseConfig||{};
+  const isConnected=window._fbConnected||false;
+  cont.innerHTML=`
+  <div style="font-size:14px;color:var(--text2);font-family:var(--font-sans);line-height:1.8;margin-bottom:1.5rem">
+    O Firebase Realtime Database sincroniza todos os dados entre dispositivos em tempo real.
+    Quando configurado, qualquer avaliação, evento ou submissão aparece instantaneamente para todos os usuários conectados — sem precisar recarregar a página.
+  </div>
+
+  <div class="card" style="${isConnected?'border-color:rgba(58,138,80,0.5)':''}">
+    <div class="card-header">
+      <div>
+        <div class="card-title">${isConnected?'✅ Firebase Conectado':'🔴 Firebase Desconectado'}</div>
+        <div class="card-sub">${isConnected?'Dados sincronizando em tempo real':'Configure abaixo para ativar'}</div>
+      </div>
+      ${isConnected?`<button class="btn btn-sm btn-danger" onclick="disconnectFirebase()">Desconectar</button>`:''}
+    </div>
+    <div class="form-group"><label>API Key</label><input type="text" id="fbApiKey" value="${cfg.apiKey||''}" placeholder="AIzaSy..." /></div>
+    <div class="grid-2">
+      <div class="form-group"><label>Auth Domain</label><input type="text" id="fbAuthDomain" value="${cfg.authDomain||''}" placeholder="projeto.firebaseapp.com" /></div>
+      <div class="form-group"><label>Database URL</label><input type="text" id="fbDatabaseURL" value="${cfg.databaseURL||''}" placeholder="https://projeto-default-rtdb.firebaseio.com" /></div>
+    </div>
+    <div class="grid-2">
+      <div class="form-group"><label>Project ID</label><input type="text" id="fbProjectId" value="${cfg.projectId||''}" placeholder="meu-projeto" /></div>
+      <div class="form-group"><label>Storage Bucket</label><input type="text" id="fbStorageBucket" value="${cfg.storageBucket||''}" placeholder="meu-projeto.appspot.com" /></div>
+    </div>
+    <div class="grid-2">
+      <div class="form-group"><label>Messaging Sender ID</label><input type="text" id="fbMessagingSenderId" value="${cfg.messagingSenderId||''}" placeholder="123456789" /></div>
+      <div class="form-group"><label>App ID</label><input type="text" id="fbAppId" value="${cfg.appId||''}" placeholder="1:123:web:abc" /></div>
+    </div>
+    <div id="fbErr" class="alert alert-err hidden"></div>
+    <div id="fbOk" class="alert alert-ok hidden">Firebase conectado! Dados sincronizando em tempo real.</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="connectFirebase()">Conectar Firebase</button>
+      <button class="btn btn-sm" onclick="pasteFirebaseJSON()">📋 Colar JSON de configuração</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom:0.875rem">Como configurar</div>
+    <ol style="padding-left:1.25rem;font-family:var(--font-sans);font-size:13px;color:var(--text2);line-height:2">
+      <li>Acesse <a href="https://console.firebase.google.com" target="_blank" style="color:var(--gold)">console.firebase.google.com</a></li>
+      <li>Crie um projeto (ou use um existente)</li>
+      <li>Vá em <strong style="color:var(--text)">Realtime Database</strong> → Criar banco de dados</li>
+      <li>Escolha modo de teste (rules: read/write = true) para começar</li>
+      <li>Vá em <strong style="color:var(--text)">Configurações do projeto</strong> → Adicionar app Web</li>
+      <li>Copie o objeto <code style="color:var(--gold);background:rgba(255,255,255,0.05);padding:2px 6px;border-radius:3px">firebaseConfig</code> e cole acima</li>
+    </ol>
+    <div style="margin-top:1rem;padding:0.875rem;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);font-family:monospace;font-size:12px;color:var(--text3)">
+      <div style="color:var(--text2);margin-bottom:6px">Regras do Realtime Database (para testes):</div>
+{<br>&nbsp;&nbsp;"rules": {<br>&nbsp;&nbsp;&nbsp;&nbsp;".read": true,<br>&nbsp;&nbsp;&nbsp;&nbsp;".write": true<br>&nbsp;&nbsp;}<br>}
+    </div>
+  </div>
+
+  ${isConnected?`<div class="card">
+    <div class="card-title" style="margin-bottom:0.875rem">Ações de dados</div>
+    <div class="btn-group">
+      <button class="btn btn-primary btn-sm" onclick="pushToFirebase()">⬆ Enviar dados locais para Firebase</button>
+      <button class="btn btn-sm" onclick="pullFromFirebase()">⬇ Baixar dados do Firebase</button>
+    </div>
+    <div style="font-size:12px;color:var(--text3);font-family:var(--font-sans);margin-top:0.875rem;line-height:1.6">
+      Os dados são sincronizados automaticamente após cada operação. Use "Enviar" se quiser forçar uma atualização manual.
+    </div>
+  </div>`:''}
+  `;
+}
+
+function pasteFirebaseJSON(){
+  const text=prompt('Cole aqui o objeto firebaseConfig (pode incluir o "const firebaseConfig = " ou não):');
+  if(!text) return;
+  try{
+    const clean=text.replace(/const\s+firebaseConfig\s*=\s*/,'').replace(/;?\s*$/,'').trim();
+    const parsed=JSON.parse(clean.replace(/(\w+):/g,'"$1":').replace(/'/g,'"'));
+    ['apiKey','authDomain','databaseURL','projectId','storageBucket','messagingSenderId','appId'].forEach(k=>{
+      const el=document.getElementById('fb'+k.charAt(0).toUpperCase()+k.slice(1));
+      if(el&&parsed[k]) el.value=parsed[k];
+    });
+  }catch(e){alert('Não foi possível analisar o JSON. Cole apenas o objeto entre { }.');}
+}
+
+function connectFirebase(){
+  const cfg={
+    apiKey:document.getElementById('fbApiKey').value.trim(),
+    authDomain:document.getElementById('fbAuthDomain').value.trim(),
+    databaseURL:document.getElementById('fbDatabaseURL').value.trim(),
+    projectId:document.getElementById('fbProjectId').value.trim(),
+    storageBucket:document.getElementById('fbStorageBucket').value.trim(),
+    messagingSenderId:document.getElementById('fbMessagingSenderId').value.trim(),
+    appId:document.getElementById('fbAppId').value.trim(),
+  };
+  const fbErr=document.getElementById('fbErr');
+  if(!cfg.apiKey||!cfg.databaseURL){fbErr.textContent='API Key e Database URL são obrigatórios.';fbErr.classList.remove('hidden');return;}
+  fbErr.classList.add('hidden');
+  DB.firebaseConfig=cfg;saveDB();
+  _initFirebase(cfg);
+}
+
+function _initFirebase(cfg){
+  // Load Firebase SDK dynamically
+  if(window._fbLoading) return;
+  window._fbLoading=true;
+  const scripts=[
+    'https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js',
+    'https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js'
+  ];
+  let loaded=0;
+  scripts.forEach(src=>{
+    const s=document.createElement('script');
+    s.src=src;
+    s.onload=()=>{
+      loaded++;
+      if(loaded===scripts.length) _firebaseReady(cfg);
+    };
+    s.onerror=()=>{
+      const fbErr=document.getElementById('fbErr');
+      if(fbErr){fbErr.textContent='Erro ao carregar SDK do Firebase. Verifique a conexão.';fbErr.classList.remove('hidden');}
+    };
+    document.head.appendChild(s);
+  });
+}
+
+function _firebaseReady(cfg){
+  try{
+    if(!firebase.apps.length) firebase.initializeApp(cfg);
+    window._db=firebase.database();
+    window._fbConnected=true;
+    window._fbLoading=false;
+    // Listen for real-time updates
+    window._db.ref('veritas').on('value',snapshot=>{
+      const data=snapshot.val();
+      if(data&&typeof data==='object'){
+        // Merge remote data (don't overwrite local with older data)
+        const remote=data;
+        if(remote.eventos) DB.eventos=remote.eventos;
+        if(remote.submissoes) DB.submissoes=remote.submissoes;
+        if(remote.avaliacoes) DB.avaliacoes=remote.avaliacoes;
+        if(remote.participants) DB.participants=remote.participants;
+        if(remote.starRatings) DB.starRatings=remote.starRatings;
+        try{localStorage.setItem('veritas_db',JSON.stringify(DB));}catch(e){}
+        renderAll();
+      }
+    });
+    const fbOk=document.getElementById('fbOk');
+    if(fbOk){fbOk.classList.remove('hidden');}
+    // Auto-push current data
+    pushToFirebase();
+    renderFirebasePage();
+  }catch(err){
+    window._fbLoading=false;
+    const fbErr=document.getElementById('fbErr');
+    if(fbErr){fbErr.textContent='Erro ao conectar: '+err.message;fbErr.classList.remove('hidden');}
+  }
+}
+
+function pushToFirebase(){
+  if(!window._db){alert('Firebase não conectado.');return;}
+  const data={
+    eventos:DB.eventos,submissoes:DB.submissoes,avaliacoes:DB.avaliacoes,
+    participants:DB.participants,starRatings:DB.starRatings,
+    lastUpdated:Date.now()
+  };
+  window._db.ref('veritas').set(data)
+    .then(()=>alert('Dados enviados ao Firebase com sucesso!'))
+    .catch(e=>alert('Erro ao enviar: '+e.message));
+}
+
+function pullFromFirebase(){
+  if(!window._db){alert('Firebase não conectado.');return;}
+  window._db.ref('veritas').once('value',snapshot=>{
+    const data=snapshot.val();
+    if(data){
+      if(data.eventos) DB.eventos=data.eventos;
+      if(data.submissoes) DB.submissoes=data.submissoes;
+      if(data.avaliacoes) DB.avaliacoes=data.avaliacoes;
+      if(data.participants) DB.participants=data.participants;
+      if(data.starRatings) DB.starRatings=data.starRatings;
+      saveDB();renderAll();
+      alert('Dados atualizados do Firebase!');
+    }else{alert('Nenhum dado encontrado no Firebase.');}
+  });
+}
+
+function disconnectFirebase(){
+  if(window._db) try{window._db.ref('veritas').off();}catch(e){}
+  window._db=null;window._fbConnected=false;window._fbLoading=false;
+  delete DB.firebaseConfig;saveDB();
+  renderFirebasePage();
+}
+
+// Patch saveDB to also write to Firebase
+const _origSaveDB=saveDB;
+function saveDB(){
+  try{
+    localStorage.setItem('veritas_db',JSON.stringify(DB));
+    if(window._bc) try{window._bc.postMessage({type:'db_update',ts:Date.now()});}catch(e){}
+    // Firebase sync
+    if(window._db&&window._fbConnected){
+      const data={
+        eventos:DB.eventos||[],submissoes:DB.submissoes||[],avaliacoes:DB.avaliacoes||[],
+        participants:DB.participants||{},starRatings:DB.starRatings||{},lastUpdated:Date.now()
+      };
+      window._db.ref('veritas').set(data).catch(()=>{});
+    }
+  }catch(e){}
+}
+
 // ════════════════════════════════════════
 // CUSTOMIZER
 // ════════════════════════════════════════
@@ -2387,7 +2840,43 @@ window.addEventListener('DOMContentLoaded',()=>{
     }
   }
   applyCustomization();
+  // Auto-reconnect Firebase if previously configured
+  if(DB.firebaseConfig&&DB.firebaseConfig.apiKey&&DB.firebaseConfig.databaseURL){
+    setTimeout(()=>_initFirebase(DB.firebaseConfig),500);
+  }
 });
 </script>
+<!-- ═══ MOBILE BOTTOM NAV ═══ -->
+<div id="mobileNav">
+  <div class="mob-nav-bar">
+    <button class="mob-nav-btn active" onclick="mobGoTo('eventos',this)" data-mob="eventos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Eventos
+    </button>
+    <button class="mob-nav-btn" onclick="mobGoTo('submissoes',this)" data-mob="submissoes">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Textos
+    </button>
+    <button class="mob-nav-btn" onclick="mobGoTo('avaliar',this)" data-mob="avaliar" id="mobBtnAvaliar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Avaliar
+    </button>
+    <button class="mob-nav-btn" onclick="mobGoTo('ranking',this)" data-mob="ranking">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>Ranking
+    </button>
+    <button class="mob-nav-btn" onclick="toggleMobMore()" id="mobMoreBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="5" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/><circle cx="12" cy="19" r="1.5" fill="currentColor"/></svg>Mais
+    </button>
+  </div>
+</div>
+
+<div id="mobMoreMenuEl" class="mob-more-menu" style="display:none" onclick="closeMobMore()">
+  <div class="mob-more-item" onclick="mobGoTo('publico')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Portal Público</div>
+  <div class="mob-more-item" onclick="mobGoTo('participantes')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> Participantes</div>
+  <div class="mob-more-item" id="mobRevisaoItem" onclick="mobGoTo('revisao')" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> Revisão</div>
+  <div class="mob-more-item" id="mobServidorItem" onclick="mobGoTo('servidor')" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="5" rx="1"/><rect x="2" y="11" width="20" height="5" rx="1"/></svg> Servidor</div>
+  <div class="mob-more-item" id="mobCustomItem" onclick="mobGoTo('customizar')" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg> Customizar</div>
+  <div class="mob-more-item" id="mobFirebaseItem" onclick="mobGoTo('firebase')" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 19h20L12 2z"/><path d="M12 8v4M12 16h.01"/></svg> Firebase</div>
+  <div class="mob-more-item" id="mobLogoutItem" onclick="doLogout()" style="color:var(--crimson2)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> Sair</div>
+</div>
+
+
 </body>
 </html>
