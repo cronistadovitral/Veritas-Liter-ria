@@ -35,21 +35,21 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .sidebar-banner{width:100%;cursor:pointer;}
 .sidebar-banner img{width:100%;display:block;max-height:80px;object-fit:cover;object-position:center 30%;}
 .sidebar-logo{padding:0.6rem 1rem 0.75rem;text-align:center;border-bottom:1px solid var(--border);}
-.sidebar-logo::after{content:'✦ ✦ ✦';display:block;font-size:7px;color:var(--gold);letter-spacing:6px;margin-top:6px;opacity:0.5;}
-.sidebar-logo h1{font-family:var(--font-display);font-size:17px;font-weight:600;letter-spacing:0.12em;color:var(--gold2);}
-.sidebar-logo a{display:block;font-size:12px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.08em;text-decoration:none;margin-top:3px;transition:color 0.15s;}
+.sidebar-logo::after{content:'✦ ✦ ✦';display:block;font-size:14px;color:var(--gold);letter-spacing:6px;margin-top:6px;opacity:0.5;}
+.sidebar-logo h1{font-family:var(--font-display);font-size:34px;font-weight:600;letter-spacing:0.12em;color:var(--gold2);}
+.sidebar-logo a{display:block;font-size:24px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.08em;text-decoration:none;margin-top:3px;transition:color 0.15s;}
 .sidebar-logo a:hover{color:var(--gold);}
 .nav{padding:0.5rem 0;flex:1;}
-.nav-item{display:flex;align-items:center;gap:10px;padding:0.6rem 1.1rem;cursor:pointer;font-size:15px;font-family:var(--font-sans);color:var(--text3);transition:all 0.2s;border-left:2px solid transparent;letter-spacing:0.04em;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:0.6rem 1.1rem;cursor:pointer;font-size:30px;font-family:var(--font-sans);color:var(--text3);transition:all 0.2s;border-left:2px solid transparent;letter-spacing:0.04em;}
 .nav-item:hover{color:var(--text2);background:rgba(201,168,76,0.04);border-left-color:rgba(201,168,76,0.3);}
 .nav-item.active{color:var(--gold2);border-left-color:var(--gold);background:rgba(201,168,76,0.07);}
 .nav-icon{width:18px;height:18px;flex-shrink:0;opacity:0.7;}
 .nav-item.active .nav-icon{opacity:1;}
 .nav-divider{height:1px;background:var(--border);margin:0.4rem 0.875rem;}
 .sidebar-user{padding:0.75rem 1.1rem;border-top:1px solid var(--border);font-family:var(--font-sans);background:rgba(0,0,0,0.2);}
-.user-name{color:var(--gold2);font-size:16px;font-weight:600;}
-.user-role{color:var(--text3);font-size:13px;text-transform:uppercase;letter-spacing:0.1em;margin-top:1px;}
-.logout-btn{margin-top:6px;background:none;border:1px solid var(--border);color:var(--text3);padding:4px 11px;border-radius:var(--radius);font-size:12px;cursor:pointer;font-family:var(--font-sans);transition:all 0.15s;}
+.user-name{color:var(--gold2);font-size:32px;font-weight:600;}
+.user-role{color:var(--text3);font-size:26px;text-transform:uppercase;letter-spacing:0.1em;margin-top:1px;}
+.logout-btn{margin-top:6px;background:none;border:1px solid var(--border);color:var(--text3);padding:4px 11px;border-radius:var(--radius);font-size:24px;cursor:pointer;font-family:var(--font-sans);transition:all 0.15s;}
 .logout-btn:hover{border-color:var(--crimson);color:var(--crimson2);}
 
 /* MAIN */
@@ -58,8 +58,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .page.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 .page-header{margin-bottom:1.5rem;padding-bottom:0.875rem;border-bottom:1px solid var(--border);}
-.page-title{font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--gold2);letter-spacing:0.08em;margin-bottom:0.15rem;}
-.page-sub{font-size:14px;color:var(--text3);font-family:var(--font-sans);}
+.page-title{font-family:var(--font-display);font-size:44px;font-weight:600;color:var(--gold2);letter-spacing:0.08em;margin-bottom:0.15rem;}
+.page-sub{font-size:28px;color:var(--text3);font-family:var(--font-sans);}
 
 /* LOGIN */
 .login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;background:radial-gradient(ellipse 70% 60% at 20% 50%,rgba(120,35,10,0.22) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 80% 30%,rgba(50,20,5,0.2) 0%,transparent 55%),var(--bg);}
@@ -67,37 +67,37 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .login-banner{width:100%;border-radius:var(--radius-lg) var(--radius-lg) 0 0;overflow:hidden;margin-bottom:1.25rem;}
 .login-banner img{width:100%;display:block;max-height:90px;object-fit:cover;object-position:center 25%;}
 .login-logo{text-align:center;margin-bottom:1.5rem;}
-.login-logo h2{font-family:var(--font-display);font-size:21px;font-weight:600;color:var(--gold2);letter-spacing:0.15em;}
-.login-logo p{font-size:9px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.25em;text-transform:uppercase;margin-top:3px;}
-.login-logo .deco{color:var(--gold);font-size:9px;letter-spacing:10px;margin:8px 0;opacity:0.5;}
+.login-logo h2{font-family:var(--font-display);font-size:42px;font-weight:600;color:var(--gold2);letter-spacing:0.15em;}
+.login-logo p{font-size:18px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.25em;text-transform:uppercase;margin-top:3px;}
+.login-logo .deco{color:var(--gold);font-size:18px;letter-spacing:10px;margin:8px 0;opacity:0.5;}
 
 /* FORMS */
-label{font-size:12px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:4px;}
-input,select,textarea{width:100%;background:rgba(255,255,255,0.03);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);padding:8px 12px;font-size:15px;font-family:var(--font-serif);outline:none;transition:border 0.15s,background 0.15s;}
+label{font-size:24px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:4px;}
+input,select,textarea{width:100%;background:rgba(255,255,255,0.03);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);padding:8px 12px;font-size:30px;font-family:var(--font-serif);outline:none;transition:border 0.15s,background 0.15s;}
 input:focus,select:focus,textarea:focus{border-color:var(--gold);background:rgba(201,168,76,0.03);}
 select option{background:var(--bg3);}
 textarea{resize:vertical;min-height:90px;}
 .form-group{margin-bottom:1rem;}
-.btn{padding:8px 18px;border-radius:var(--radius);border:1px solid var(--border2);background:none;color:var(--text2);font-size:12px;font-family:var(--font-sans);cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;}
+.btn{padding:8px 18px;border-radius:var(--radius);border:1px solid var(--border2);background:none;color:var(--text2);font-size:24px;font-family:var(--font-sans);cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;}
 .btn:hover{background:rgba(255,255,255,0.05);color:var(--text);}
 .btn-primary{background:var(--gold);border-color:var(--gold);color:#0a0804;font-weight:600;}
 .btn-primary:hover{background:var(--gold2);border-color:var(--gold2);}
 .btn-danger{border-color:rgba(181,34,34,0.5);color:var(--crimson2);}
 .btn-danger:hover{background:rgba(181,34,34,0.1);}
-.btn-sm{padding:5px 13px;font-size:13px;}
+.btn-sm{padding:5px 13px;font-size:26px;}
 .btn-group{display:flex;gap:8px;flex-wrap:wrap;margin-top:0.875rem;}
 
 /* CARDS */
 .card{background:linear-gradient(160deg,rgba(22,18,13,0.9) 0%,rgba(16,13,10,0.95) 100%);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem;margin-bottom:0.875rem;position:relative;transition:border-color 0.2s;}
 .card:hover{border-color:var(--border2);}
 .card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.75rem;}
-.card-title{font-family:var(--font-display);font-size:15px;color:var(--gold2);letter-spacing:0.04em;}
-.card-sub{font-size:13px;color:var(--text3);font-family:var(--font-sans);margin-top:2px;}
+.card-title{font-family:var(--font-display);font-size:30px;color:var(--gold2);letter-spacing:0.04em;}
+.card-sub{font-size:26px;color:var(--text3);font-family:var(--font-sans);margin-top:2px;}
 .card-champion{border-color:var(--gold);background:linear-gradient(160deg,rgba(30,22,8,0.95) 0%,rgba(18,13,5,0.98) 100%);box-shadow:0 0 30px rgba(201,168,76,0.06);}
 .card-champion::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);border-radius:var(--radius-lg) var(--radius-lg) 0 0;}
 
 /* BADGES */
-.badge{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:4px;font-size:12px;font-family:var(--font-sans);font-weight:600;letter-spacing:0.04em;}
+.badge{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:4px;font-size:24px;font-family:var(--font-sans);font-weight:600;letter-spacing:0.04em;}
 .badge-gold{background:rgba(201,168,76,0.15);color:var(--gold2);border:1px solid rgba(201,168,76,0.35);}
 .badge-silver{background:rgba(180,180,180,0.1);color:#c0bfbb;border:1px solid rgba(180,180,180,0.25);}
 .badge-bronze{background:rgba(180,110,50,0.15);color:#d4864a;border:1px solid rgba(180,110,50,0.3);}
@@ -108,8 +108,8 @@ textarea{resize:vertical;min-height:90px;}
 .badge-champion{background:linear-gradient(90deg,rgba(201,168,76,0.2),rgba(248,215,120,0.15));color:var(--gold3);border:1px solid rgba(201,168,76,0.5);font-family:var(--font-display);letter-spacing:0.08em;}
 
 /* TABLES */
-table{width:100%;border-collapse:collapse;font-size:14px;font-family:var(--font-sans);}
-th{text-align:left;padding:8px 12px;color:var(--text3);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid var(--border);font-weight:400;}
+table{width:100%;border-collapse:collapse;font-size:28px;font-family:var(--font-sans);}
+th{text-align:left;padding:8px 12px;color:var(--text3);font-size:24px;letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid var(--border);font-weight:400;}
 td{padding:10px 12px;border-bottom:1px solid rgba(180,140,60,0.06);color:var(--text2);vertical-align:middle;}
 tr:last-child td{border-bottom:none;}
 tr:hover td{background:rgba(201,168,76,0.02);}
@@ -119,20 +119,20 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem;}
 .stat{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);padding:0.875rem;text-align:center;}
-.stat-val{font-size:22px;color:var(--gold);font-family:var(--font-display);}
-.stat-lbl{font-size:10px;color:var(--text3);font-family:var(--font-sans);text-transform:uppercase;letter-spacing:0.1em;margin-top:3px;}
+.stat-val{font-size:44px;color:var(--gold);font-family:var(--font-display);}
+.stat-lbl{font-size:20px;color:var(--text3);font-family:var(--font-sans);text-transform:uppercase;letter-spacing:0.1em;margin-top:3px;}
 
 /* EVAL */
 .eval-section{background:rgba(18,14,10,0.8);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:1.1rem;overflow:hidden;}
 .eval-section-header{background:rgba(12,9,6,0.8);padding:0.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
-.eval-section-title{font-family:var(--font-display);font-size:14px;color:var(--gold2);letter-spacing:0.06em;}
-.eval-section-score{font-size:19px;color:var(--gold);font-family:var(--font-sans);font-weight:300;}
+.eval-section-title{font-family:var(--font-display);font-size:28px;color:var(--gold2);letter-spacing:0.06em;}
+.eval-section-score{font-size:38px;color:var(--gold);font-family:var(--font-sans);font-weight:300;}
 .eval-section-body{padding:1rem 1.1rem;}
 .question-row{display:flex;align-items:flex-start;gap:0.875rem;padding:0.6rem 0;border-bottom:1px solid rgba(180,140,60,0.05);}
 .question-row:last-child{border-bottom:none;}
-.question-text{flex:1;font-size:14px;color:var(--text2);font-family:var(--font-sans);line-height:1.5;}
+.question-text{flex:1;font-size:28px;color:var(--text2);font-family:var(--font-sans);line-height:1.5;}
 .question-options{display:flex;gap:3px;flex-shrink:0;}
-.q-opt{padding:5px 9px;border:1px solid var(--border2);border-radius:3px;font-size:13px;cursor:pointer;font-family:var(--font-sans);background:none;color:var(--text3);transition:all 0.12s;white-space:nowrap;}
+.q-opt{padding:5px 9px;border:1px solid var(--border2);border-radius:3px;font-size:26px;cursor:pointer;font-family:var(--font-sans);background:none;color:var(--text3);transition:all 0.12s;white-space:nowrap;}
 .q-opt:hover{border-color:var(--gold);color:var(--gold);}
 .q-opt.sel-MA{background:rgba(58,138,80,0.2);border-color:#3a8a50;color:#5ab870;}
 .q-opt.sel-BA{background:rgba(58,138,80,0.12);border-color:#3a8a50;color:#5ab870;}
@@ -142,52 +142,52 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 
 /* GRAMMAR */
 .error-item{display:flex;align-items:flex-start;gap:9px;padding:9px 11px;border-radius:var(--radius);background:rgba(255,255,255,0.02);margin-bottom:5px;border:1px solid var(--border);}
-.error-item .err-text{flex:1;color:var(--text2);font-family:var(--font-sans);font-size:11px;}
+.error-item .err-text{flex:1;color:var(--text2);font-family:var(--font-sans);font-size:22px;}
 .error-check{width:14px;height:14px;cursor:pointer;margin-top:2px;flex-shrink:0;accent-color:var(--gold);}
 .error-confirmed{opacity:0.4;}
 
 /* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.82);display:flex;align-items:center;justify-content:center;z-index:200;backdrop-filter:blur(2px);}
 .modal{background:linear-gradient(160deg,rgba(22,17,12,0.99) 0%,rgba(14,11,8,1) 100%);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1.75rem;width:600px;max-width:95vw;max-height:88vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,0.8);}
-.modal h3{font-family:var(--font-display);font-size:15px;color:var(--gold2);font-weight:600;letter-spacing:0.08em;margin-bottom:1.25rem;}
-.modal-close{float:right;background:none;border:none;color:var(--text3);cursor:pointer;font-size:16px;margin-top:-2px;transition:color 0.15s;}
+.modal h3{font-family:var(--font-display);font-size:30px;color:var(--gold2);font-weight:600;letter-spacing:0.08em;margin-bottom:1.25rem;}
+.modal-close{float:right;background:none;border:none;color:var(--text3);cursor:pointer;font-size:32px;margin-top:-2px;transition:color 0.15s;}
 .modal-close:hover{color:var(--crimson2);}
 .hidden{display:none!important;}
 
 /* ALERT */
-.alert{padding:8px 12px;border-radius:var(--radius);font-family:var(--font-sans);font-size:11px;margin-bottom:0.875rem;}
+.alert{padding:8px 12px;border-radius:var(--radius);font-family:var(--font-sans);font-size:22px;margin-bottom:0.875rem;}
 .alert-warn{background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);color:var(--gold2);}
 .alert-err{background:rgba(181,34,34,0.08);border:1px solid rgba(181,34,34,0.3);color:#e06060;}
 .alert-ok{background:rgba(58,138,80,0.08);border:1px solid rgba(58,138,80,0.3);color:#5ab870;}
-.text-preview{background:rgba(255,255,255,0.015);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem;font-size:13px;line-height:1.85;max-height:300px;overflow-y:auto;}
+.text-preview{background:rgba(255,255,255,0.015);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem;font-size:26px;line-height:1.85;max-height:300px;overflow-y:auto;}
 .text-preview p{margin-bottom:0.65rem;}
 
 /* RANKING */
 .rank-entry{display:flex;align-items:center;gap:0.875rem;padding:0.8rem 0.9rem;border-bottom:1px solid var(--border);transition:background 0.15s;}
 .rank-entry:hover{background:rgba(201,168,76,0.02);}
 .rank-entry:last-child{border-bottom:none;}
-.rank-medal{font-size:20px;width:32px;text-align:center;flex-shrink:0;}
+.rank-medal{font-size:40px;width:32px;text-align:center;flex-shrink:0;}
 .rank-info{flex:1;min-width:0;}
-.rank-title-obra{font-size:14px;color:var(--text);font-family:var(--font-serif);}
-.rank-meta{font-size:10px;color:var(--text3);font-family:var(--font-sans);margin-top:2px;}
-.rank-score-big{font-size:21px;color:var(--gold);font-family:var(--font-sans);font-weight:300;}
-.champion-banner{background:linear-gradient(90deg,rgba(139,26,26,0.3),rgba(201,168,76,0.15),rgba(139,26,26,0.3));border:1px solid var(--gold);border-radius:var(--radius);padding:0.65rem 1.1rem;text-align:center;font-family:var(--font-display);font-size:12px;color:var(--gold3);letter-spacing:0.12em;margin-bottom:0.875rem;}
+.rank-title-obra{font-size:28px;color:var(--text);font-family:var(--font-serif);}
+.rank-meta{font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-top:2px;}
+.rank-score-big{font-size:42px;color:var(--gold);font-family:var(--font-sans);font-weight:300;}
+.champion-banner{background:linear-gradient(90deg,rgba(139,26,26,0.3),rgba(201,168,76,0.15),rgba(139,26,26,0.3));border:1px solid var(--gold);border-radius:var(--radius);padding:0.65rem 1.1rem;text-align:center;font-family:var(--font-display);font-size:24px;color:var(--gold3);letter-spacing:0.12em;margin-bottom:0.875rem;}
 
 /* TENSIVITY */
 .tensiv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 .tensiv-meter{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);padding:0.875rem;}
-.tensiv-label{font-size:12px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text3);font-family:var(--font-sans);margin-bottom:6px;}
-.tensiv-val{font-size:32px;color:var(--gold);text-align:center;font-family:var(--font-display);}
-.tensiv-desc{font-size:12px;color:var(--text3);font-family:var(--font-sans);text-align:center;margin-top:2px;}
+.tensiv-label{font-size:24px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text3);font-family:var(--font-sans);margin-bottom:6px;}
+.tensiv-val{font-size:64px;color:var(--gold);text-align:center;font-family:var(--font-display);}
+.tensiv-desc{font-size:24px;color:var(--text3);font-family:var(--font-sans);text-align:center;margin-top:2px;}
 .tensiv-segs{display:flex;gap:3px;margin-top:8px;}
 .tensiv-seg{flex:1;height:5px;border-radius:2px;background:rgba(255,255,255,0.04);}
 .tensiv-seg.on{background:var(--gold);}
 
 /* CERT */
 .cert-box{background:linear-gradient(160deg,rgba(22,17,10,0.98) 0%,rgba(14,11,6,1) 100%);border:1px solid var(--gold);border-radius:var(--radius-lg);padding:2rem;max-width:600px;margin:1.25rem auto;text-align:center;box-shadow:0 0 30px rgba(201,168,76,0.07);}
-.cert-deco{color:var(--gold);opacity:0.5;font-size:16px;letter-spacing:10px;margin:0.6rem 0;}
-.cert-name-line{font-family:var(--font-display);font-size:24px;color:var(--gold3);margin:0.65rem 0;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:5px;}
-.cert-pos{font-family:var(--font-display);font-size:16px;color:var(--gold2);letter-spacing:0.1em;}
+.cert-deco{color:var(--gold);opacity:0.5;font-size:32px;letter-spacing:10px;margin:0.6rem 0;}
+.cert-name-line{font-family:var(--font-display);font-size:48px;color:var(--gold3);margin:0.65rem 0;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:5px;}
+.cert-pos{font-family:var(--font-display);font-size:32px;color:var(--gold2);letter-spacing:0.1em;}
 
 /* TIER COLORS */
 .tc-none{color:var(--text3)}
@@ -197,22 +197,22 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 .tc-escritor_rubi{color:#f06060}.tc-escritor_esmeralda{color:#50c878}.tc-escritor_diamante{color:#b8f0ff}
 
 /* STARS */
-.stars{display:flex;gap:3px;}.star{font-size:18px;cursor:pointer;color:var(--text3);transition:color 0.1s;}.star.on{color:var(--gold2);}
+.stars{display:flex;gap:3px;}.star{font-size:36px;cursor:pointer;color:var(--text3);transition:color 0.1s;}.star.on{color:var(--gold2);}
 
 /* PUBLIC VIEW */
 .pub-card{background:rgba(22,18,13,0.85);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1rem;}
 .pub-score-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.75rem;}
-.pub-score-item{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:4px;padding:4px 10px;font-size:11px;font-family:var(--font-sans);}
+.pub-score-item{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:4px;padding:4px 10px;font-size:22px;font-family:var(--font-sans);}
 .pub-score-item span{color:var(--gold);font-weight:600;}
 
 /* CUSTOMIZER */
 .custom-section{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem;margin-bottom:1rem;}
-.custom-section-title{font-family:var(--font-display);font-size:12px;color:var(--gold2);letter-spacing:0.06em;margin-bottom:1rem;}
-.font-option{padding:5px 12px;border:1px solid var(--border2);border-radius:4px;cursor:pointer;font-size:13px;color:var(--text2);background:none;transition:all 0.15s;}
+.custom-section-title{font-family:var(--font-display);font-size:24px;color:var(--gold2);letter-spacing:0.06em;margin-bottom:1rem;}
+.font-option{padding:5px 12px;border:1px solid var(--border2);border-radius:4px;cursor:pointer;font-size:26px;color:var(--text2);background:none;transition:all 0.15s;}
 .font-option:hover,.font-option.selected{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,0.06);}
 .color-swatch{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color 0.15s;}
 .color-swatch:hover,.color-swatch.selected{border-color:var(--gold3);}
-.upload-area{border:1px dashed var(--border2);border-radius:var(--radius);padding:1rem;text-align:center;cursor:pointer;transition:border-color 0.2s;font-family:var(--font-sans);font-size:12px;color:var(--text3);}
+.upload-area{border:1px dashed var(--border2);border-radius:var(--radius);padding:1rem;text-align:center;cursor:pointer;transition:border-color 0.2s;font-family:var(--font-sans);font-size:24px;color:var(--text3);}
 .upload-area:hover{border-color:var(--gold);color:var(--gold);}
 
 
@@ -221,7 +221,7 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 .pixel-art-spot img{display:block;image-rendering:pixelated;}
 
 /* EVENT DETAIL TABS */
-.ev-tab{padding:8px 18px;background:none;border:none;border-bottom:2px solid transparent;font-family:var(--font-sans);font-size:14px;color:var(--text3);cursor:pointer;transition:all 0.15s;margin-bottom:-1px;}
+.ev-tab{padding:8px 18px;background:none;border:none;border-bottom:2px solid transparent;font-family:var(--font-sans);font-size:28px;color:var(--text3);cursor:pointer;transition:all 0.15s;margin-bottom:-1px;}
 .ev-tab:hover{color:var(--text2);}
 .ev-tab-active{color:var(--gold2);border-bottom-color:var(--gold);}
 
@@ -229,14 +229,14 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 .portal-page{min-height:100vh;background:radial-gradient(ellipse 80% 60% at 20% 50%,rgba(100,30,10,0.15) 0%,transparent 60%),var(--bg);padding:0;}
 .portal-header{background:linear-gradient(180deg,rgba(18,14,10,0.98),rgba(12,9,6,0.99));border-bottom:1px solid var(--border2);padding:1.25rem 2rem;display:flex;align-items:center;gap:1rem;}
 .portal-header img{max-height:48px;object-fit:cover;}
-.portal-header-title{font-family:var(--font-display);font-size:18px;color:var(--gold2);letter-spacing:0.08em;}
-.portal-header-ev{font-size:13px;color:var(--text3);font-family:var(--font-sans);margin-top:2px;}
+.portal-header-title{font-family:var(--font-display);font-size:36px;color:var(--gold2);letter-spacing:0.08em;}
+.portal-header-ev{font-size:26px;color:var(--text3);font-family:var(--font-sans);margin-top:2px;}
 .portal-body{max-width:900px;margin:0 auto;padding:2rem 1.5rem;}
-.portal-section-title{font-family:var(--font-display);font-size:15px;color:var(--gold2);letter-spacing:0.06em;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);}
+.portal-section-title{font-family:var(--font-display);font-size:30px;color:var(--gold2);letter-spacing:0.06em;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);}
 .judge-score-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;}
-.judge-score-pill{padding:3px 10px;border-radius:20px;font-size:12px;font-family:var(--font-sans);border:1px solid var(--border2);color:var(--text2);}
+.judge-score-pill{padding:3px 10px;border-radius:20px;font-size:24px;font-family:var(--font-sans);border:1px solid var(--border2);color:var(--text2);}
 .score-bar-wrap{margin-bottom:5px;}
-.score-bar-label{display:flex;justify-content:space-between;font-size:12px;font-family:var(--font-sans);color:var(--text3);margin-bottom:3px;}
+.score-bar-label{display:flex;justify-content:space-between;font-size:24px;font-family:var(--font-sans);color:var(--text3);margin-bottom:3px;}
 .score-bar-track{height:7px;background:rgba(255,255,255,0.05);border-radius:4px;overflow:hidden;}
 .score-bar-fill{height:100%;border-radius:4px;transition:width 0.6s ease;}
 /* CERT REPO */
@@ -246,7 +246,7 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 /* REVIEW */
 .review-card{background:rgba(22,18,13,0.88);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem;margin-bottom:0.875rem;}
 .review-judge-block{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);padding:0.875rem;margin-top:0.75rem;}
-.review-score-input{width:80px;font-size:16px;text-align:center;background:rgba(201,168,76,0.07);border:1px solid var(--gold);color:var(--gold2);padding:4px 8px;}
+.review-score-input{width:80px;font-size:32px;text-align:center;background:rgba(201,168,76,0.07);border:1px solid var(--gold);color:var(--gold2);padding:4px 8px;}
 /* SCROLLBAR */
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
@@ -255,12 +255,12 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 /* ── MOBILE BOTTOM NAV ── */
 #mobileNav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(12,9,6,0.98);border-top:1px solid var(--border2);padding:0;box-shadow:0 -4px 20px rgba(0,0,0,0.5);}
 .mob-nav-bar{display:flex;align-items:stretch;}
-.mob-nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 4px 6px;cursor:pointer;border:none;background:none;color:var(--text3);font-family:var(--font-sans);font-size:9px;letter-spacing:0.03em;gap:4px;transition:color 0.15s;min-height:56px;}
+.mob-nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 4px 6px;cursor:pointer;border:none;background:none;color:var(--text3);font-family:var(--font-sans);font-size:18px;letter-spacing:0.03em;gap:4px;transition:color 0.15s;min-height:56px;}
 .mob-nav-btn svg{width:20px;height:20px;flex-shrink:0;}
 .mob-nav-btn.active{color:var(--gold2);}
 .mob-nav-btn:hover{color:var(--text2);}
 .mob-more-menu{position:fixed;bottom:56px;right:0;left:0;background:rgba(16,13,10,0.98);border-top:1px solid var(--border2);z-index:99;padding:0.75rem 0;box-shadow:0 -4px 20px rgba(0,0,0,0.6);}
-.mob-more-item{display:flex;align-items:center;gap:12px;padding:0.7rem 1.25rem;cursor:pointer;font-family:var(--font-sans);font-size:14px;color:var(--text2);transition:background 0.15s;}
+.mob-more-item{display:flex;align-items:center;gap:12px;padding:0.7rem 1.25rem;cursor:pointer;font-family:var(--font-sans);font-size:28px;color:var(--text2);transition:background 0.15s;}
 .mob-more-item:hover{background:rgba(201,168,76,0.06);color:var(--gold2);}
 .mob-more-item svg{width:18px;height:18px;flex-shrink:0;}
 
@@ -277,18 +277,18 @@ tr:hover td{background:rgba(201,168,76,0.02);}
   .modal{width:96vw!important;max-width:96vw!important;padding:1.25rem;}
   .login-box{width:92vw;padding:0 1.25rem 1.5rem;}
   .card{padding:0.875rem;}
-  .btn{font-size:13px;}
-  .page-title{font-size:18px;}
-  table{font-size:12px;}
+  .btn{font-size:26px;}
+  .page-title{font-size:36px;}
+  table{font-size:24px;}
   th,td{padding:7px 8px;}
   /* stacked card headers */
   .card-header{flex-wrap:wrap;gap:8px;}
   .rank-entry{flex-wrap:wrap;}
-  .rank-score-big{font-size:18px;}
+  .rank-score-big{font-size:36px;}
 }
 @media(max-width:480px){
   .page{padding:0.75rem;}
-  .btn-sm{padding:5px 10px;font-size:12px;}
+  .btn-sm{padding:5px 10px;font-size:24px;}
 }
 </style>
 <!-- Firebase SDK v8 — expõe firebase globalmente de forma síncrona -->
@@ -337,7 +337,7 @@ window.database = database;
     <div class="form-group"><label>Senha</label><input type="password" id="loginPass" placeholder="••••••••" /></div>
     <div id="loginErr" class="alert alert-err hidden"></div>
     <button class="btn btn-primary" style="width:100%" onclick="doLogin()">Entrar</button>
-    <div style="margin-top:1rem;font-size:11px;color:var(--text3);font-family:var(--font-sans);text-align:center;line-height:1.6">
+    <div style="margin-top:1rem;font-size:22px;color:var(--text3);font-family:var(--font-sans);text-align:center;line-height:1.6">
       Em caso de dúvidas, contacte o administrador do concurso.
     </div>
   </div>
@@ -452,7 +452,7 @@ window.database = database;
     <div id="page-revisao" class="page">
       <div class="page-header"><div class="page-title">Revisão de Avaliações</div><div class="page-sub">Visualize, confirme ou ajuste as notas dos avaliadores</div></div>
       <div id="revisaoContent">
-        <div style="font-size:14px;color:var(--text2);font-family:var(--font-sans);margin-bottom:1.25rem">
+        <div style="font-size:28px;color:var(--text2);font-family:var(--font-sans);margin-bottom:1.25rem">
           Como administrador, você pode visualizar todas as avaliações e, se necessário, confirmar ou ajustar a nota final de uma submissão. Você não avalia — apenas revisa.
         </div>
         <div style="margin-bottom:1.25rem">
@@ -545,7 +545,7 @@ window.database = database;
     <div class="form-group">
       <label>Texto Completo</label>
       <textarea id="subTexto" rows="7" placeholder="Cole o texto aqui..." oninput="updateWordCount()"></textarea>
-      <div style="font-size:10px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">Palavras: <span id="wordCount" style="color:var(--gold)">0</span> / <span id="wordLimit">4000</span></div>
+      <div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">Palavras: <span id="wordCount" style="color:var(--gold)">0</span> / <span id="wordLimit">4000</span></div>
     </div>
     <div id="subErr" class="alert alert-err hidden"></div>
     <div class="btn-group"><button class="btn btn-primary" onclick="saveSubmissao()">Submeter</button><button class="btn" onclick="closeModal('modalNewSub')">Cancelar</button></div>
@@ -556,7 +556,7 @@ window.database = database;
   <div class="modal" style="width:700px">
     <button class="modal-close" onclick="closeModal('modalViewSub')">✕</button>
     <h3 id="viewSubTitle">—</h3>
-    <div id="viewSubMeta" style="font-size:10px;color:var(--text3);font-family:var(--font-sans);margin-bottom:0.875rem"></div>
+    <div id="viewSubMeta" style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-bottom:0.875rem"></div>
     <div class="text-preview" id="viewSubText"></div>
   </div>
 </div>
@@ -566,7 +566,7 @@ window.database = database;
     <button class="modal-close" onclick="closeModal('modalFinalizeEvent')">✕</button>
     <h3>Finalizar Evento</h3>
     <div class="alert alert-warn" id="finalizeInfo"></div>
-    <p style="font-size:12px;color:var(--text2);font-family:var(--font-sans);line-height:1.6;margin-bottom:1.25rem">Ao finalizar, o ranking fica congelado, os três primeiros são sagrados campeões e os títulos são atualizados. Esta ação não pode ser desfeita.</p>
+    <p style="font-size:24px;color:var(--text2);font-family:var(--font-sans);line-height:1.6;margin-bottom:1.25rem">Ao finalizar, o ranking fica congelado, os três primeiros são sagrados campeões e os títulos são atualizados. Esta ação não pode ser desfeita.</p>
     <div id="finalizePreview"></div>
     <div class="btn-group">
       <button class="btn btn-primary" onclick="confirmFinalizeEvent()">Confirmar Finalização</button>
@@ -589,7 +589,7 @@ window.database = database;
   <div class="modal" style="width:780px;max-width:97vw">
     <button class="modal-close" onclick="closeModal('modalEventDetail')">✕</button>
     <h3 id="evDetailTitle">—</h3>
-    <div id="evDetailMeta" style="font-size:13px;color:var(--text3);font-family:var(--font-sans);margin-bottom:1.25rem"></div>
+    <div id="evDetailMeta" style="font-size:26px;color:var(--text3);font-family:var(--font-sans);margin-bottom:1.25rem"></div>
     <!-- Tabs -->
     <div style="display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:1.25rem">
       <button id="evTabSubs" class="ev-tab ev-tab-active" onclick="switchEvTab('subs')">📄 Submissões</button>
@@ -826,15 +826,15 @@ function saveEvento(){
 function renderEventos(){
   const el=document.getElementById('eventosList');
   const isAdmin=currentUser&&currentUser.id==='admin';
-  if(!DB.eventos.length){el.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:13px;padding:1rem 0">Nenhum evento cadastrado.</div>';return;}
+  if(!DB.eventos.length){el.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:26px;padding:1rem 0">Nenhum evento cadastrado.</div>';return;}
   el.innerHTML=DB.eventos.map(ev=>{
     const subs=DB.submissoes.filter(s=>s.eventoId===ev.id).length;
     const tierLabel=ev.tierMin&&ev.tierMin!=='none'?`Restrito: ${{acolito:'Acólito+',veterano:'Veterano+',escritor:'Escritores'}[ev.tierMin]}`:'Aberto a todos';
     const tierBadge=ev.tierMin&&ev.tierMin!=='none'?`<span class="badge badge-crimson">${tierLabel}</span>`:`<span class="badge badge-blue">${tierLabel}</span>`;
     const finalBadge=ev.finalized?'<span class="badge badge-champion">✦ Finalizado</span>':'<span class="badge badge-silver">Em curso</span>';
     const finalBtn=isAdmin&&!ev.finalized?`<button class="btn btn-sm" onclick="openFinalizeEvent('${ev.id}')" style="border-color:var(--gold);color:var(--gold)">Finalizar</button>`:'';
-    const pubLink=`<button class="btn btn-sm" onclick="copyPublicLink('${ev.id}')" style="font-size:10px">🔗 Link Público</button>`;
-    const editalBtn=`<button class="btn btn-sm" onclick="openEditalModal('${ev.id}')" style="font-size:10px">📜 Edital</button>`;
+    const pubLink=`<button class="btn btn-sm" onclick="copyPublicLink('${ev.id}')" style="font-size:20px">🔗 Link Público</button>`;
+    const editalBtn=`<button class="btn btn-sm" onclick="openEditalModal('${ev.id}')" style="font-size:20px">📜 Edital</button>`;
     const coverStyle=ev.cover?`style="background-image:url('${ev.cover}');background-size:cover;background-position:center;height:50px;border-radius:var(--radius);margin-bottom:8px;opacity:0.4"`:'';
     const coverDiv=ev.cover?`<div ${coverStyle}></div>`:'';
     return `<div class="card ${ev.finalized?'card-champion':''}">
@@ -844,7 +844,7 @@ function renderEventos(){
         <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center">${finalBadge}<span class="badge badge-blue">${subs}/${ev.max}</span></div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-        <div style="display:flex;gap:0.875rem;font-size:10px;font-family:var(--font-sans);color:var(--text3);flex-wrap:wrap">
+        <div style="display:flex;gap:0.875rem;font-size:20px;font-family:var(--font-sans);color:var(--text3);flex-wrap:wrap">
           <span>Início: <span style="color:var(--text2)">${ev.start||'—'}</span></span>
           <span>Fim: <span style="color:var(--text2)">${ev.end||'—'}</span></span>
           <span>Limite: <span style="color:var(--text2)">${ev.words}p</span></span>
@@ -852,7 +852,7 @@ function renderEventos(){
         </div>
         <div style="display:flex;gap:5px;flex-wrap:wrap">
           <button class="btn btn-primary btn-sm" onclick="openEventDetail('${ev.id}')">📂 Ver Submissões</button>
-          ${editalBtn}${pubLink}<button class="btn btn-sm" onclick="openEditEvent('${ev.id}')" style="font-size:10px">✏️ Editar</button>${finalBtn}
+          ${editalBtn}${pubLink}<button class="btn btn-sm" onclick="openEditEvent('${ev.id}')" style="font-size:20px">✏️ Editar</button>${finalBtn}
         </div>
       </div>
     </div>`;
@@ -871,9 +871,9 @@ function openFinalizeEvent(evId){
   const subs=DB.submissoes.filter(s=>s.eventoId===evId);
   let ranked=subs.map(s=>{const avs=DB.avaliacoes.filter(a=>a.subId===s.id);const sc=avs.map(a=>a.finalScore).filter(x=>x!=null);return{...s,avg:sc.length?sc.reduce((a,b)=>a+b,0)/sc.length:null};}).filter(s=>s.avg!==null).sort((a,b)=>b.avg-a.avg);
   const medals=['🥇','🥈','🥉'];
-  let html='<div style="margin-bottom:0.875rem;font-size:11px;font-family:var(--font-sans);color:var(--text3)">Pódio atual:</div>';
-  if(!ranked.length) html+='<div style="color:var(--text3);font-family:var(--font-sans);font-size:11px">Nenhum texto avaliado.</div>';
-  else ranked.slice(0,3).forEach((s,i)=>{html+=`<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);font-family:var(--font-sans);font-size:11px"><span style="font-size:18px">${medals[i]}</span><div style="flex:1"><strong style="color:var(--text)">${s.titulo}</strong><br><span style="color:var(--text3)">${s.autor} · ${s.avg.toFixed(2)}</span></div></div>`;});
+  let html='<div style="margin-bottom:0.875rem;font-size:22px;font-family:var(--font-sans);color:var(--text3)">Pódio atual:</div>';
+  if(!ranked.length) html+='<div style="color:var(--text3);font-family:var(--font-sans);font-size:22px">Nenhum texto avaliado.</div>';
+  else ranked.slice(0,3).forEach((s,i)=>{html+=`<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);font-family:var(--font-sans);font-size:22px"><span style="font-size:36px">${medals[i]}</span><div style="flex:1"><strong style="color:var(--text)">${s.titulo}</strong><br><span style="color:var(--text3)">${s.autor} · ${s.avg.toFixed(2)}</span></div></div>`;});
   document.getElementById('finalizePreview').innerHTML=html;
   showModal('modalFinalizeEvent');
 }
@@ -919,7 +919,7 @@ function renderEventDetailSubs(){
   const subs=DB.submissoes.filter(s=>s.eventoId===evId);
   const cont=document.getElementById('evTabContentSubs');
   if(!subs.length){
-    cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:14px;padding:1.5rem 0;text-align:center">Nenhuma submissão ainda para este evento.</div>';
+    cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:28px;padding:1.5rem 0;text-align:center">Nenhuma submissão ainda para este evento.</div>';
     return;
   }
   // Group by modalidade
@@ -931,20 +931,20 @@ function renderEventDetailSubs(){
     const mLabel={conto:'Contos',cronica:'Crônicas',poesia:'Poesias'}[mod]||mod;
     const mBadge=mod==='poesia'?'badge-gold':mod==='cronica'?'badge-blue':'badge-green';
     html+=`<div style="margin-bottom:1.25rem">
-      <div style="font-family:var(--font-display);font-size:14px;color:var(--gold2);margin-bottom:0.75rem;padding-bottom:6px;border-bottom:1px solid var(--border)">${mLabel} <span class="badge ${mBadge}">${list.length}</span></div>`;
+      <div style="font-family:var(--font-display);font-size:28px;color:var(--gold2);margin-bottom:0.75rem;padding-bottom:6px;border-bottom:1px solid var(--border)">${mLabel} <span class="badge ${mBadge}">${list.length}</span></div>`;
     list.forEach(s=>{
       const avs=DB.avaliacoes.filter(a=>a.subId===s.id);
       const sc=avs.map(a=>a.finalScore).filter(x=>x!=null);
       const avg=sc.length?(sc.reduce((a,b)=>a+b,0)/sc.length).toFixed(2):'—';
-      const judgesHtml=avs.map(a=>`<span class="badge badge-silver" style="font-size:11px">${a.judgeName}: ${a.finalScore!=null?a.finalScore.toFixed(2):'—'}</span>`).join(' ');
+      const judgesHtml=avs.map(a=>`<span class="badge badge-silver" style="font-size:22px">${a.judgeName}: ${a.finalScore!=null?a.finalScore.toFixed(2):'—'}</span>`).join(' ');
       html+=`<div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(180,140,60,0.06)">
         <div style="flex:1;min-width:0">
-          <div style="font-family:var(--font-serif);font-size:15px;color:var(--text)">${s.titulo}</div>
-          <div style="font-size:12px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">${s.autor} · ${s.wc} palavras · ${s.lang==='pt'?'PT':'EN'}</div>
-          <div style="margin-top:5px;display:flex;gap:5px;flex-wrap:wrap">${judgesHtml||'<span style="font-size:11px;color:var(--text3);font-family:var(--font-sans)">Nenhuma avaliação ainda</span>'}</div>
+          <div style="font-family:var(--font-serif);font-size:30px;color:var(--text)">${s.titulo}</div>
+          <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">${s.autor} · ${s.wc} palavras · ${s.lang==='pt'?'PT':'EN'}</div>
+          <div style="margin-top:5px;display:flex;gap:5px;flex-wrap:wrap">${judgesHtml||'<span style="font-size:22px;color:var(--text3);font-family:var(--font-sans)">Nenhuma avaliação ainda</span>'}</div>
         </div>
         <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0">
-          <div style="font-size:20px;color:var(--gold);font-family:var(--font-sans);font-weight:300">${avg}</div>
+          <div style="font-size:40px;color:var(--gold);font-family:var(--font-sans);font-weight:300">${avg}</div>
           <div style="display:flex;gap:5px">
             <button class="btn btn-sm" onclick="viewSubInDetail('${s.id}')">Ler</button>
             <button class="btn btn-primary btn-sm" onclick="evalFromDetail('${s.id}')">Avaliar</button>
@@ -979,7 +979,7 @@ function renderEventDetailAddForm(){
     <div class="form-group">
       <label>Texto Completo</label>
       <textarea id="detailSubTexto" rows="9" placeholder="Cole o texto aqui..." oninput="updateDetailWordCount()"></textarea>
-      <div style="font-size:12px;color:var(--text3);font-family:var(--font-sans);margin-top:4px">
+      <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:4px">
         Palavras: <span id="detailWordCount" style="color:var(--gold)">0</span> / ${ev.words}
       </div>
     </div>
@@ -1101,7 +1101,7 @@ function renderSubmissoes(){
   let subs=DB.submissoes;
   if(fEv) subs=subs.filter(s=>s.eventoId===fEv);
   if(fMod) subs=subs.filter(s=>s.modal===fMod);
-  if(!subs.length){el.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:12px;padding:1rem 0">Nenhuma submissão encontrada.</div>';return;}
+  if(!subs.length){el.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:24px;padding:1rem 0">Nenhuma submissão encontrada.</div>';return;}
   el.innerHTML=subs.map(s=>{
     const ev=DB.eventos.find(e=>e.id===s.eventoId);
     const avs=DB.avaliacoes.filter(a=>a.subId===s.id);
@@ -1114,7 +1114,7 @@ function renderSubmissoes(){
         <div style="display:flex;gap:5px;align-items:center"><span class="badge ${mB}">${s.modal}</span><span class="badge badge-silver">${s.wc}p</span></div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center">
-        <div style="font-size:10px;font-family:var(--font-sans);color:var(--text3)">${avs.length} aval. · Média: <span style="color:var(--gold)">${avg}</span></div>
+        <div style="font-size:20px;font-family:var(--font-sans);color:var(--text3)">${avs.length} aval. · Média: <span style="color:var(--gold)">${avg}</span></div>
         <div style="display:flex;gap:5px">
           <button class="btn btn-sm" onclick="viewSub('${s.id}')">Ver texto</button>
           <button class="btn btn-primary btn-sm" onclick="goToEval('${s.id}')">Avaliar</button>
@@ -1228,7 +1228,7 @@ function loadEvaluation(){
 function renderEvalForm(sub){
   const ev=DB.eventos.find(e=>e.id===sub.eventoId);
   let html=`<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.875rem">
-    <div><div style="font-family:var(--font-display);font-size:16px;color:var(--gold2)">${sub.titulo}</div><div style="font-size:10px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">${sub.autor} · ${ev?ev.nome:'?'} · ${sub.modal}</div></div>
+    <div><div style="font-family:var(--font-display);font-size:32px;color:var(--gold2)">${sub.titulo}</div><div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">${sub.autor} · ${ev?ev.nome:'?'} · ${sub.modal}</div></div>
     <button class="btn btn-primary btn-sm" onclick="finalizeEval()">Salvar Avaliação</button></div>`;
   html+=renderGrammarSection();
   html+=renderQSection('Retórica','retQ',RQ,V20,true);
@@ -1239,15 +1239,15 @@ function renderEvalForm(sub){
   html+=renderTensivitySection(currentEvalData.tensivity);
   html+=`<div class="card" style="border-color:var(--border2);margin-top:0.875rem">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
-    <div style="font-family:var(--font-display);font-size:15px;color:var(--gold2)">Nota Final</div>
-    <div id="finalScoreDisplay" style="font-size:26px;color:var(--gold);font-family:var(--font-sans);font-weight:300">—</div>
+    <div style="font-family:var(--font-display);font-size:30px;color:var(--gold2)">Nota Final</div>
+    <div id="finalScoreDisplay" style="font-size:52px;color:var(--gold);font-family:var(--font-sans);font-weight:300">—</div>
   </div>
-  <div style="font-size:10px;color:var(--text3);font-family:var(--font-sans);margin-bottom:1rem;line-height:1.6">
+  <div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-bottom:1rem;line-height:1.6">
     Sua nota individual. A pontuação final do participante é a <strong style="color:var(--text2)">média das três notas dos avaliadores</strong>.
   </div>
   <div class="form-group" style="margin-top:0.5rem">
     <label>Feedback para o autor <span style="color:var(--text3);font-weight:400;text-transform:none;letter-spacing:0">(opcional — será visível ao participante após finalização do evento)</span></label>
-    <textarea id="evalFeedback" rows="4" placeholder="Deixe aqui suas impressões sobre a obra, pontos fortes, sugestões de melhoria..." style="font-size:12px">${currentEvalData.feedback||''}</textarea>
+    <textarea id="evalFeedback" rows="4" placeholder="Deixe aqui suas impressões sobre a obra, pontos fortes, sugestões de melhoria..." style="font-size:24px">${currentEvalData.feedback||''}</textarea>
   </div>
   <button class="btn btn-primary btn-sm" onclick="finalizeEval()">Salvar Avaliação</button>
 </div>`;
@@ -1261,22 +1261,22 @@ function renderGrammarSection(){
   const rows=(d.grammarErrors||[]).map((e,i)=>{
     const ok=conf.includes(i);
     return `<div class="error-item ${ok?'error-confirmed':''}"><input type="checkbox" class="error-check" ${ok?'checked':''} onchange="toggleGramErr(${i},this.checked)"/><div class="err-text"><strong style="color:var(--text)">${e.msg}</strong><br><span style="color:var(--text3)">${e.ctx}</span></div></div>`;
-  }).join('')||'<div style="font-size:11px;color:var(--text3);font-family:var(--font-sans)">Nenhum erro automático detectado.</div>';
+  }).join('')||'<div style="font-size:22px;color:var(--text3);font-family:var(--font-sans)">Nenhum erro automático detectado.</div>';
   const mRows=manual.map((m,i)=>{
     const text=typeof m==='object'?m.text:m;
     const score=typeof m==='object'?m.score:-0.5;
     const scoreColor=score>0?'color:#5ab870':score<-0.7?'color:#e06060':'color:var(--gold)';
     const scoreLabel=score>0?`+${score.toFixed(1)}`:score.toFixed(1);
-    return`<div class="error-item"><span style="flex:1;color:var(--text2);font-family:var(--font-sans);font-size:13px">${text}</span><span style="font-size:13px;font-weight:600;font-family:var(--font-sans);${scoreColor};margin-right:8px">${scoreLabel}</span><button class="btn btn-sm btn-danger" onclick="removeManualErr(${i})">✕</button></div>`;
+    return`<div class="error-item"><span style="flex:1;color:var(--text2);font-family:var(--font-sans);font-size:26px">${text}</span><span style="font-size:26px;font-weight:600;font-family:var(--font-sans);${scoreColor};margin-right:8px">${scoreLabel}</span><button class="btn btn-sm btn-danger" onclick="removeManualErr(${i})">✕</button></div>`;
   }).join('');
   return `<div class="eval-section"><div class="eval-section-header"><span class="eval-section-title">Gramática</span><span class="eval-section-score" id="gramScore">${score.toFixed(2)}</span></div>
-  <div class="eval-section-body"><div style="font-size:10px;color:var(--text3);font-family:var(--font-sans);margin-bottom:9px">Confirme erros (cada um subtrai 0,1 da nota base 10,00)</div>${rows}
-  <div style="margin-top:0.875rem;padding-top:0.875rem;border-top:1px solid var(--border)"><div style="font-size:10px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:7px">Erros manuais</div><div id="manualErrContainer">${mRows}</div>
+  <div class="eval-section-body"><div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-bottom:9px">Confirme erros (cada um subtrai 0,1 da nota base 10,00)</div>${rows}
+  <div style="margin-top:0.875rem;padding-top:0.875rem;border-top:1px solid var(--border)"><div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:7px">Erros manuais</div><div id="manualErrContainer">${mRows}</div>
   <div style="margin-top:8px">
-    <div style="font-size:12px;color:var(--text3);font-family:var(--font-sans);margin-bottom:6px">Descreva o erro e atribua uma pontuação:</div>
+    <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-bottom:6px">Descreva o erro e atribua uma pontuação:</div>
     <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
-      <input type="text" id="manualErrInput" placeholder="Descrição do erro observado..." style="flex:1;min-width:160px;font-size:13px"/>
-      <select id="manualErrScore" style="width:110px;font-size:13px">
+      <input type="text" id="manualErrInput" placeholder="Descrição do erro observado..." style="flex:1;min-width:160px;font-size:26px"/>
+      <select id="manualErrScore" style="width:110px;font-size:26px">
         <option value="1.0">+1,0 (bonus)</option>
         <option value="0.5">+0,5 (leve bonus)</option>
         <option value="-0.5" selected>-0,5 (leve erro)</option>
@@ -1320,8 +1320,8 @@ function refreshManualErrs(){
     const scoreColor=score>0?'color:#5ab870':score<-0.7?'color:#e06060':'color:var(--gold)';
     const scoreLabel=score>0?`+${score.toFixed(1)}`:score.toFixed(1);
     return`<div class="error-item">
-      <span style="flex:1;color:var(--text2);font-family:var(--font-sans);font-size:13px">${text}</span>
-      <span style="font-size:13px;font-weight:600;font-family:var(--font-sans);${scoreColor};margin-right:8px">${scoreLabel}</span>
+      <span style="flex:1;color:var(--text2);font-family:var(--font-sans);font-size:26px">${text}</span>
+      <span style="font-size:26px;font-weight:600;font-family:var(--font-sans);${scoreColor};margin-right:8px">${scoreLabel}</span>
       <button class="btn btn-sm btn-danger" onclick="removeManualErr(${i})">✕</button>
     </div>`;
   }).join('');
@@ -1341,7 +1341,7 @@ function renderQSection(title,key,questions,vals,is20,modalCat){
   }).join('');
   const sum=Object.values(answers).reduce((a,b)=>a+b,0);
   const scoreDisp=answered>0?Math.min(10,Math.max(0,5+sum)).toFixed(2):'—';
-  return`<div class="eval-section" id="sec_${sk}"><div class="eval-section-header"><div><span class="eval-section-title">${title}</span><div style="font-size:9px;color:var(--text3);font-family:var(--font-sans);margin-top:1px">${answered}/${questions.length}</div></div><span class="eval-section-score" id="score_${sk}">${scoreDisp}</span></div><div class="eval-section-body">${rows}</div></div>`;
+  return`<div class="eval-section" id="sec_${sk}"><div class="eval-section-header"><div><span class="eval-section-title">${title}</span><div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-top:1px">${answered}/${questions.length}</div></div><span class="eval-section-score" id="score_${sk}">${scoreDisp}</span></div><div class="eval-section-body">${rows}</div></div>`;
 }
 function setQ(sk,modalCat,idx,val,lbl){
   let answers;
@@ -1361,7 +1361,7 @@ function renderTensivitySection(t){
   if(!t) return '';
   const eS=Array.from({length:10},(_,i)=>`<div class="tensiv-seg ${i<t.ext?'on':''}"></div>`).join('');
   const iS=Array.from({length:10},(_,i)=>`<div class="tensiv-seg ${i<t.intv?'on':''}"></div>`).join('');
-  return`<div class="eval-section"><div class="eval-section-header"><span class="eval-section-title">Tensividade Semiótica</span><span class="eval-section-score">${t.ext}·${t.intv}</span></div><div class="eval-section-body"><div class="tensiv-grid"><div class="tensiv-meter"><div class="tensiv-label">Extensividade</div><div class="tensiv-val">${t.ext}</div><div class="tensiv-desc">${t.extDesc}</div><div class="tensiv-segs">${eS}</div><div style="font-size:9px;color:var(--text3);font-family:var(--font-sans);margin-top:7px">${t.words}p · ${t.sentences}f · ${t.unique} únicas</div></div><div class="tensiv-meter"><div class="tensiv-label">Intensividade</div><div class="tensiv-val">${t.intv}</div><div class="tensiv-desc">${t.intvDesc}</div><div class="tensiv-segs">${iS}</div><div style="font-size:9px;color:var(--text3);font-family:var(--font-sans);margin-top:7px">Densidade léxica: ${t.lexDensity}%</div></div></div><div style="margin-top:0.875rem;padding:0.65rem;background:rgba(255,255,255,0.01);border-radius:var(--radius);font-size:10px;font-family:var(--font-sans);color:var(--text3);line-height:1.7"><strong style="color:var(--text2)">Zilberberg:</strong> Extensividade = amplitude e variedade discursiva; Intensividade = concentração e densidade expressiva.</div></div></div>`;
+  return`<div class="eval-section"><div class="eval-section-header"><span class="eval-section-title">Tensividade Semiótica</span><span class="eval-section-score">${t.ext}·${t.intv}</span></div><div class="eval-section-body"><div class="tensiv-grid"><div class="tensiv-meter"><div class="tensiv-label">Extensividade</div><div class="tensiv-val">${t.ext}</div><div class="tensiv-desc">${t.extDesc}</div><div class="tensiv-segs">${eS}</div><div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-top:7px">${t.words}p · ${t.sentences}f · ${t.unique} únicas</div></div><div class="tensiv-meter"><div class="tensiv-label">Intensividade</div><div class="tensiv-val">${t.intv}</div><div class="tensiv-desc">${t.intvDesc}</div><div class="tensiv-segs">${iS}</div><div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-top:7px">Densidade léxica: ${t.lexDensity}%</div></div></div><div style="margin-top:0.875rem;padding:0.65rem;background:rgba(255,255,255,0.01);border-radius:var(--radius);font-size:20px;font-family:var(--font-sans);color:var(--text3);line-height:1.7"><strong style="color:var(--text2)">Zilberberg:</strong> Extensividade = amplitude e variedade discursiva; Intensividade = concentração e densidade expressiva.</div></div></div>`;
 }
 function calcFinalScore(){
   const d=currentEvalData,sub=currentEvalSub;
@@ -1411,16 +1411,16 @@ function renderRanking(){
   if(!evId){cont.innerHTML='';return;}
   const ev=DB.eventos.find(e=>e.id===evId);
   const ranked=getRanked(evId);
-  if(!ranked.length){cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:12px">Nenhum texto avaliado ainda.</div>';return;}
+  if(!ranked.length){cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:24px">Nenhum texto avaliado ainda.</div>';return;}
   const medals=['🥇','🥈','🥉'];
   let html=ev.finalized?`<div class="champion-banner">✦ EVENTO FINALIZADO — PÓDIO SAGRADO ✦</div>`:'';
   html+=`<div class="card">`;
   ranked.forEach((s,i)=>{
-    const medal=i<3?medals[i]:`<span style="font-size:13px;color:var(--text3);font-family:var(--font-sans)">${i+1}º</span>`;
+    const medal=i<3?medals[i]:`<span style="font-size:26px;color:var(--text3);font-family:var(--font-sans)">${i+1}º</span>`;
     const mB=s.modal==='poesia'?'badge-gold':s.modal==='cronica'?'badge-blue':'badge-green';
-    const champ=ev.finalized&&i<3?` <span style="color:var(--gold);font-size:10px">✦ Campeão</span>`:'';
+    const champ=ev.finalized&&i<3?` <span style="color:var(--gold);font-size:20px">✦ Campeão</span>`:'';
     const alchPhrase=getAlchPhrase(s.avg,i,getTier(((DB.participants||{})[s.autor]||{}).tierId||'none'));
-    html+=`<div class="rank-entry"><div class="rank-medal">${medal}</div><div class="rank-info"><div class="rank-title-obra">${s.titulo}${champ}</div><div class="rank-meta">${s.autor} · <span class="badge ${mB}" style="font-size:9px">${s.modal}</span> · ${ev.nome} · ${s.avCount} aval.</div><div style="font-size:10px;color:var(--gold);font-family:var(--font-serif);font-style:italic;margin-top:3px;opacity:0.75">${alchPhrase}</div></div><div class="rank-score-big">${s.avg.toFixed(2)}</div></div>`;
+    html+=`<div class="rank-entry"><div class="rank-medal">${medal}</div><div class="rank-info"><div class="rank-title-obra">${s.titulo}${champ}</div><div class="rank-meta">${s.autor} · <span class="badge ${mB}" style="font-size:18px">${s.modal}</span> · ${ev.nome} · ${s.avCount} aval.</div><div style="font-size:20px;color:var(--gold);font-family:var(--font-serif);font-style:italic;margin-top:3px;opacity:0.75">${alchPhrase}</div></div><div class="rank-score-big">${s.avg.toFixed(2)}</div></div>`;
   });
   html+=`</div>`;
   cont.innerHTML=html;
@@ -1432,7 +1432,7 @@ function renderRanking(){
 function renderParticipantes(){
   const cont=document.getElementById('participantesContent');
   const parts=Object.values(DB.participants||{});
-  if(!parts.length){cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:12px">Nenhum participante.</div>';return;}
+  if(!parts.length){cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:24px">Nenhum participante.</div>';return;}
   parts.sort((a,b)=>getTier(b.tierId||'none').rank-getTier(a.tierId||'none').rank||(b.firsts||0)-(a.firsts||0));
   const TIER_CSS={'none':'color:var(--text3)','acolito_madeira':'color:#a0785a','acolito_ferro':'color:#8a9aa8','acolito_chumbo':'color:#7a7a8a','veterano_bronze':'color:#d4864a','veterano_prata':'color:#c0c0c0','veterano_ouro':'color:var(--gold2)','escritor_topazio':'color:#f0c860','escritor_turmalina':'color:#c070c8','escritor_safira':'color:#60a0f0','escritor_rubi':'color:#f06060','escritor_esmeralda':'color:#50c878','escritor_diamante':'color:#b8f0ff'};
   let html=`<div class="card"><table><thead><tr><th>Participante</th><th>Título</th><th style="text-align:center">🥇</th><th style="text-align:center">🥈</th><th style="text-align:center">🥉</th><th>Histórico recente</th></tr></thead><tbody>`;
@@ -1440,12 +1440,12 @@ function renderParticipantes(){
     const tier=getTier(p.tierId||'none');
     const css=TIER_CSS[tier.id]||'color:var(--text3)';
     const vics=(p.victories||[]).slice(-3).map(v=>`<span class="badge badge-silver" style="margin-right:3px">${v.titulo} (${v.pos}º)</span>`).join('');
-    html+=`<tr><td style="color:var(--text);font-family:var(--font-serif)">${p.name}</td><td><span style="${css};font-family:var(--font-sans);font-size:11px;font-weight:600">${tier.id==='none'?'—':tier.label}</span></td><td style="text-align:center;color:var(--gold)">${p.firsts||0}</td><td style="text-align:center;color:#c0c0c0">${p.seconds||0}</td><td style="text-align:center;color:#d4864a">${p.thirds||0}</td><td>${vics||'<span style="color:var(--text3)">—</span>'}</td></tr>`;
+    html+=`<tr><td style="color:var(--text);font-family:var(--font-serif)">${p.name}</td><td><span style="${css};font-family:var(--font-sans);font-size:22px;font-weight:600">${tier.id==='none'?'—':tier.label}</span></td><td style="text-align:center;color:var(--gold)">${p.firsts||0}</td><td style="text-align:center;color:#c0c0c0">${p.seconds||0}</td><td style="text-align:center;color:#d4864a">${p.thirds||0}</td><td>${vics||'<span style="color:var(--text3)">—</span>'}</td></tr>`;
   });
   html+=`</tbody></table></div>`;
-  html+=`<div class="card"><div class="card-title" style="margin-bottom:0.875rem">Hierarquia de Títulos</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-family:var(--font-sans);font-size:11px">`;
+  html+=`<div class="card"><div class="card-title" style="margin-bottom:0.875rem">Hierarquia de Títulos</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-family:var(--font-sans);font-size:22px">`;
   TIERS.filter(t=>t.id!=='none').forEach(t=>{const css=TIER_CSS[t.id]||'';html+=`<div style="padding:5px 9px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:4px;${css}">${t.label}</div>`;});
-  html+=`</div><div style="margin-top:0.875rem;font-size:10px;color:var(--text3);font-family:var(--font-sans);line-height:1.7">Títulos são conquistados acumulando pódios. Uma vez atingido, o título nunca retrocede.</div></div>`;
+  html+=`</div><div style="margin-top:0.875rem;font-size:20px;color:var(--text3);font-family:var(--font-sans);line-height:1.7">Títulos são conquistados acumulando pódios. Uma vez atingido, o título nunca retrocede.</div></div>`;
   cont.innerHTML=html;
 }
 
@@ -1505,8 +1505,8 @@ function downloadCert(){
 }
 function renderCertList(){
   const el=document.getElementById('certList');
-  if(!DB.emitidos.length){el.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:11px">Nenhum certificado emitido.</div>';return;}
-  el.innerHTML=`<table><thead><tr><th>Evento</th><th>Posição</th><th>Nome</th><th>Obra</th><th>Data</th></tr></thead><tbody>`+DB.emitidos.map(c=>`<tr><td>${c.evento}</td><td><span class="badge ${c.posicao==='1'?'badge-gold':c.posicao==='2'?'badge-silver':'badge-bronze'}">${c.posicao}º</span></td><td style="color:var(--text)">${c.nome}</td><td>${c.obra}</td><td style="font-size:10px">${c.data}</td></tr>`).join('')+`</tbody></table>`;
+  if(!DB.emitidos.length){el.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:22px">Nenhum certificado emitido.</div>';return;}
+  el.innerHTML=`<table><thead><tr><th>Evento</th><th>Posição</th><th>Nome</th><th>Obra</th><th>Data</th></tr></thead><tbody>`+DB.emitidos.map(c=>`<tr><td>${c.evento}</td><td><span class="badge ${c.posicao==='1'?'badge-gold':c.posicao==='2'?'badge-silver':'badge-bronze'}">${c.posicao}º</span></td><td style="color:var(--text)">${c.nome}</td><td>${c.obra}</td><td style="font-size:20px">${c.data}</td></tr>`).join('')+`</tbody></table>`;
 }
 
 // ════════════════════════════════════════
@@ -1514,20 +1514,20 @@ function renderCertList(){
 // ════════════════════════════════════════
 function renderPublicoPage(){
   const cont=document.getElementById('publicoContent');
-  if(!DB.eventos.length){cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:12px">Nenhum evento disponível.</div>';return;}
-  let html='<div style="margin-bottom:1rem;font-size:12px;font-family:var(--font-sans);color:var(--text3)">Clique em um evento para ver como o participante visualiza. O link pode ser compartilhado.</div>';
+  if(!DB.eventos.length){cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:24px">Nenhum evento disponível.</div>';return;}
+  let html='<div style="margin-bottom:1rem;font-size:24px;font-family:var(--font-sans);color:var(--text3)">Clique em um evento para ver como o participante visualiza. O link pode ser compartilhado.</div>';
   html+=DB.eventos.map(ev=>{
     const subs=DB.submissoes.filter(s=>s.eventoId===ev.id).length;
     const ranked=getRanked(ev.id);
     return`<div class="pub-card">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
-        <div><div style="font-family:var(--font-display);font-size:14px;color:var(--gold2)">${ev.nome}</div><div style="font-size:10px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">${subs} submissões · ${ev.finalized?'Finalizado':'Em curso'}</div></div>
+        <div><div style="font-family:var(--font-display);font-size:28px;color:var(--gold2)">${ev.nome}</div><div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">${subs} submissões · ${ev.finalized?'Finalizado':'Em curso'}</div></div>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
           <button class="btn btn-sm" onclick="openPublicView('${ev.id}')">👁 Simular Visualização</button>
           <button class="btn btn-sm" onclick="copyPublicLink('${ev.id}')">🔗 Copiar Link</button>
         </div>
       </div>
-      ${ev.finalized&&ranked.length?`<div style="margin-top:10px;font-size:11px;font-family:var(--font-sans);color:var(--text3)">Vencedores: ${ranked.slice(0,3).map((s,i)=>`<strong style="color:var(--gold2)">${s.titulo}</strong> (${['1º','2º','3º'][i]})`).join(', ')}</div>`:''}
+      ${ev.finalized&&ranked.length?`<div style="margin-top:10px;font-size:22px;font-family:var(--font-sans);color:var(--text3)">Vencedores: ${ranked.slice(0,3).map((s,i)=>`<strong style="color:var(--gold2)">${s.titulo}</strong> (${['1º','2º','3º'][i]})`).join(', ')}</div>`:''}
     </div>`;
   }).join('');
   cont.innerHTML=html;
@@ -1547,14 +1547,14 @@ function renderPublicViewContent(evId){
   const cont=document.getElementById('pubModalContent');
 
   // Event info
-  let html=`<div style="font-size:11px;font-family:var(--font-sans);color:var(--text3);margin-bottom:1rem;line-height:1.7">
+  let html=`<div style="font-size:22px;font-family:var(--font-sans);color:var(--text3);margin-bottom:1rem;line-height:1.7">
     <span class="badge ${ev.finalized?'badge-champion':'badge-silver'}">${ev.finalized?'✦ Finalizado':'Em curso'}</span>
     &nbsp; ${ev.desc||''} &nbsp; Limite: ${ev.words} palavras · Máx: ${ev.max} submissões
   </div>`;
 
   if(ev.finalized){
     // FULL PUBLIC VIEW: ranking + read texts + star ratings
-    html+=`<div class="champion-banner" style="font-size:11px">✦ PÓDIO FINAL — RESULTADOS OFICIAIS ✦</div>`;
+    html+=`<div class="champion-banner" style="font-size:22px">✦ PÓDIO FINAL — RESULTADOS OFICIAIS ✦</div>`;
     const medals=['🥇','🥈','🥉'];
     ranked.forEach((s,i)=>{
       const medal=i<3?medals[i]:`${i+1}º`;
@@ -1567,14 +1567,14 @@ function renderPublicViewContent(evId){
       const scoreBreakdown=buildScoreBreakdown(s,avs);
       html+=`<div class="pub-card" style="${i<3?'border-color:rgba(201,168,76,0.35)':''}">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-          <span style="font-size:22px">${medal}</span>
+          <span style="font-size:44px">${medal}</span>
           <div style="flex:1">
-            <div style="font-family:var(--font-serif);font-size:15px;color:var(--text)">${s.titulo}${i<3?' <span style="color:var(--gold);font-size:11px">✦ Campeão</span>':''}</div>
-            <div style="font-size:10px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">${s.autor} · <span class="badge ${mB}" style="font-size:9px">${s.modal}</span></div>
+            <div style="font-family:var(--font-serif);font-size:30px;color:var(--text)">${s.titulo}${i<3?' <span style="color:var(--gold);font-size:22px">✦ Campeão</span>':''}</div>
+            <div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">${s.autor} · <span class="badge ${mB}" style="font-size:18px">${s.modal}</span></div>
           </div>
           <div style="text-align:right">
-            <div style="font-size:20px;color:var(--gold);font-family:var(--font-sans)">${s.avg.toFixed(2)}</div>
-            <div style="font-size:9px;color:var(--text3);font-family:var(--font-sans)">nota final</div>
+            <div style="font-size:40px;color:var(--gold);font-family:var(--font-sans)">${s.avg.toFixed(2)}</div>
+            <div style="font-size:18px;color:var(--text3);font-family:var(--font-sans)">nota final</div>
           </div>
         </div>
         ${scoreBreakdown}
@@ -1582,7 +1582,7 @@ function renderPublicViewContent(evId){
           <button class="btn btn-sm" onclick="toggleReadText('rt_${s.id}','${s.id}')">📖 Ler texto</button>
           <div style="display:flex;align-items:center;gap:6px">
             <div class="stars" id="stars_${starKey}">${[1,2,3,4,5].map(n=>`<span class="star ${myRating>=n?'on':''}" onclick="rateStar('${starKey}',${n},'${evId}')">★</span>`).join('')}</div>
-            <span style="font-size:10px;color:var(--text3);font-family:var(--font-sans)">${avgStars>0?avgStars.toFixed(1)+' ★':''}</span>
+            <span style="font-size:20px;color:var(--text3);font-family:var(--font-sans)">${avgStars>0?avgStars.toFixed(1)+' ★':''}</span>
           </div>
         </div>
         <div id="rt_${s.id}" style="display:none;margin-top:10px">
@@ -1598,11 +1598,11 @@ function renderPublicViewContent(evId){
       const avgStars=calcAvgStars(starKey);
       html+=`<div class="pub-card">
         <div style="display:flex;align-items:center;gap:10px">
-          <div style="flex:1"><div style="font-family:var(--font-serif);font-size:13px;color:var(--text)">${s.titulo}</div><div style="font-size:10px;color:var(--text3);font-family:var(--font-sans)">${s.autor} · <span class="badge ${mB}" style="font-size:9px">${s.modal}</span></div></div>
+          <div style="flex:1"><div style="font-family:var(--font-serif);font-size:26px;color:var(--text)">${s.titulo}</div><div style="font-size:20px;color:var(--text3);font-family:var(--font-sans)">${s.autor} · <span class="badge ${mB}" style="font-size:18px">${s.modal}</span></div></div>
           <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
             <button class="btn btn-sm" onclick="toggleReadText('rt_${s.id}','${s.id}')">📖 Ler</button>
             <div class="stars" id="stars_${starKey}">${[1,2,3,4,5].map(n=>`<span class="star ${myRating>=n?'on':''}" onclick="rateStar('${starKey}',${n},'${evId}')">★</span>`).join('')}</div>
-            <span style="font-size:10px;color:var(--text3);font-family:var(--font-sans)">${avgStars>0?avgStars.toFixed(1)+' ★':''}</span>
+            <span style="font-size:20px;color:var(--text3);font-family:var(--font-sans)">${avgStars>0?avgStars.toFixed(1)+' ★':''}</span>
           </div>
         </div>
         <div id="rt_${s.id}" style="display:none;margin-top:10px">
@@ -1612,17 +1612,17 @@ function renderPublicViewContent(evId){
     });
   } else {
     // EVENT IN PROGRESS: show participant their own score breakdown only
-    html+=`<div style="font-size:12px;font-family:var(--font-sans);color:var(--text2);margin-bottom:1rem">O evento ainda está em andamento. As notas completas serão reveladas após a finalização.</div>`;
+    html+=`<div style="font-size:24px;font-family:var(--font-sans);color:var(--text2);margin-bottom:1rem">O evento ainda está em andamento. As notas completas serão reveladas após a finalização.</div>`;
     subs.forEach(s=>{
       const avs=DB.avaliacoes.filter(a=>a.subId===s.id);
       const sc=avs.map(a=>a.finalScore).filter(x=>x!=null);
       const avg=sc.length?sc.reduce((a,b)=>a+b,0)/sc.length:null;
       const mB=s.modal==='poesia'?'badge-gold':s.modal==='cronica'?'badge-blue':'badge-green';
-      const scoreBreakdown=avs.length?buildScoreBreakdown(s,avs):'<div style="font-size:10px;color:var(--text3);font-family:var(--font-sans);margin-top:8px">Ainda não avaliado.</div>';
+      const scoreBreakdown=avs.length?buildScoreBreakdown(s,avs):'<div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-top:8px">Ainda não avaliado.</div>';
       html+=`<div class="pub-card">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <div style="flex:1"><div style="font-family:var(--font-serif);font-size:14px;color:var(--text)">${s.titulo}</div><div style="font-size:10px;color:var(--text3);font-family:var(--font-sans)">${s.autor} · <span class="badge ${mB}" style="font-size:9px">${s.modal}</span></div></div>
-          ${avg!=null?`<div style="font-size:19px;color:var(--gold);font-family:var(--font-sans)">${avg.toFixed(2)}</div>`:''}
+          <div style="flex:1"><div style="font-family:var(--font-serif);font-size:28px;color:var(--text)">${s.titulo}</div><div style="font-size:20px;color:var(--text3);font-family:var(--font-sans)">${s.autor} · <span class="badge ${mB}" style="font-size:18px">${s.modal}</span></div></div>
+          ${avg!=null?`<div style="font-size:38px;color:var(--gold);font-family:var(--font-sans)">${avg.toFixed(2)}</div>`:''}
         </div>
         ${scoreBreakdown}
       </div>`;
@@ -1655,8 +1655,8 @@ function buildScoreBreakdown(sub,avs){
   let html2=`<div class="pub-score-row">${catScores.map(c=>`<div class="pub-score-item">${c.cat}: <span>${c.avg.toFixed(1)}</span></div>`).join('')}</div>`;
   if(feedbacks.length){
     html2+=`<div style="margin-top:8px;padding:8px 10px;background:rgba(201,168,76,0.04);border:1px solid rgba(201,168,76,0.15);border-radius:var(--radius)">
-      <div style="font-size:10px;color:var(--gold);font-family:var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px">Feedback dos Avaliadores</div>
-      ${feedbacks.map(fb=>`<div style="font-size:12px;color:var(--text2);font-family:var(--font-serif);font-style:italic;margin-bottom:6px;line-height:1.6">"${fb.text}"<span style="font-size:10px;color:var(--text3);font-family:var(--font-sans);font-style:normal;margin-left:8px">— ${fb.judge}</span></div>`).join('')}
+      <div style="font-size:20px;color:var(--gold);font-family:var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px">Feedback dos Avaliadores</div>
+      ${feedbacks.map(fb=>`<div style="font-size:24px;color:var(--text2);font-family:var(--font-serif);font-style:italic;margin-bottom:6px;line-height:1.6">"${fb.text}"<span style="font-size:20px;color:var(--text3);font-family:var(--font-sans);font-style:normal;margin-left:8px">— ${fb.judge}</span></div>`).join('')}
     </div>`;
   }
   return html2;
@@ -1693,7 +1693,7 @@ function renderRevisao(){
   let subs=DB.submissoes;
   if(evFilter) subs=subs.filter(s=>s.eventoId===evFilter);
   const list=document.getElementById('revisaoList');
-  if(!subs.length){list.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:14px">Nenhuma submissão encontrada.</div>';return;}
+  if(!subs.length){list.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:28px">Nenhuma submissão encontrada.</div>';return;}
   const MQ_LOCAL=MQ;
   let html='';
   subs.forEach(sub=>{
@@ -1705,18 +1705,18 @@ function renderRevisao(){
     html+=`<div class="review-card">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:8px">
         <div>
-          <div style="font-family:var(--font-display);font-size:14px;color:var(--gold2)">${sub.titulo}</div>
-          <div style="font-size:12px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">
+          <div style="font-family:var(--font-display);font-size:28px;color:var(--gold2)">${sub.titulo}</div>
+          <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">
             ${sub.autor} · <span class="badge ${mB}">${sub.modal}</span> · ${ev?ev.nome:'?'}
           </div>
         </div>
         <div style="text-align:right">
-          <div style="font-size:22px;color:var(--gold);font-family:var(--font-sans)">${avg}</div>
-          <div style="font-size:11px;color:var(--text3);font-family:var(--font-sans)">${avs.length} avaliação(ões)</div>
+          <div style="font-size:44px;color:var(--gold);font-family:var(--font-sans)">${avg}</div>
+          <div style="font-size:22px;color:var(--text3);font-family:var(--font-sans)">${avs.length} avaliação(ões)</div>
         </div>
       </div>`;
     if(!avs.length){
-      html+=`<div style="font-size:13px;color:var(--text3);font-family:var(--font-sans);padding:8px 0">Nenhuma avaliação registrada ainda.</div>`;
+      html+=`<div style="font-size:26px;color:var(--text3);font-family:var(--font-sans);padding:8px 0">Nenhuma avaliação registrada ainda.</div>`;
     } else {
       avs.forEach(av=>{
         const cats=['Gramática','Retórica','Lógica','Originalidade','Profundidade Literária',...Object.keys(MQ_LOCAL[sub.modal]||{})];
@@ -1737,9 +1737,9 @@ function renderRevisao(){
 
         html+=`<div class="review-judge-block">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-            <div style="font-size:13px;font-family:var(--font-sans);font-weight:600;color:var(--text2)">${av.judgeName||av.judgeId}</div>
+            <div style="font-size:26px;font-family:var(--font-sans);font-weight:600;color:var(--text2)">${av.judgeName||av.judgeId}</div>
             <div style="display:flex;align-items:center;gap:8px">
-              <span style="font-size:12px;color:var(--text3);font-family:var(--font-sans)">Nota final:</span>
+              <span style="font-size:24px;color:var(--text3);font-family:var(--font-sans)">Nota final:</span>
               <input class="review-score-input" type="number" min="0" max="10" step="0.01"
                 value="${av.finalScore!=null?av.finalScore.toFixed(2):''}"
                 id="rscore_${av.subId}_${av.judgeId}"
@@ -1758,7 +1758,7 @@ function renderRevisao(){
         });
         html+=`</div>`;
         if(av.feedback){
-          html+=`<div style="margin-top:8px;padding:7px 10px;background:rgba(201,168,76,0.04);border-left:2px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;font-size:13px;font-family:var(--font-serif);font-style:italic;color:var(--text2);line-height:1.6">"${av.feedback}"</div>`;
+          html+=`<div style="margin-top:8px;padding:7px 10px;background:rgba(201,168,76,0.04);border-left:2px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;font-size:26px;font-family:var(--font-serif);font-style:italic;color:var(--text2);line-height:1.6">"${av.feedback}"</div>`;
         }
         html+=`</div>`;
       });
@@ -1782,8 +1782,8 @@ function confirmReviewScore(subId,judgeId){
 // ════════════════════════════════════════
 function renderPublicoPage(){
   const cont=document.getElementById('publicoContent');
-  if(!DB.eventos.length){cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:14px">Nenhum evento disponível.</div>';return;}
-  let html=`<div style="font-size:14px;color:var(--text2);font-family:var(--font-sans);line-height:1.7;margin-bottom:1.5rem">
+  if(!DB.eventos.length){cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:28px">Nenhum evento disponível.</div>';return;}
+  let html=`<div style="font-size:28px;color:var(--text2);font-family:var(--font-sans);line-height:1.7;margin-bottom:1.5rem">
     Cada evento gera um link único para o ambiente do participante. O participante acessa diretamente — sem senha — e pode ver todas as obras, notas e certificados.
   </div>`;
   html+=DB.eventos.map(ev=>{
@@ -1792,8 +1792,8 @@ function renderPublicoPage(){
     return`<div class="pub-card">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px">
         <div>
-          <div style="font-family:var(--font-display);font-size:15px;color:var(--gold2)">${ev.nome}</div>
-          <div style="font-size:12px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">${subs} obras · ${ev.finalized?'✦ Finalizado':'Em curso'}</div>
+          <div style="font-family:var(--font-display);font-size:30px;color:var(--gold2)">${ev.nome}</div>
+          <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">${subs} obras · ${ev.finalized?'✦ Finalizado':'Em curso'}</div>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button class="btn btn-sm btn-primary" onclick="openParticipantPortal('${ev.id}')">👁 Prévia do Portal</button>
@@ -1801,7 +1801,7 @@ function renderPublicoPage(){
           ${currentUser&&currentUser.id==='admin'?`<button class="btn btn-sm" onclick="openCertRepo('${ev.id}')" style="border-color:var(--gold);color:var(--gold)">🏆 Repositório de Certificados</button>`:''}
         </div>
       </div>
-      <div style="margin-top:10px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);padding:8px 12px;font-size:12px;font-family:var(--font-sans);color:var(--text3);word-break:break-all">
+      <div style="margin-top:10px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);padding:8px 12px;font-size:24px;font-family:var(--font-sans);color:var(--text3);word-break:break-all">
         🔗 ${pubUrl}
       </div>
     </div>`;
@@ -1823,7 +1823,7 @@ function buildParticipantPortalHTML(evId){
   const ranked=getRanked(evId);
   const TIER_CSS={'none':'color:var(--text3)','acolito_madeira':'color:#a0785a','acolito_ferro':'color:#8a9aa8','acolito_chumbo':'color:#7a7a8a','veterano_bronze':'color:#d4864a','veterano_prata':'color:#c0c0c0','veterano_ouro':'color:var(--gold2)','escritor_topazio':'color:#f0c860','escritor_turmalina':'color:#c070c8','escritor_safira':'color:#60a0f0','escritor_rubi':'color:#f06060','escritor_esmeralda':'color:#50c878','escritor_diamante':'color:#b8f0ff'};
 
-  let html=`<div style="font-size:12px;font-family:var(--font-sans);color:var(--text3);margin-bottom:1rem;line-height:1.7">
+  let html=`<div style="font-size:24px;font-family:var(--font-sans);color:var(--text3);margin-bottom:1rem;line-height:1.7">
     <span class="badge ${ev.finalized?'badge-champion':'badge-silver'}">${ev.finalized?'✦ Finalizado':'Em curso'}</span>
     &nbsp;${ev.desc||''}&nbsp; · &nbsp;Limite: ${ev.words} palavras
   </div>`;
@@ -1840,16 +1840,16 @@ function buildParticipantPortalHTML(evId){
       const judgeScoreHTML=judgeAvs.map(av=>`<span class="judge-score-pill">${av.judgeName||av.judgeId}: <strong style="color:var(--gold)">${av.finalScore!=null?av.finalScore.toFixed(2):'—'}</strong></span>`).join('');
       html+=`<div class="pub-card" style="border-color:rgba(201,168,76,0.35);margin-bottom:0.875rem">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
-          <span style="font-size:24px">${medals[i]}</span>
+          <span style="font-size:48px">${medals[i]}</span>
           <div style="flex:1">
-            <div style="font-family:var(--font-serif);font-size:15px;color:var(--text)">${s.titulo} <span style="color:var(--gold);font-size:11px">✦ Campeão</span></div>
-            <div style="font-size:12px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">
+            <div style="font-family:var(--font-serif);font-size:30px;color:var(--text)">${s.titulo} <span style="color:var(--gold);font-size:22px">✦ Campeão</span></div>
+            <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">
               ${s.autor} · <span style="${tierCss};font-family:var(--font-sans);font-weight:600">${tier.id!=='none'?tier.label:'—'}</span>
             </div>
           </div>
           <div style="text-align:right">
-            <div style="font-size:24px;color:var(--gold);font-family:var(--font-sans);font-weight:300">${s.avg.toFixed(2)}</div>
-            <div style="font-size:10px;color:var(--text3);font-family:var(--font-sans)">nota final</div>
+            <div style="font-size:48px;color:var(--gold);font-family:var(--font-sans);font-weight:300">${s.avg.toFixed(2)}</div>
+            <div style="font-size:20px;color:var(--text3);font-family:var(--font-sans)">nota final</div>
           </div>
         </div>
         <div class="judge-score-row">${judgeScoreHTML}</div>
@@ -1867,7 +1867,7 @@ function buildParticipantPortalHTML(evId){
 
   // ── TODAS AS OBRAS ──
   html+=`<div class="portal-section-title" style="margin-top:1.5rem">${ev.finalized?'📚 Todas as Obras':'📚 Obras em Disputa'}</div>`;
-  if(!subs.length){html+=`<div style="color:var(--text3);font-family:var(--font-sans);font-size:13px">Nenhuma obra submetida.</div>`;}
+  if(!subs.length){html+=`<div style="color:var(--text3);font-family:var(--font-sans);font-size:26px">Nenhuma obra submetida.</div>`;}
   else{
     subs.forEach(s=>{
       const isRanked=ranked.find(r=>r.id===s.id);
@@ -1881,15 +1881,15 @@ function buildParticipantPortalHTML(evId){
       html+=`<div class="pub-card">
         <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:8px">
           <div style="flex:1">
-            <div style="font-family:var(--font-serif);font-size:14px;color:var(--text)">${s.titulo}</div>
-            <div style="font-size:12px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">
+            <div style="font-family:var(--font-serif);font-size:28px;color:var(--text)">${s.titulo}</div>
+            <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">
               ${s.autor} · <span class="badge ${mB}">${s.modal}</span>
               ${tier.id!=='none'?`· <span style="${tierCss};font-family:var(--font-sans);font-weight:600">${tier.label}</span>`:''}
             </div>
           </div>
-          ${avg!=null?`<div style="text-align:right"><div style="font-size:20px;color:var(--gold);font-family:var(--font-sans);font-weight:300">${avg.toFixed(2)}</div><div style="font-size:10px;color:var(--text3);font-family:var(--font-sans)">média</div></div>`:''}
+          ${avg!=null?`<div style="text-align:right"><div style="font-size:40px;color:var(--gold);font-family:var(--font-sans);font-weight:300">${avg.toFixed(2)}</div><div style="font-size:20px;color:var(--text3);font-family:var(--font-sans)">média</div></div>`:''}
         </div>
-        ${judgeScoreHTML?`<div class="judge-score-row">${judgeScoreHTML}</div>`:'<div style="font-size:12px;color:var(--text3);font-family:var(--font-sans);margin-top:4px">Aguardando avaliação</div>'}
+        ${judgeScoreHTML?`<div class="judge-score-row">${judgeScoreHTML}</div>`:'<div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:4px">Aguardando avaliação</div>'}
         ${ev.finalized?buildScoreBreakdown(s,DB.avaliacoes.filter(a=>a.subId===s.id)):''}
         <div style="margin-top:8px">
           <button class="btn btn-sm" onclick="toggleReadText('rt2_${s.id}')">📖 Ler texto</button>
@@ -1909,8 +1909,8 @@ function buildCertBadge(evId,pos,sub){
   const cert=certs[pos];
   if(!cert) return '';
   return`<div style="margin-top:8px;padding:8px 12px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.3);border-radius:var(--radius);display:flex;align-items:center;gap:10px">
-    <span style="font-size:16px">🏆</span>
-    <div style="flex:1;font-size:12px;font-family:var(--font-sans);color:var(--gold2)">Certificado disponível</div>
+    <span style="font-size:32px">🏆</span>
+    <div style="flex:1;font-size:24px;font-family:var(--font-sans);color:var(--gold2)">Certificado disponível</div>
     <a href="${cert.data}" download="${cert.name}" class="btn btn-sm btn-primary" style="text-decoration:none">⤓ Baixar</a>
   </div>`;
 }
@@ -1921,18 +1921,18 @@ function openCertRepo(evId){
   if(!ev.certRepo) ev.certRepo={};
   const ranked=getRanked(evId);
   const posLabels={1:'🥇 1º Lugar',2:'🥈 2º Lugar',3:'🥉 3º Lugar'};
-  let html=`<div style="font-size:13px;color:var(--text2);font-family:var(--font-sans);margin-bottom:1.25rem;line-height:1.7">
+  let html=`<div style="font-size:26px;color:var(--text2);font-family:var(--font-sans);margin-bottom:1.25rem;line-height:1.7">
     Faça upload dos certificados para os três primeiros colocados. Eles ficarão disponíveis para download direto no portal do participante.
   </div>`;
   [1,2,3].forEach(pos=>{
     const winner=ranked[pos-1];
     const cert=ev.certRepo[pos];
     html+=`<div style="margin-bottom:1rem">
-      <div style="font-family:var(--font-display);font-size:13px;color:var(--gold2);margin-bottom:6px">${posLabels[pos]}${winner?` — ${winner.titulo} (${winner.autor})`:' — sem obra avaliada'}</div>
+      <div style="font-family:var(--font-display);font-size:26px;color:var(--gold2);margin-bottom:6px">${posLabels[pos]}${winner?` — ${winner.titulo} (${winner.autor})`:' — sem obra avaliada'}</div>
       <div class="cert-repo-slot ${cert?'has-cert':''}" onclick="document.getElementById('certFile_${evId}_${pos}').click()">
         ${cert
-          ?`<div style="font-size:20px">🏆</div><div style="font-size:13px;color:var(--gold2);font-family:var(--font-sans);margin-top:4px">${cert.name}</div><div style="font-size:11px;color:var(--text3);font-family:var(--font-sans)">Clique para substituir</div>`
-          :`<div style="font-size:28px">📂</div><div style="font-size:13px;color:var(--text3);font-family:var(--font-sans);margin-top:4px">Clique para fazer upload do certificado</div><div style="font-size:11px;color:var(--text3);font-family:var(--font-sans)">(PDF, imagem)</div>`
+          ?`<div style="font-size:40px">🏆</div><div style="font-size:26px;color:var(--gold2);font-family:var(--font-sans);margin-top:4px">${cert.name}</div><div style="font-size:22px;color:var(--text3);font-family:var(--font-sans)">Clique para substituir</div>`
+          :`<div style="font-size:56px">📂</div><div style="font-size:26px;color:var(--text3);font-family:var(--font-sans);margin-top:4px">Clique para fazer upload do certificado</div><div style="font-size:22px;color:var(--text3);font-family:var(--font-sans)">(PDF, imagem)</div>`
         }
       </div>
       <input type="file" id="certFile_${evId}_${pos}" accept=".pdf,image/*" style="display:none" onchange="uploadCertRepo('${evId}',${pos},this)" />
@@ -2168,7 +2168,7 @@ function renderFirebasePage(){
   const cfg=DB.firebaseConfig||{};
   const isConnected=window._fbConnected||false;
   cont.innerHTML=`
-  <div style="font-size:14px;color:var(--text2);font-family:var(--font-sans);line-height:1.8;margin-bottom:1.5rem">
+  <div style="font-size:28px;color:var(--text2);font-family:var(--font-sans);line-height:1.8;margin-bottom:1.5rem">
     O Firebase Realtime Database sincroniza todos os dados entre dispositivos em tempo real.
     Quando configurado, qualquer avaliação, evento ou submissão aparece instantaneamente para todos os usuários conectados — sem precisar recarregar a página.
   </div>
@@ -2204,7 +2204,7 @@ function renderFirebasePage(){
 
   <div class="card">
     <div class="card-title" style="margin-bottom:0.875rem">Como configurar</div>
-    <ol style="padding-left:1.25rem;font-family:var(--font-sans);font-size:13px;color:var(--text2);line-height:2">
+    <ol style="padding-left:1.25rem;font-family:var(--font-sans);font-size:26px;color:var(--text2);line-height:2">
       <li>Acesse <a href="https://console.firebase.google.com" target="_blank" style="color:var(--gold)">console.firebase.google.com</a></li>
       <li>Crie um projeto (ou use um existente)</li>
       <li>Vá em <strong style="color:var(--text)">Realtime Database</strong> → Criar banco de dados</li>
@@ -2212,7 +2212,7 @@ function renderFirebasePage(){
       <li>Vá em <strong style="color:var(--text)">Configurações do projeto</strong> → Adicionar app Web</li>
       <li>Copie o objeto <code style="color:var(--gold);background:rgba(255,255,255,0.05);padding:2px 6px;border-radius:3px">firebaseConfig</code> e cole acima</li>
     </ol>
-    <div style="margin-top:1rem;padding:0.875rem;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);font-family:monospace;font-size:12px;color:var(--text3)">
+    <div style="margin-top:1rem;padding:0.875rem;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);font-family:monospace;font-size:24px;color:var(--text3)">
       <div style="color:var(--text2);margin-bottom:6px">Regras do Realtime Database (para testes):</div>
 {<br>&nbsp;&nbsp;"rules": {<br>&nbsp;&nbsp;&nbsp;&nbsp;".read": true,<br>&nbsp;&nbsp;&nbsp;&nbsp;".write": true<br>&nbsp;&nbsp;}<br>}
     </div>
@@ -2224,7 +2224,7 @@ function renderFirebasePage(){
       <button class="btn btn-primary btn-sm" onclick="pushToFirebase()">⬆ Enviar dados locais para Firebase</button>
       <button class="btn btn-sm" onclick="pullFromFirebase()">⬇ Baixar dados do Firebase</button>
     </div>
-    <div style="font-size:12px;color:var(--text3);font-family:var(--font-sans);margin-top:0.875rem;line-height:1.6">
+    <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:0.875rem;line-height:1.6">
       Os dados são sincronizados automaticamente após cada operação. Use "Enviar" se quiser forçar uma atualização manual.
     </div>
   </div>`:''}
@@ -2425,32 +2425,32 @@ function openEditalModal(evId){
   const ev=DB.eventos.find(e=>e.id===evId);if(!ev) return;
   const isAdmin=currentUser&&currentUser.id==='admin';
   const docs=ev.docs||[];
-  let html=`<div style="font-family:var(--font-sans);font-size:12px;color:var(--text3);margin-bottom:1rem">${ev.nome} — Edital e Documentos</div>`;
+  let html=`<div style="font-family:var(--font-sans);font-size:24px;color:var(--text3);margin-bottom:1rem">${ev.nome} — Edital e Documentos</div>`;
   if(isAdmin){
     html+=`<div style="margin-bottom:1rem;padding:0.875rem;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius)">
-      <div style="font-size:11px;font-family:var(--font-sans);color:var(--text2);margin-bottom:8px">Adicionar documento</div>
-      <div class="form-group" style="margin-bottom:8px"><label>Título do Documento</label><input type="text" id="docTitle" placeholder="Ex: Edital Oficial, Regulamento..." style="font-size:12px" /></div>
-      <div class="form-group" style="margin-bottom:8px"><label>Conteúdo / Texto</label><textarea id="docContent" rows="5" placeholder="Cole o texto do edital aqui, ou descreva as regras..." style="font-size:12px"></textarea></div>
+      <div style="font-size:22px;font-family:var(--font-sans);color:var(--text2);margin-bottom:8px">Adicionar documento</div>
+      <div class="form-group" style="margin-bottom:8px"><label>Título do Documento</label><input type="text" id="docTitle" placeholder="Ex: Edital Oficial, Regulamento..." style="font-size:24px" /></div>
+      <div class="form-group" style="margin-bottom:8px"><label>Conteúdo / Texto</label><textarea id="docContent" rows="5" placeholder="Cole o texto do edital aqui, ou descreva as regras..." style="font-size:24px"></textarea></div>
       <div class="form-group" style="margin-bottom:8px">
         <label>Ou anexar arquivo (PDF, imagem)</label>
-        <div class="upload-area" style="font-size:11px" onclick="document.getElementById('docFile').click()">📎 Selecionar arquivo (PDF, PNG, JPG)</div>
+        <div class="upload-area" style="font-size:22px" onclick="document.getElementById('docFile').click()">📎 Selecionar arquivo (PDF, PNG, JPG)</div>
         <input type="file" id="docFile" accept=".pdf,image/*" style="display:none" onchange="previewDocFile(this)" />
-        <div id="docFilePreview" style="font-size:10px;color:var(--gold);margin-top:4px"></div>
+        <div id="docFilePreview" style="font-size:20px;color:var(--gold);margin-top:4px"></div>
       </div>
       <button class="btn btn-primary btn-sm" onclick="addDoc('${evId}')">Adicionar Documento</button>
     </div>`;
   }
-  if(!docs.length){html+=`<div style="font-size:12px;color:var(--text3);font-family:var(--font-sans);padding:1rem 0">Nenhum documento publicado ainda.</div>`;}
+  if(!docs.length){html+=`<div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);padding:1rem 0">Nenhum documento publicado ainda.</div>`;}
   else{
     html+=docs.map((d,i)=>`<div style="padding:0.875rem;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:6px">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:${d.content?'8px':'0'}">
-        <div style="font-family:var(--font-display);font-size:12px;color:var(--gold2)">${d.title}</div>
+        <div style="font-family:var(--font-display);font-size:24px;color:var(--gold2)">${d.title}</div>
         <div style="display:flex;gap:6px">
           ${d.file?`<button class="btn btn-sm" onclick="downloadDocFile(${i},'${evId}')">⤓ Baixar</button>`:''}
           ${isAdmin?`<button class="btn btn-sm btn-danger" onclick="removeDoc('${evId}',${i})">✕</button>`:''}
         </div>
       </div>
-      ${d.content?`<div style="font-size:11px;color:var(--text2);font-family:var(--font-sans);line-height:1.7;white-space:pre-wrap;max-height:200px;overflow-y:auto">${escHtml(d.content)}</div>`:''}
+      ${d.content?`<div style="font-size:22px;color:var(--text2);font-family:var(--font-sans);line-height:1.7;white-space:pre-wrap;max-height:200px;overflow-y:auto">${escHtml(d.content)}</div>`:''}
       ${d.isImage?`<img src="${d.file}" style="max-width:100%;max-height:180px;border-radius:var(--radius);margin-top:6px;opacity:0.85" />`:''}
     </div>`).join('');
   }
@@ -2501,56 +2501,56 @@ function renderServidor(){
   <div class="card" style="border-color:var(--border2)">
     <div class="card-title" style="margin-bottom:0.875rem">URL atual do app</div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-      <code style="flex:1;background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:8px 12px;border-radius:var(--radius);font-size:14px;color:var(--gold2);word-break:break-all">${currentUrl}</code>
+      <code style="flex:1;background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:8px 12px;border-radius:var(--radius);font-size:28px;color:var(--gold2);word-break:break-all">${currentUrl}</code>
       <button class="btn btn-sm btn-primary" onclick="navigator.clipboard.writeText('${currentUrl}').then(()=>alert('URL copiada!'))">Copiar</button>
     </div>
-    <div style="margin-top:12px;font-size:13px;color:var(--text3);font-family:var(--font-sans);line-height:1.8">
+    <div style="margin-top:12px;font-size:26px;color:var(--text3);font-family:var(--font-sans);line-height:1.8">
       Se você abriu este arquivo localmente (<code>file://...</code>), os avaliadores precisam acessar o mesmo arquivo no computador deles, ou você precisa servir via servidor HTTP.
     </div>
   </div>
 
   <div class="card">
     <div class="card-title" style="margin-bottom:1rem">Opção 1 — Rede Local (LAN)</div>
-    <p style="font-size:14px;color:var(--text2);font-family:var(--font-sans);line-height:1.8;margin-bottom:1rem">
+    <p style="font-size:28px;color:var(--text2);font-family:var(--font-sans);line-height:1.8;margin-bottom:1rem">
       Se você e os avaliadores estiverem na mesma rede Wi-Fi, você pode servir o arquivo como servidor HTTP local em segundos.
     </p>
-    <div style="background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-family:monospace;font-size:14px;color:var(--gold2);margin-bottom:10px">
-      <div style="color:var(--text3);font-size:12px;margin-bottom:6px"># No terminal, na pasta onde está o arquivo HTML:</div>
+    <div style="background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-family:monospace;font-size:28px;color:var(--gold2);margin-bottom:10px">
+      <div style="color:var(--text3);font-size:24px;margin-bottom:6px"># No terminal, na pasta onde está o arquivo HTML:</div>
       python3 -m http.server 8080
     </div>
-    <div style="background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-family:monospace;font-size:14px;color:var(--gold2);margin-bottom:10px">
-      <div style="color:var(--text3);font-size:12px;margin-bottom:6px"># Depois descubra seu IP local:</div>
+    <div style="background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-family:monospace;font-size:28px;color:var(--gold2);margin-bottom:10px">
+      <div style="color:var(--text3);font-size:24px;margin-bottom:6px"># Depois descubra seu IP local:</div>
       ipconfig &nbsp;&nbsp; (Windows) &nbsp;&nbsp;|&nbsp;&nbsp; ifconfig &nbsp;&nbsp;(Mac/Linux)
     </div>
-    <p style="font-size:13px;color:var(--text3);font-family:var(--font-sans);line-height:1.7">
+    <p style="font-size:26px;color:var(--text3);font-family:var(--font-sans);line-height:1.7">
       Compartilhe o endereço <strong style="color:var(--text2)">http://SEU-IP:8080/index.html</strong> com os avaliadores. Eles acessam pelo navegador enquanto estiverem na mesma rede.
     </p>
   </div>
 
   <div class="card">
     <div class="card-title" style="margin-bottom:1rem">Opção 2 — Internet (acesso remoto)</div>
-    <p style="font-size:14px;color:var(--text2);font-family:var(--font-sans);line-height:1.8;margin-bottom:1rem">
+    <p style="font-size:28px;color:var(--text2);font-family:var(--font-sans);line-height:1.8;margin-bottom:1rem">
       Para que avaliadores acessem de qualquer lugar sem instalar nada, use um serviço de túnel gratuito como <strong>ngrok</strong> ou <strong>Cloudflare Tunnel</strong>.
     </p>
-    <div style="background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-family:monospace;font-size:14px;color:var(--gold2);margin-bottom:8px">
-      <div style="color:var(--text3);font-size:12px;margin-bottom:6px"># Com ngrok instalado (ngrok.com):</div>
+    <div style="background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-family:monospace;font-size:28px;color:var(--gold2);margin-bottom:8px">
+      <div style="color:var(--text3);font-size:24px;margin-bottom:6px"># Com ngrok instalado (ngrok.com):</div>
       ngrok http 8080
     </div>
-    <p style="font-size:13px;color:var(--text3);font-family:var(--font-sans);line-height:1.7;margin-bottom:10px">
+    <p style="font-size:26px;color:var(--text3);font-family:var(--font-sans);line-height:1.7;margin-bottom:10px">
       O ngrok gera um link público tipo <code style="color:var(--gold)">https://abc123.ngrok.io</code> que você envia para os avaliadores.
     </p>
-    <div style="background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-family:monospace;font-size:14px;color:var(--gold2);margin-bottom:8px">
-      <div style="color:var(--text3);font-size:12px;margin-bottom:6px"># Com Cloudflare Tunnel (grátis, sem cadastro):</div>
+    <div style="background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-family:monospace;font-size:28px;color:var(--gold2);margin-bottom:8px">
+      <div style="color:var(--text3);font-size:24px;margin-bottom:6px"># Com Cloudflare Tunnel (grátis, sem cadastro):</div>
       cloudflared tunnel --url http://localhost:8080
     </div>
   </div>
 
   <div class="card">
     <div class="card-title" style="margin-bottom:1rem">Opção 3 — GitHub Pages (gratuito, sem instalar nada)</div>
-    <p style="font-size:14px;color:var(--text2);font-family:var(--font-sans);line-height:1.8">
+    <p style="font-size:28px;color:var(--text2);font-family:var(--font-sans);line-height:1.8">
       Suba o arquivo HTML para um repositório público no GitHub, ative o GitHub Pages nas configurações, e compartilhe a URL gerada. Os avaliadores acessam direto no navegador de qualquer lugar do mundo, sem instalar nada.
     </p>
-    <ol style="padding-left:1.25rem;font-size:13px;color:var(--text3);font-family:var(--font-sans);line-height:2;margin-top:10px">
+    <ol style="padding-left:1.25rem;font-size:26px;color:var(--text3);font-family:var(--font-sans);line-height:2;margin-top:10px">
       <li>Crie um repositório público em <strong style="color:var(--text2)">github.com</strong></li>
       <li>Faça upload do arquivo <code style="color:var(--gold)">index.html</code></li>
       <li>Em Settings → Pages, selecione a branch <code>main</code> e a pasta <code>/root</code></li>
@@ -2561,10 +2561,10 @@ function renderServidor(){
 
   <div class="card" style="border-color:rgba(201,168,76,0.4)">
     <div class="card-title" style="margin-bottom:0.875rem">⚠️ Importante sobre os dados</div>
-    <p style="font-size:13px;color:var(--text2);font-family:var(--font-sans);line-height:1.8">
+    <p style="font-size:26px;color:var(--text2);font-family:var(--font-sans);line-height:1.8">
       Os dados (eventos, submissões, avaliações) ficam no <strong>localStorage do navegador de cada usuário</strong>. Isso significa que cada avaliador tem seu próprio estado local — as avaliações não sincronizam automaticamente entre computadores.
     </p>
-    <p style="font-size:13px;color:var(--text3);font-family:var(--font-sans);line-height:1.8;margin-top:8px">
+    <p style="font-size:26px;color:var(--text3);font-family:var(--font-sans);line-height:1.8;margin-top:8px">
       Para consolidar: o Administrador deve coletar as avaliações individuais de cada avaliador e importar no sistema central. Uma alternativa simples é usar o mesmo computador com múltiplos perfis de navegador, ou combinar as sessões usando a função de exportar/importar dados abaixo.
     </p>
     <div style="margin-top:1rem;display:flex;gap:8px;flex-wrap:wrap">
@@ -2629,12 +2629,12 @@ function renderPixelSlots(c){
     const src=pixels[pos.id];
     const sz=pixels[pos.id+'_size']||48;
     return`<div style="background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);padding:8px">
-      <div style="font-size:10px;font-family:var(--font-sans);color:var(--text3);margin-bottom:6px">${i+1}. ${pos.label}</div>
+      <div style="font-size:20px;font-family:var(--font-sans);color:var(--text3);margin-bottom:6px">${i+1}. ${pos.label}</div>
       <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
         ${src?`<img src="${src}" style="width:32px;height:32px;image-rendering:pixelated;border:1px solid var(--border2);border-radius:3px" />`:''}
-        <div class="upload-area" style="flex:1;min-width:80px;padding:4px 8px;font-size:9px" onclick="document.getElementById('px_${pos.id}').click()">${src?'Trocar':'+ GIF/PNG'}</div>
+        <div class="upload-area" style="flex:1;min-width:80px;padding:4px 8px;font-size:18px" onclick="document.getElementById('px_${pos.id}').click()">${src?'Trocar':'+ GIF/PNG'}</div>
         <input type="file" id="px_${pos.id}" accept="image/gif,image/png,image/webp" style="display:none" onchange="uploadPixelArt('${pos.id}',this)" />
-        ${src?`<input type="range" min="24" max="120" value="${sz}" style="width:60px" title="Tamanho" oninput="resizePixelArt('${pos.id}',this.value)" /><button class="btn btn-sm btn-danger" style="padding:2px 6px;font-size:9px" onclick="removePixelArt('${pos.id}')">✕</button>`:''}
+        ${src?`<input type="range" min="24" max="120" value="${sz}" style="width:60px" title="Tamanho" oninput="resizePixelArt('${pos.id}',this.value)" /><button class="btn btn-sm btn-danger" style="padding:2px 6px;font-size:18px" onclick="removePixelArt('${pos.id}')">✕</button>`:''}
       </div>
     </div>`;
   }).join('');
@@ -2699,12 +2699,12 @@ function renderCustomizer(){
         <div style="width:20px;height:20px;border-radius:50%;background:${p.crimson}"></div>
         <div style="width:20px;height:20px;border-radius:50%;background:${p.bg};border:1px solid rgba(255,255,255,0.2)"></div>
       </div>
-      <div style="font-size:9px;color:var(--text3);font-family:var(--font-sans)">${p.label}</div>
+      <div style="font-size:18px;color:var(--text3);font-family:var(--font-sans)">${p.label}</div>
     </div>`).join('')}</div>
   </div>
   <div class="custom-section">
     <div class="custom-section-title">Plano de Fundo do App</div>
-    <div style="font-size:10px;color:var(--text3);font-family:var(--font-sans);margin-bottom:8px">Suporta PNG, JPG, WebP e GIF animado</div>
+    <div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-bottom:8px">Suporta PNG, JPG, WebP e GIF animado</div>
     <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start">
       <div>
         <div class="upload-area" style="width:220px" onclick="document.getElementById('bgUploadApp').click()">📎 Selecionar imagem ou GIF</div>
@@ -2728,7 +2728,7 @@ function renderCustomizer(){
   </div>
   <div class="custom-section">
     <div class="custom-section-title">🎮 Pixel Art Festivo — 10 Posições</div>
-    <div style="font-size:10px;color:var(--text3);font-family:var(--font-sans);margin-bottom:10px;line-height:1.6">Coloque GIFs de pixel art em até 10 pontos do app. Ideal para datas festivas (Halloween, Natal, etc).</div>
+    <div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-bottom:10px;line-height:1.6">Coloque GIFs de pixel art em até 10 pontos do app. Ideal para datas festivas (Halloween, Natal, etc).</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${renderPixelSlots(c)}</div>
   </div>
   <div style="margin-top:0.875rem">
@@ -2876,8 +2876,8 @@ window.addEventListener('DOMContentLoaded',()=>{
         if(cont){
           const portal=buildParticipantPortalHTML(_ev.id);
           const header=`<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)">
-            <div><div style="font-family:var(--font-display);font-size:20px;color:var(--gold2)">${_ev.nome}</div>
-            <div style="font-size:12px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">${_ev.finalized?'✦ Evento Finalizado':'Em andamento'}</div></div></div>`;
+            <div><div style="font-family:var(--font-display);font-size:40px;color:var(--gold2)">${_ev.nome}</div>
+            <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">${_ev.finalized?'✦ Evento Finalizado':'Em andamento'}</div></div></div>`;
           cont.innerHTML=header+portal;
         }
       },50);
