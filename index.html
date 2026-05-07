@@ -1298,6 +1298,7 @@ function renderEventDetailSubs(){
           <div style="display:flex;gap:5px">
             <button class="btn btn-sm" onclick="viewSubInDetail('${s.id}')">Ler</button>
             <button class="btn btn-primary btn-sm" onclick="evalFromDetail('${s.id}')">Avaliar</button>
+            ${!currentUser||currentUser.id==='admin'?`<button class="btn btn-sm btn-danger" onclick="deleteSubmissao('${s.id}')" title="Excluir submissão">🗑</button>`:''}
           </div>
         </div>
       </div>`;
@@ -1482,10 +1483,31 @@ function renderSubmissoes(){
         <div style="display:flex;gap:5px">
           <button class="btn btn-sm" onclick="viewSub('${s.id}')">Ver texto</button>
           <button class="btn btn-primary btn-sm" onclick="goToEval('${s.id}')">Avaliar</button>
+          ${!currentUser||currentUser.id==='admin'?`<button class="btn btn-sm btn-danger" onclick="deleteSubmissao('${s.id}')" title="Excluir submissão">🗑</button>`:''}
         </div>
       </div>
     </div>`;
   }).join('');
+}
+
+function deleteSubmissao(subId){
+  const sub=(DB.submissoes||[]).find(s=>s.id===subId);
+  if(!sub) return;
+  const hasEvals=(DB.avaliacoes||[]).some(a=>a.subId===subId);
+  const warn=hasEvals?' Esta submissão possui avaliações — elas também serão removidas.':'';
+  if(!confirm(`Excluir "${sub.titulo}" de ${sub.autor}?${warn}\n\nEsta ação não pode ser desfeita.`)) return;
+  // Remove submission
+  const si=DB.submissoes.findIndex(s=>s.id===subId);
+  if(si>=0) DB.submissoes.splice(si,1);
+  // Remove all linked evaluations
+  DB.avaliacoes=(DB.avaliacoes||[]).filter(a=>a.subId!==subId);
+  // Remove annotations
+  if(DB.annotations&&DB.annotations[subId]) delete DB.annotations[subId];
+  saveDB();
+  renderSubmissoes();
+  // If inside event detail, refresh that too
+  if(typeof currentDetailEvId!=='undefined'&&currentDetailEvId) renderEventDetailSubs();
+  renderAll();
 }
 function viewSub(id){
   const s=DB.submissoes.find(x=>x.id===id);if(!s) return;
