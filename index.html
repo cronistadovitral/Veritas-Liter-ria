@@ -388,6 +388,143 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 .archived-card{opacity:0.6;filter:grayscale(0.3);}
 /* CANCEL EVAL */
 .judge-cancel-btn{font-size:11px;padding:3px 8px;border-color:rgba(181,34,34,0.4);color:var(--crimson2);}
+
+/* ── PARTICIPANT LOGIN SCREEN ── */
+#participantScreen{
+  position:fixed;inset:0;z-index:200;
+  background:var(--bg);
+  display:none;flex-direction:column;
+  align-items:center;justify-content:flex-start;
+  overflow-y:auto;padding:2rem 1rem 4rem;
+}
+#participantScreen.open{display:flex;}
+.part-header{text-align:center;margin-bottom:2.5rem;}
+.part-logo{font-family:var(--font-display);font-size:36px;
+  background:linear-gradient(180deg,#f5dfa0,#c9a84c);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;letter-spacing:0.15em;margin-bottom:6px;}
+.part-sub{font-family:var(--font-sans);font-size:13px;color:var(--text3);letter-spacing:0.1em;}
+.part-ornament{height:1px;width:260px;margin:12px auto;
+  background:linear-gradient(90deg,transparent,rgba(201,168,76,0.5),transparent);}
+.part-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:16px;
+  width:100%;max-width:900px;
+  margin:0 auto;
+}
+.part-event-card{
+  background:linear-gradient(135deg,rgba(26,20,12,0.95),rgba(18,14,8,0.98));
+  border:1px solid rgba(201,168,76,0.25);
+  border-radius:var(--radius-lg);
+  padding:1.5rem 1.25rem;
+  text-align:center;
+  cursor:pointer;
+  transition:border-color 0.2s,transform 0.15s,box-shadow 0.2s;
+  position:relative;overflow:hidden;
+}
+.part-event-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,0.06),transparent 70%);
+  pointer-events:none;
+}
+.part-event-card:hover{
+  border-color:rgba(201,168,76,0.55);
+  transform:translateY(-3px);
+  box-shadow:0 8px 28px rgba(0,0,0,0.4),0 0 0 1px rgba(201,168,76,0.15);
+}
+.part-event-card.finalized{border-color:rgba(201,168,76,0.4);}
+.part-card-icon{font-size:28px;margin-bottom:10px;}
+.part-card-name{font-family:var(--font-display);font-size:15px;color:var(--gold2);
+  line-height:1.35;margin-bottom:6px;}
+.part-card-status{font-family:var(--font-sans);font-size:11px;letter-spacing:0.08em;
+  padding:3px 10px;border-radius:12px;display:inline-block;margin-bottom:8px;}
+.part-card-status.active{background:rgba(58,138,80,0.15);color:#5ab870;border:1px solid rgba(58,138,80,0.3);}
+.part-card-status.done{background:rgba(201,168,76,0.12);color:var(--gold);border:1px solid rgba(201,168,76,0.3);}
+.part-card-meta{font-family:var(--font-sans);font-size:12px;color:var(--text3);}
+.part-back-btn{
+  position:fixed;top:16px;left:16px;z-index:210;
+  background:rgba(18,14,8,0.9);border:1px solid var(--border);
+  color:var(--text2);border-radius:var(--radius);
+  padding:6px 14px;font-size:13px;cursor:pointer;
+  font-family:var(--font-sans);letter-spacing:0.06em;
+}
+.part-back-btn:hover{border-color:var(--gold);color:var(--gold);}
+.part-login-box{
+  width:100%;max-width:420px;margin:0 auto 2rem;
+  background:rgba(22,18,12,0.95);
+  border:1px solid rgba(201,168,76,0.2);
+  border-radius:var(--radius-lg);padding:1.75rem;
+}
+.part-events-title{
+  font-family:var(--font-sans);font-size:11px;color:var(--text3);
+  letter-spacing:0.12em;text-transform:uppercase;
+  text-align:center;margin:0 auto 1.25rem;
+  display:flex;align-items:center;gap:12px;
+}
+.part-events-title::before,.part-events-title::after{
+  content:'';flex:1;height:1px;background:var(--border2);
+}
+
+/* ── TEXT EDITOR TOOLBAR ── */
+.text-toolbar{
+  display:flex;gap:4px;flex-wrap:wrap;align-items:center;
+  padding:6px 8px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid var(--border2);
+  border-bottom:none;
+  border-radius:var(--radius) var(--radius) 0 0;
+}
+.toolbar-btn{
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--border2);
+  color:var(--text2);border-radius:4px;
+  padding:3px 9px;cursor:pointer;
+  font-size:13px;font-family:var(--font-sans);
+  transition:all 0.15s;line-height:1.4;
+}
+.toolbar-btn:hover{background:rgba(201,168,76,0.1);border-color:rgba(201,168,76,0.4);color:var(--gold);}
+.toolbar-sep{width:1px;height:22px;background:var(--border2);margin:0 3px;flex-shrink:0;}
+.toolbar-textarea{border-radius:0 0 var(--radius) var(--radius)!important;}
+
+/* ── 2-COLUMN EVAL GRID ── */
+.q-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+@media(max-width:640px){.q-grid{grid-template-columns:1fr;}}
+.q-row-compact{
+  background:rgba(255,255,255,0.02);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:10px 12px;
+  display:flex;flex-direction:column;gap:6px;
+  transition:border-color 0.15s;
+}
+.q-row-compact:hover{border-color:rgba(201,168,76,0.2);}
+.q-row-compact.answered{border-color:rgba(58,138,80,0.25);}
+.q-num{font-size:10px;color:var(--text3);font-family:var(--font-sans);font-weight:600;
+  letter-spacing:0.08em;margin-bottom:2px;}
+.q-text-compact{font-size:13px;color:var(--text2);font-family:var(--font-serif);
+  line-height:1.45;flex:1;}
+.q-hint-compact{font-size:11px;color:var(--text3);font-family:var(--font-sans);
+  font-style:italic;line-height:1.4;margin-top:2px;}
+.q-opts-compact{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px;}
+.q-opt-compact{
+  flex:1;min-width:32px;padding:4px 2px;
+  border:1px solid var(--border2);border-radius:4px;
+  font-size:11px;font-weight:700;font-family:var(--font-sans);
+  letter-spacing:0.05em;cursor:pointer;text-align:center;
+  background:rgba(255,255,255,0.02);color:var(--text3);
+  transition:all 0.12s;
+}
+.q-opt-compact:hover{background:rgba(255,255,255,0.06);color:var(--text2);}
+.q-opt-compact.sel-MA{background:rgba(58,138,80,0.25);border-color:#3a8a50;color:#5ab870;}
+.q-opt-compact.sel-BA{background:rgba(80,160,90,0.18);border-color:#4a7a50;color:#70c080;}
+.q-opt-compact.sel-AT{background:rgba(150,140,100,0.15);border-color:#6a6040;color:#a09060;}
+.q-opt-compact.sel-PA{background:rgba(180,140,40,0.2);border-color:#907020;color:var(--gold);}
+.q-opt-compact.sel-NA{background:rgba(181,34,34,0.2);border-color:var(--crimson);color:#e06060;}
 /* SCROLLBAR */
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
@@ -477,6 +614,12 @@ database.ref('.info/connected').on('value', (snap) => {
       <h2 class="login-title-shimmer">Veritas Literário</h2>
       <div class="login-ornament"></div>
       <p>Sistema de Avaliação</p>
+    </div>
+    <div style="margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border2)">
+      <button type="button" class="btn" style="width:100%;border-color:rgba(201,168,76,0.3);color:var(--gold)" onclick="openParticipantScreen()">
+        ◆ Área do Participante
+      </button>
+      <div style="font-size:11px;color:var(--text3);font-family:var(--font-sans);text-align:center;margin-top:6px">Sem senha necessária</div>
     </div>
     <form onsubmit="doLogin();return false;" autocomplete="on">
     <div class="form-group"><label>Perfil</label>
@@ -626,7 +769,7 @@ database.ref('.info/connected').on('value', (snap) => {
 
     <!-- ÁREA PÚBLICA -->
     <div id="page-publico" class="page">
-      <div class="page-header"><div class="page-title">Portal do Participante</div><div class="page-sub">Links de acesso por evento — sem senha necessária</div></div>
+      <div class="page-header"><div class="page-title">Portal do Participante</div><div class="page-sub">Gerencie links públicos de acesso por evento</div></div>
       <div id="publicoContent"></div>
     </div>
 
@@ -703,7 +846,17 @@ database.ref('.info/connected').on('value', (snap) => {
     </div>
     <div class="form-group">
       <label>Texto Completo</label>
-      <textarea id="subTexto" rows="7" placeholder="Cole o texto aqui..." oninput="updateWordCount()"></textarea>
+      <div class="text-toolbar" id="toolbar_subTexto">
+      <button class="toolbar-btn" onclick="tbFormat('subTexto','bold')" title="Negrito">𝐁</button>
+      <button class="toolbar-btn" onclick="tbFormat('subTexto','italic')" title="Itálico">𝐼</button>
+      <div class="toolbar-sep"></div>
+      <button class="toolbar-btn" onclick="tbIndent('subTexto')" title="Indentar parágrafo">⇥</button>
+      <button class="toolbar-btn" onclick="tbNewPara('subTexto')" title="Novo parágrafo">¶</button>
+      <div class="toolbar-sep"></div>
+      <button class="toolbar-btn" onclick="tbCleanPaste('{ta}')" title="Limpar formatação invisível">✦ Limpar</button>
+      <button class="toolbar-btn" onclick="tbClear('{ta}')" title="Apagar todo o texto" style="color:var(--crimson2)">🗑 Apagar</button>
+    </div>
+      <textarea id="subTexto" rows="10" placeholder="Cole o texto aqui..." oninput="updateWordCount()" class="toolbar-textarea"></textarea>
       <div style="font-size:15px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">Palavras: <span id="wordCount" style="color:var(--gold)">0</span> / <span id="wordLimit">4000</span></div>
     </div>
     <div id="subErr" class="alert alert-err hidden"></div>
@@ -1175,7 +1328,17 @@ function renderEventDetailAddForm(){
     <div class="form-group"><label>Nome / Pseudônimo do Autor</label><input id="detailSubAutor" type="text" placeholder="Como ficará registrado" /></div>
     <div class="form-group">
       <label>Texto Completo</label>
-      <textarea id="detailSubTexto" rows="9" placeholder="Cole o texto aqui..." oninput="updateDetailWordCount()"></textarea>
+      <div class="text-toolbar" id="toolbar_detailSub">
+      <button class="toolbar-btn" onclick="tbFormat('detailSubTexto','bold')" title="Negrito">𝐁</button>
+      <button class="toolbar-btn" onclick="tbFormat('detailSubTexto','italic')" title="Itálico">𝐼</button>
+      <div class="toolbar-sep"></div>
+      <button class="toolbar-btn" onclick="tbIndent('detailSubTexto')" title="Indentar parágrafo">⇥</button>
+      <button class="toolbar-btn" onclick="tbNewPara('detailSubTexto')" title="Novo parágrafo">¶</button>
+      <div class="toolbar-sep"></div>
+      <button class="toolbar-btn" onclick="tbCleanPaste('{ta}')" title="Limpar formatação invisível">✦ Limpar</button>
+      <button class="toolbar-btn" onclick="tbClear('{ta}')" title="Apagar todo o texto" style="color:var(--crimson2)">🗑 Apagar</button>
+    </div>
+      <textarea id="detailSubTexto" rows="11" placeholder="Cole o texto aqui..." oninput="updateDetailWordCount()" class="toolbar-textarea"></textarea>
       <div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-top:4px">
         Palavras: <span id="detailWordCount" style="color:var(--gold)">0</span> / ${ev.words}
       </div>
@@ -1331,24 +1494,108 @@ function viewSub(id){
 function goToEval(subId){goTo('avaliar');document.getElementById('selectSubToEval').value=subId;loadEvaluation();}
 
 // ════════════════════════════════════════
-// QUESTIONS
+// QUESTIONS — 8 per section, 2-column display
 // ════════════════════════════════════════
-const RQ=["O texto apresenta uma tese ou proposta central claramente articulada?","Os argumentos são estruturados de forma coerente e progressiva?","O texto utiliza figuras de linguagem de modo eficaz e intencional?","A voz narrativa ou lírica é consistente e controlada?","O ritmo da prosa serve à intenção retórica do texto?","Há variação sintática deliberada que enriquece a expressão?","O texto evita redundâncias e falácias retóricas?","A escolha lexical é precisa e adequada ao registro proposto?","O texto estabelece ethos convincente?","Há uso eficaz do pathos sem manipulação?","O logos sustenta a argumentação?","As transições são elegantes e funcionais?","O texto mantém foco temático sem desvios?","Há equilíbrio entre abstração e concretude?","O incipit captura a atenção e anuncia o tom?","O desfecho retórico satisfaz as promessas do texto?","A paragrafação serve à construção retórica?","O texto demonstra consciência do leitor implícito?","Há coerência entre forma e conteúdo?","A dicção é original e evita clichês retóricos?"];
-// Explicações de cada pergunta de retórica
-const RQ_HINT=["O texto tem uma ideia principal clara que guia toda a narrativa?","As ideias se encadeiam de forma natural, uma levando à outra?","Metáforas, comparações, personificações — são usadas com intenção e efeito?","O narrador ou a voz poética se mantém consistente do início ao fim?","O texto tem um ritmo próprio que serve ao que quer comunicar?","O texto varia propositalmente a estrutura das frases para criar efeito?","O texto vai direto ao ponto, sem repetições desnecessárias ou falácias (argumentos falsos)?","As palavras escolhidas são precisas e combinam com o tom e gênero do texto?","Ethos = credibilidade. O texto transmite autoridade, conhecimento e confiança?","Pathos = emoção. O texto toca o leitor de forma genuína, sem ser apelativo ou manipulador?","Logos = razão. Os argumentos, mesmo em ficção, têm lógica e sustentação?","A passagem de um parágrafo/ideia para outro flui sem brusquidão?","O texto não se perde em desvios desnecessários do tema central?","O texto equilibra ideias amplas com exemplos concretos e vice-versa?","Incipit = abertura do texto. As primeiras linhas capturam a atenção e avisam o tom do que vem?","O encerramento satisfaz o que o texto prometeu ao longo de sua construção?","A divisão em parágrafos é intencional e serve à argumentação?","O texto foi escrito pensando em quem vai lê-lo — seu vocabulário, expectativas, referências?","A forma (como está escrito) combina com o conteúdo (o que está sendo dito)?","O texto tem uma voz própria, sem frases feitas ou clichês gastos?"];
-const LQ=["As premissas são claramente estabelecidas?","Há consistência lógica entre as partes?","O texto evita contradições internas?","As inferências decorrem logicamente das premissas?","A causalidade é representada de forma plausível?","O texto sustenta seu ponto de vista com evidências?","A estrutura temporal é coerente e bem gerida?","Os pontos de virada são logicamente preparados?","Os personagens agem de forma psicologicamente coerente?","As omissões são calculadas?","O texto distingue o essencial do acessório?","Não há non sequiturs ou saltos lógicos?","A economia narrativa é respeitada?","A hipótese central é sustentada até o fim?","Há equilíbrio entre complexidade e clareza?","Os símbolos têm consistência interna?","O texto evita ambiguidades prejudiciais?","A progressão dramática é bem construída?","Os elementos introduzidos têm função no conjunto?","O texto demonstra coerência de visão de mundo?"];
-const LQ_HINT=["O texto estabelece claramente de onde parte — suas bases e suposições iniciais?","As ideias do texto não se contradizem ao longo da narrativa?","O texto não diz uma coisa em um momento e outra coisa incompatível em outro?","As conclusões que o texto tira fazem sentido a partir do que foi apresentado antes?","As relações de causa e efeito dentro do texto parecem críveis e bem construídas?","O ponto de vista é sustentado com exemplos, evidências ou argumentação sólida?","A ordem em que os eventos acontecem (ou são narrados) é clara e coerente?","Reviravoltas e momentos decisivos foram preparados antes de acontecerem, sem parecer arbitrários?","Os personagens fazem escolhas e agem de formas que fazem sentido para quem eles são?","Quando o texto deixa algo de fora, foi uma escolha deliberada — não um descuido?","O texto sabe o que é central e o que é detalhe, e trata cada um adequadamente?","Non sequitur = conclusão que não segue. O texto evita saltar de A para C sem passar por B?","O texto não desperdiça palavras — cada elemento narrativo tem uma razão de estar lá?","A ideia ou questão central do texto é desenvolvida até o fim, sem ser abandonada?","O texto é complexo quando precisa, mas não perde a clareza para o leitor?","Símbolos e imagens recorrentes mantêm o mesmo sentido e função ao longo do texto?","O texto evita passagens dúbias que confundem sem intenção?","Os conflitos e tensões se constroem de forma gradual e organizada?","Cada elemento introduzido — personagem, objeto, ideia — tem função no conjunto?","O universo do texto tem regras internas próprias e o texto as respeita?"];
-const OQ=["A perspectiva é inédita ou apresenta ângulo novo?","O texto subverte expectativas criativamente?","Há uma voz autoral identificável e distinta?","A construção imagética é original?","O texto evita temas e tratamentos esgotados?","A solução formal é inventiva para o gênero?","O texto transcende referências culturais óbvias?","Há risco criativo na concepção?","A originalidade serve à obra?","O texto contribui ao repertório do gênero?"];
-const OQ_HINT=["O texto olha para seu tema de um ângulo que não é o óbvio — traz uma perspectiva nova?","O texto surpreende — vai além do que se espera para este tipo de obra?","É possível identificar uma voz única por trás do texto — não parece anônimo nem genérico?","As imagens e metáforas são criadas pelo autor, não tiradas do repertório comum?","O texto evita abordagens desgastadas de temas batidos?","A forma do texto em si — estrutura, ponto de vista, tempo verbal — é uma escolha criativa interessante?","O texto vai além de referências culturais óbvias e clichês da cultura popular?","O autor se arriscou em algo — uma escolha incomum, uma aposta formal ou temática corajosa?","A originalidade do texto existe para servir à obra, não é exibicionismo gratuito?","Este texto acrescenta algo ao que já existe no gênero — uma visão, uma solução, uma voz?"];
-const PQ=["O texto opera em mais de uma camada de significação?","Há subtexto rico e trabalhado?","O texto dialoga com tradições literárias conscientemente?","A complexidade temática é trabalhada com maturidade?","O texto resiste à leitura única?","Há densidade filosófica, psicológica ou cultural?","Os silêncios têm peso semântico?","O texto domina seu universo simbólico?","A obra sustenta análise aprofundada?","Há ressonância emocional além do imediato?"];
-const PQ_HINT=["O texto tem um significado imediato mas também carrega sentidos mais profundos?","Subtexto = o que não é dito diretamente mas está presente. O texto tem profundidade não-dita?","O texto conversa (intencionalmente) com outros textos, tradições ou movimentos literários?","O texto lida com temas complexos sem simplificá-los nem resolvê-los de forma fácil?","O texto pode ser lido de mais de uma forma — permite interpretações diferentes igualmente válidas?","O texto carrega peso intelectual — questiona, filosofa, mergulha na psicologia ou na cultura?","O que o texto não diz — pausas, elipses, lacunas — tem tanto peso quanto o que diz?","O texto criou um universo de símbolos e os usa com domínio e coerência?","A obra aguenta ser analisada em detalhe — tem substância suficiente para análise crítica?","O texto deixa uma impressão que dura depois da leitura — toca algo além do imediato?"];
+const RQ=[
+  "O texto tem uma ideia ou intenção central clara?",
+  "As figuras de linguagem são usadas com intenção e efeito?",
+  "A voz narrativa é consistente e controlada do início ao fim?",
+  "O texto varia a estrutura das frases de forma expressiva?",
+  "As palavras escolhidas são precisas e combinam com o tom?",
+  "O texto cria cumplicidade emocional com o leitor (pathos)?",
+  "As transições entre parágrafos fluem sem brusquidão?",
+  "A abertura captura a atenção e o encerramento satisfaz?"
+];
+const RQ_HINT=[
+  "Há uma proposta ou tese central — explícita ou implícita — que guia o texto?",
+  "Metáforas, comparações e personificações aparecem com propósito, não como enfeite?",
+  "O narrador ou a voz poética se mantém coerente — sem saltos de tom ou perspectiva?",
+  "O texto alterna frases curtas e longas de forma intencional para criar ritmo e efeito?",
+  "O vocabulário combina com o gênero, o tom e o registro do texto?",
+  "O texto toca o leitor de forma genuína — sem ser apelativo ou manipulador?",
+  "A passagem de uma ideia ou parágrafo para outro é suave e funcional?",
+  "As primeiras linhas convencem o leitor a continuar? O final entrega o que prometeu?"
+];
+const LQ=[
+  "O texto evita contradições internas?",
+  "As relações de causa e efeito são plausíveis?",
+  "A estrutura temporal é clara e bem gerida?",
+  "Os pontos de virada foram preparados antes de acontecer?",
+  "Os personagens agem de forma psicologicamente coerente?",
+  "Cada elemento introduzido tem função no conjunto?",
+  "O texto distingue o essencial do acessório?",
+  "A hipótese ou questão central é sustentada até o fim?"
+];
+const LQ_HINT=[
+  "O texto não diz uma coisa em um momento e algo incompatível em outro?",
+  "As consequências dos eventos são críveis — nada acontece sem motivação?",
+  "A linha do tempo é clara, mesmo se não-linear — o leitor não se perde?",
+  "Reviravoltas e climaxes foram preparados antes — não parecem tirados do nada?",
+  "Os personagens fazem escolhas que fazem sentido para quem eles são?",
+  "Nenhum personagem, objeto ou detalhe foi introduzido sem cumprir uma função?",
+  "O texto sabe o que é central e o que é detalhe — e trata cada um adequadamente?",
+  "A ideia ou conflito central do texto é desenvolvido até o fim, sem ser abandonado?"
+];
+const OQ=[
+  "O texto apresenta um ângulo ou perspectiva inédita?",
+  "Há uma voz autoral identificável e distinta?",
+  "As imagens e metáforas são criadas pelo autor, não do repertório comum?",
+  "O texto evita temas e tratamentos esgotados?",
+  "O autor se arriscou em algo formalmente ou tematicamente?",
+  "A originalidade serve à obra — não é exibicionismo gratuito?",
+  "O texto subverte as expectativas do gênero de forma inteligente?",
+  "O texto acrescenta algo ao repertório do gênero?"
+];
+const OQ_HINT=[
+  "O texto olha para seu tema de um ângulo não óbvio — não é a abordagem esperada?",
+  "É possível identificar uma voz única — o texto não parece anônimo ou genérico?",
+  "As comparações e metáforas são originais — não vieram de expressões prontas?",
+  "O texto evita temas e abordagens desgastadas, clicherizadas?",
+  "O autor apostou em algo incomum — uma forma, um ponto de vista, um risco criativo?",
+  "A originalidade tem função — não está lá só para impressionar?",
+  "O texto surpreende — vai além do que o gênero costuma oferecer?",
+  "Este texto deixa uma contribuição — uma visão, uma voz, uma solução que não existia?"
+];
+const PQ=[
+  "O texto opera em mais de uma camada de significação?",
+  "Há subtexto — o que não é dito diretamente tem peso?",
+  "O texto lida com temas complexos sem simplificá-los?",
+  "Há densidade filosófica, psicológica ou cultural?",
+  "Os silêncios e omissões têm peso semântico?",
+  "A obra sustenta uma leitura analítica mais aprofundada?",
+  "O texto resiste à leitura única — permite mais de uma interpretação?",
+  "Há ressonância emocional que dura além da leitura?"
+];
+const PQ_HINT=[
+  "O texto tem sentido imediato mas também carrega sentidos mais profundos?",
+  "O que o texto não diz — pausas, elipses, lacunas — é tão poderoso quanto o que diz?",
+  "O texto enfrenta temas difíceis sem resolvê-los de forma fácil ou moralista?",
+  "O texto questiona, filosofa, mergulha na psicologia ou na cultura de forma substantiva?",
+  "Lacunas e omissões são intencionais — constroem sentido em vez de serem descuidos?",
+  "A obra tem substância para uma análise crítica detalhada?",
+  "O texto pode ser lido de mais de uma forma — e ambas as leituras são válidas?",
+  "O texto deixa uma impressão que dura — toca algo além do imediato?"
+];
 const MQ={
-  conto:{"Conflito e Enredo":["O conflito central é claro e propulsivo?","O enredo tem tensão bem distribuída?","Exposição, desenvolvimento e clímax são proporcionados?","Conflitos secundários enriquecem sem dispersar?","A economia narrativa do conto é respeitada?","Os eventos têm relação de causa e consequência?","O clímax é satisfatório e não gratuito?","O conflito tem dimensão humana universal?","A narrativa evita coincidências forçadas?","O enredo tem ritmo adequado ao conto?"],"Final/Desfecho":["O desfecho é inevitável mas surpreendente?","O final emerge organicamente?","O desfecho resolve ou problematiza o conflito?","Há densidade emocional no final?","O desfecho evita sentimentalismo fácil?","A última frase tem força e precisão?","O desfecho reverbera além do texto?","O final é coerente com o tom?","Há epifania no desfecho?","O desfecho respeita o leitor?"],"Personagens":["Os personagens têm especificidade psicológica?","As ações são verossímeis?","Há complexidade moral?","Personagens secundários têm função precisa?","Os personagens evitam estereótipos?","Caracterização por ação, não só descrição?","Os personagens têm vida interior?","Há arco de transformação?","As vozes são distintas?","Os personagens habitam o mundo do conto?"]},
-  cronica:{"Linguagem e Estilo":["A linguagem tem leveza da crônica?","O estilo é pessoal e reconhecível?","O humor é trabalhado com inteligência?","O texto tem musicalidade?","A pontuação serve ao estilo?","A mistura de registros é habilidosa?","As metáforas são frescas?","O texto evita rebuscamento?","A voz do cronista é consistente?","Há prazer estético na linguagem?"],"Tema Cotidiano":["O cotidiano é tratado com olhar original?","O banal é elevado a matéria literária?","Há movimento do particular ao universal?","O tema tem relevância contemporânea?","A observação é aguda e precisa?","O tema é tratado com justa proporção?","Há ancoragem concreta no real?","O texto evita moralização rasteira?","O cotidiano é trabalhado com ironia ou lirismo?","Há insight genuíno?"],"Subjetividade e Tom":["A presença do eu enriquece a crônica?","O tom emocional é calibrado?","Há sinceridade sem confessionalismo?","A subjetividade cria cumplicidade?","O tom é coerente do início ao fim?","Há nuances emocionais bem trabalhadas?","Ironia e seriedade coexistem com equilíbrio?","O ponto de vista é sustentado com autoridade?","A voz pessoal adiciona valor interpretativo?","O tom final deixa impressão duradoura?"]},
-  poesia:{"Ritmo e Métrica":["O ritmo serve à intenção poética?","Há domínio técnico da métrica?","As variações rítmicas são intencionais?","O verso livre tem ritmo interior?","A musicalidade é trabalhada?","Os acentos criam padrão expressivo?","O enjambement é funcional?","O ritmo sustenta a emoção?","Há equilíbrio entre forma e expressão?","O poema tem sua própria respiração?"],"Imagens e Metáforas":["As imagens são concretas e evocativas?","As metáforas são originais?","Há coerência no sistema de imagens?","As comparações têm precisão e riqueza?","As imagens criam experiência sensorial?","O símbolo é trabalhado, não decorativo?","Há tensão produtiva entre imagens?","As imagens revelam em vez de explicar?","O campo semântico é coeso?","As metáforas estruturais sustentam o poema?"],"Precisão Vocabular":["Cada palavra é necessária?","O léxico tem identidade própria?","As escolhas evitam o lugar-comum?","Há tensão criativa entre palavras próximas?","O vocabulário serve à intensidade emocional?","Neologismos (se presentes) são justificados?","Diferentes registros são integrados com habilidade?","A sonoridade é considerada?","O título tem peso e pertinência?","Não há palavras supérfluas?"],"Coesão Poética":["O poema tem unidade temática e emocional?","Há progressão entre estrofes?","As repetições são intencionais?","O poema funciona como totalidade?","Abertura e fechamento dialogam?","Nenhuma estrofe enfraquece o conjunto?","A extensão é adequada à proposta?","A pontuação serve à coesão?","Recursos gráficos integram-se ao sentido?","O poema alcança seu ápice organicamente?"]}
+  conto:{
+    "Conflito e Enredo":["O conflito central é claro e propulsivo?","A tensão é bem distribuída ao longo do texto?","Exposição, clímax e desfecho são proporcionados?","Os eventos têm relação de causa e consequência?","A economia narrativa do conto é respeitada?","O clímax é satisfatório e não gratuito?","A narrativa evita coincidências forçadas?","O ritmo é adequado ao conto?"],
+    "Final/Desfecho":["O desfecho é inevitável mas surpreendente?","O final emerge organicamente do que veio antes?","O desfecho resolve ou problematiza o conflito?","A última frase tem força e precisão?","O final é coerente com o tom do texto?","O desfecho evita sentimentalismo fácil?","Há epifania ou transformação no desfecho?","O desfecho respeita a inteligência do leitor?"],
+    "Personagens":["Os personagens têm especificidade psicológica?","As ações dos personagens são verossímeis?","Há complexidade moral — ninguém é puro herói ou vilão?","Os personagens evitam estereótipos?","A caracterização vem da ação, não só da descrição?","Os personagens têm vida interior perceptível?","As vozes dos personagens são distintas entre si?","Os personagens habitam o mundo do conto de forma crítica?"]
+  },
+  cronica:{
+    "Linguagem e Estilo":["A linguagem tem a leveza característica da crônica?","O estilo é pessoal e reconhecível?","O texto tem musicalidade e prazer estético?","As metáforas são frescas e originais?","O texto evita rebuscamento desnecessário?","A voz do cronista é consistente?","A pontuação serve ao estilo e ao ritmo?","O texto mistura registros com habilidade?"],
+    "Tema Cotidiano":["O cotidiano é tratado com um olhar original?","O banal é elevado a matéria literária?","Há movimento do particular ao universal?","A observação é aguda e precisa?","O texto evita moralização rasteira?","O cotidiano é tratado com ironia ou lirismo?","Há ancoragem concreta no real?","Há um insight genuíno sobre a vida?"],
+    "Subjetividade e Tom":["A presença do 'eu' enriquece a crônica?","O tom emocional é calibrado — nem frio demais, nem sentimental?","Há sinceridade sem confessionalismo excessivo?","O tom é coerente do início ao fim?","Ironia e seriedade coexistem com equilíbrio?","O ponto de vista é sustentado com autoridade?","A voz pessoal adiciona valor interpretativo?","O tom final deixa impressão duradoura?"]
+  },
+  poesia:{
+    "Ritmo e Métrica":["O ritmo serve à intenção poética?","As variações rítmicas são intencionais?","O verso livre tem ritmo interior?","A musicalidade é trabalhada?","O enjambement é funcional quando presente?","O ritmo sustenta a emoção do poema?","Há equilíbrio entre forma e expressão?","O poema tem sua própria respiração?"],
+    "Imagens e Metáforas":["As imagens são concretas e evocativas?","As metáforas são originais?","Há coerência no sistema de imagens?","As imagens criam experiência sensorial?","O símbolo é trabalhado, não decorativo?","As imagens revelam em vez de explicar?","O campo semântico é coeso?","As metáforas estruturais sustentam o poema?"],
+    "Precisão Vocabular":["Cada palavra é necessária?","As escolhas lexicais evitam o lugar-comum?","O vocabulário serve à intensidade emocional?","A sonoridade das palavras é considerada?","Diferentes registros são integrados com habilidade?","Não há palavras supérfluas?","O título tem peso e pertinência?","Há tensão criativa entre palavras próximas?"],
+    "Coesão Poética":["O poema tem unidade temática e emocional?","Há progressão entre estrofes?","O poema funciona como totalidade?","Abertura e fechamento dialogam?","A extensão é adequada à proposta?","A pontuação serve à coesão?","Nenhuma estrofe enfraquece o conjunto?","O poema alcança seu ápice de forma orgânica?"]
+  }
 };
 const OL=['MA','BA','AT','PA','NA'];
-// Valores: MA=+1, BA=+0.75, AT=-0.25, PA=-0.5, NA=-1.0 (escala mais exigente)
+// Valores: MA=+1, BA=+0.75, AT=-0.25, PA=-0.5, NA=-1.0
 const V20=[1.0,0.75,-0.25,-0.5,-1.0];
 const V10=[1.0,0.75,-0.25,-0.5,-1.0];
 
@@ -1579,11 +1826,21 @@ function renderQSection(title,key,questions,vals,is20,modalCat){
   const sk=key.replace(/[^a-z0-9_]/g,'_');
   const hintMap={retQ:typeof RQ_HINT!=='undefined'?RQ_HINT:[],logQ:typeof LQ_HINT!=='undefined'?LQ_HINT:[],origQ:typeof OQ_HINT!=='undefined'?OQ_HINT:[],profQ:typeof PQ_HINT!=='undefined'?PQ_HINT:[]};
   const hints=hintMap[key]||[];
+  // 2-column compact grid
   const rows=questions.map((q,i)=>{
     const cur=answers[i];
-    const opts=OL.map((lbl,oi)=>{const v=vals[oi];const sel=cur===v?`sel-${lbl}`:'';return`<button class="q-opt ${sel}" onclick="setQ('${sk}','${(modalCat||'').replace(/'/g,'\\\'').replace(/"/g,'')}',${i},${v},'${lbl}')">${lbl}</button>`;}).join('');
-    const hint=hints[i]?('<div class="q-hint">'+hints[i]+'</div>'):'';
-    return`<div class="question-row"><div class="question-text">${i+1}. ${q}`+hint+`</div><div class="question-options">${opts}</div></div>`;
+    const isAnswered=cur!==undefined;
+    const opts=OL.map((lbl,oi)=>{
+      const v=vals[oi];
+      const sel=cur===v?`sel-${lbl}`:'';
+      return`<button class="q-opt-compact ${sel}" onclick="setQ('${sk}','${(modalCat||'').replace(/'/g,'\\\'').replace(/"/g,'')}',${i},${v},'${lbl}')">${lbl}</button>`;
+    }).join('');
+    const hint=hints[i]?`<div class="q-hint-compact">${hints[i]}</div>`:'';
+    return`<div class="q-row-compact${isAnswered?' answered':''}">
+      <div class="q-num">${i+1}</div>
+      <div class="q-text-compact">${q}${hint}</div>
+      <div class="q-opts-compact">${opts}</div>
+    </div>`;
   }).join('');
   const sum=Object.values(answers).reduce((a,b)=>a+b,0);
   const scoreDisp=answered>0?Math.min(10,Math.max(0,5+sum)).toFixed(2):'—';
@@ -2122,7 +2379,7 @@ function openParticipantPortal(evId){
   showModal('modalPublicView');
 }
 
-function buildParticipantPortalHTML(evId){
+function buildParticipantPortalHTML(evId,authorFilter){
   const ev=DB.eventos.find(e=>e.id===evId);if(!ev) return '';
   // CORREÇÃO: fallback
   const subs=(DB.submissoes||[]).filter(s=>s.eventoId===evId);
@@ -2977,6 +3234,129 @@ function openTierInfo(){
   showModal('modalTierInfo');
 }
 
+
+// ════════════════════════════════════════
+// PARTICIPANT PORTAL
+// ════════════════════════════════════════
+function openParticipantScreen(){
+  document.getElementById('participantScreen').classList.add('open');
+  document.getElementById('partBackBtn').style.display='block';
+  document.getElementById('partGrid').innerHTML='';
+  document.getElementById('partPortalContent').innerHTML='';
+  document.getElementById('partEventsTitle').style.display='none';
+  document.getElementById('partNameInput').value='';
+  document.getElementById('partErr').classList.add('hidden');
+  setTimeout(()=>document.getElementById('partNameInput').focus(),100);
+}
+function closeParticipantScreen(){
+  document.getElementById('participantScreen').classList.remove('open');
+  document.getElementById('partBackBtn').style.display='none';
+}
+function enterParticipantPortal(){
+  const name=document.getElementById('partNameInput').value.trim();
+  const errEl=document.getElementById('partErr');
+  errEl.classList.add('hidden');
+  if(!name){errEl.textContent='Insira seu nome ou pseudônimo.';errEl.classList.remove('hidden');return;}
+  // Find all events where this author has submissions
+  const mySubs=(DB.submissoes||[]).filter(s=>s.autor.toLowerCase()===name.toLowerCase());
+  const myEventIds=[...new Set(mySubs.map(s=>s.eventoId))];
+  const myEvents=(DB.eventos||[]).filter(ev=>myEventIds.includes(ev.id));
+  // Also show all finalized events (public results)
+  const finalizedOthers=(DB.eventos||[]).filter(ev=>ev.finalized&&!myEventIds.includes(ev.id));
+  const allEvents=[...myEvents,...finalizedOthers.slice(0,6)];
+  if(!allEvents.length){
+    errEl.textContent='Nenhum evento encontrado para este nome. Verifique a grafia exata.';
+    errEl.classList.remove('hidden');return;
+  }
+  const titleEl=document.getElementById('partEventsTitle');
+  if(titleEl) titleEl.style.display='flex';
+  const grid=document.getElementById('partGrid');
+  grid.innerHTML=allEvents.map(ev=>{
+    const evSubs=mySubs.filter(s=>s.eventoId===ev.id);
+    const isMyEvent=myEventIds.includes(ev.id);
+    const icon=ev.finalized?'🏆':'📖';
+    const statusClass=ev.finalized?'done':'active';
+    const statusLabel=ev.finalized?'Finalizado':'Em andamento';
+    return`<div class="part-event-card${ev.finalized?' finalized':''}" onclick="showPartEventPortal('${ev.id}','${name.replace(/'/g,"\\'")}')">
+      <div class="part-card-icon">${icon}</div>
+      <div class="part-card-name">${ev.nome}</div>
+      <div class="part-card-status ${statusClass}">${statusLabel}</div>
+      <div class="part-card-meta">${isMyEvent?evSubs.length+' obra'+(evSubs.length!==1?'s':''):'Resultados públicos'}</div>
+    </div>`;
+  }).join('');
+}
+function showPartEventPortal(evId,authorName){
+  const cont=document.getElementById('partPortalContent');
+  const ev=(DB.eventos||[]).find(e=>e.id===evId);
+  if(!ev||!cont) return;
+  const html=buildParticipantPortalHTML(evId,authorName);
+  const header=`<div style="display:flex;align-items:center;gap:12px;margin:1.5rem 0 1rem;flex-wrap:wrap">
+    <button class="btn btn-sm" onclick="document.getElementById('partPortalContent').innerHTML='';document.getElementById('partGrid').scrollIntoView({behavior:'smooth'})">← Voltar</button>
+    <div>
+      <div style="font-family:var(--font-display);font-size:22px;color:var(--gold2)">${ev.nome}</div>
+      <div style="font-size:13px;color:var(--text3);font-family:var(--font-sans)">${ev.finalized?'✦ Finalizado':'Em andamento'}</div>
+    </div>
+  </div>`;
+  cont.innerHTML=header+html;
+  cont.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ════════════════════════════════════════
+// TEXT EDITOR TOOLBAR
+// ════════════════════════════════════════
+function tbFormat(taId,fmt){
+  const ta=document.getElementById(taId);
+  if(!ta) return;
+  const start=ta.selectionStart,end=ta.selectionEnd;
+  const sel=ta.value.substring(start,end);
+  if(!sel) return;
+  let wrapped;
+  if(fmt==='bold') wrapped='**'+sel+'**';
+  else if(fmt==='italic') wrapped='_'+sel+'_';
+  ta.setRangeText(wrapped,start,end,'select');
+  ta.dispatchEvent(new Event('input'));
+}
+function tbIndent(taId){
+  const ta=document.getElementById(taId);
+  if(!ta) return;
+  const start=ta.selectionStart;
+  // Insert 4 spaces at the start of the current line
+  const before=ta.value.substring(0,start);
+  const lineStart=before.lastIndexOf('\n')+1;
+  ta.setRangeText('    ',lineStart,lineStart,'end');
+  ta.dispatchEvent(new Event('input'));
+}
+function tbNewPara(taId){
+  const ta=document.getElementById(taId);
+  if(!ta) return;
+  const pos=ta.selectionStart;
+  ta.setRangeText('\n\n',pos,pos,'end');
+  ta.dispatchEvent(new Event('input'));
+}
+function tbCleanPaste(taId){
+  const ta=document.getElementById(taId);
+  if(!ta) return;
+  // Remove invisible characters, normalize spaces and line breaks
+  let text=ta.value;
+  text=text.replace(/[\u200B-\u200D\uFEFF\u00AD]/g,''); // zero-width chars
+  text=text.replace(/\r\n/g,'\n').replace(/\r/g,'\n');  // normalize line endings
+  text=text.replace(/[ \t]+$/gm,'');                     // trailing spaces
+  text=text.replace(/\n{3,}/g,'\n\n');                   // max 2 newlines
+  text=text.replace(/[ \t]{2,}/g,' ');                   // multiple spaces
+  ta.value=text;
+  ta.dispatchEvent(new Event('input'));
+  // Visual feedback
+  const btn=document.querySelector(`[onclick="tbCleanPaste('${taId}')"]`);
+  if(btn){const orig=btn.textContent;btn.textContent='✓ Limpo';btn.style.color='#5ab870';setTimeout(()=>{btn.textContent=orig;btn.style.color='';},1500);}
+}
+function tbClear(taId){
+  if(!confirm('Apagar todo o texto? Esta ação não pode ser desfeita.')) return;
+  const ta=document.getElementById(taId);
+  if(!ta) return;
+  ta.value='';
+  ta.dispatchEvent(new Event('input'));
+  ta.focus();
+}
 // ════════════════════════════════════════
 // ARCHIVE SYSTEM
 // ════════════════════════════════════════
@@ -3666,6 +4046,35 @@ window.addEventListener('DOMContentLoaded',()=>{
   <div class="mob-more-item" id="mobLogoutItem" onclick="doLogout()" style="color:var(--crimson2)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> Sair</div>
 </div>
 
+
+<!-- ═══ PARTICIPANT PORTAL SCREEN ═══ -->
+<button class="part-back-btn" id="partBackBtn" onclick="closeParticipantScreen()" style="display:none">← Voltar</button>
+<div id="participantScreen">
+  <div class="part-header">
+    <div class="part-logo">✦ Veritas ✦</div>
+    <div class="part-ornament"></div>
+    <div class="part-sub">Portal do Participante</div>
+  </div>
+  <div class="part-login-box">
+    <div style="font-size:13px;color:var(--text2);font-family:var(--font-sans);margin-bottom:1rem;line-height:1.6;text-align:center">
+      Insira seu nome ou pseudônimo para ver suas obras e resultados
+    </div>
+    <div class="form-group" style="margin-bottom:10px">
+      <input type="text" id="partNameInput" placeholder="Seu nome ou pseudônimo..."
+        style="text-align:center;font-size:15px"
+        onkeydown="if(event.key==='Enter')enterParticipantPortal()"/>
+    </div>
+    <button class="btn btn-primary" style="width:100%" onclick="enterParticipantPortal()">Entrar no Portal</button>
+    <div id="partErr" class="alert alert-err hidden" style="margin-top:8px"></div>
+    <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);
+      font-size:11px;color:var(--text3);font-family:var(--font-sans);text-align:center">
+      Sem senha necessária — apenas seu nome de autor registrado nos concursos
+    </div>
+  </div>
+  <div class="part-events-title" id="partEventsTitle" style="display:none">Selecione um concurso</div>
+  <div class="part-grid" id="partGrid"></div>
+  <div id="partPortalContent" style="width:100%;max-width:900px;margin:0 auto"></div>
+</div>
 
 <!-- ═══ FULLSCREEN READER ═══ -->
 <div id="readerOverlay">
