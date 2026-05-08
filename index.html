@@ -131,14 +131,14 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 /* EVAL */
 .eval-section{background:rgba(18,14,10,0.8);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:1.1rem;overflow:hidden;}
 .eval-section-header{background:rgba(12,9,6,0.8);padding:0.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
-.eval-section-title{font-family:var(--font-display);font-size:21px;color:var(--gold2);letter-spacing:0.06em;}
-.eval-section-score{font-size:28px;color:var(--gold);font-family:var(--font-sans);font-weight:300;}
+.eval-section-title{font-family:var(--font-display);font-size:23px;color:var(--gold2);letter-spacing:0.06em;}
+.eval-section-score{font-size:31px;color:var(--gold);font-family:var(--font-sans);font-weight:300;}
 .eval-section-body{padding:1rem 1.1rem;}
 .question-row{display:flex;align-items:flex-start;gap:0.875rem;padding:0.6rem 0;border-bottom:1px solid rgba(180,140,60,0.05);}
 .question-row:last-child{border-bottom:none;}
-.question-text{flex:1;font-size:21px;color:var(--text2);font-family:var(--font-sans);line-height:1.5;}
+.question-text{flex:1;font-size:23px;color:var(--text2);font-family:var(--font-sans);line-height:1.5;}
 .question-options{display:flex;gap:3px;flex-shrink:0;}
-.q-opt{padding:5px 9px;border:1px solid var(--border2);border-radius:3px;font-size:20px;cursor:pointer;font-family:var(--font-sans);background:none;color:var(--text3);transition:all 0.12s;white-space:nowrap;}
+.q-opt{padding:6px 10px;border:1px solid var(--border2);border-radius:3px;font-size:22px;cursor:pointer;font-family:var(--font-sans);background:none;color:var(--text3);transition:all 0.12s;white-space:nowrap;}
 .q-opt:hover{border-color:var(--gold);color:var(--gold);}
 .q-opt.sel-MA{background:rgba(58,138,80,0.2);border-color:#3a8a50;color:#5ab870;}
 .q-opt.sel-BA{background:rgba(58,138,80,0.12);border-color:#3a8a50;color:#5ab870;}
@@ -646,6 +646,110 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 .part-cat-bar{flex:1;height:6px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden;}
 .part-cat-fill{height:100%;border-radius:3px;background:var(--gold);}
 .part-cat-val{font-size:12px;color:var(--gold);font-family:var(--font-sans);width:32px;text-align:right;flex-shrink:0;}
+
+/* ── RPG SCORE BARS ── */
+.rpg-bar-panel{
+  background:linear-gradient(135deg,rgba(16,12,6,0.98),rgba(10,8,4,0.99));
+  border:1px solid rgba(201,168,76,0.35);
+  border-radius:var(--radius-lg);
+  padding:1.25rem 1.25rem 1rem;
+  margin-top:1.25rem;
+  position:relative;
+  overflow:hidden;
+}
+.rpg-bar-panel::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(201,168,76,0.06),transparent 60%);
+  pointer-events:none;
+}
+.rpg-panel-title{
+  font-family:var(--font-display);font-size:16px;color:var(--gold2);
+  letter-spacing:0.1em;margin-bottom:1rem;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.rpg-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;position:relative;}
+.rpg-bar-label{
+  font-size:12px;font-family:var(--font-sans);color:var(--text3);
+  width:140px;flex-shrink:0;letter-spacing:0.04em;
+}
+.rpg-bar-track{
+  flex:1;height:14px;
+  background:rgba(255,255,255,0.04);
+  border-radius:7px;overflow:hidden;
+  border:1px solid rgba(255,255,255,0.04);
+  position:relative;
+}
+.rpg-bar-fill{
+  height:100%;border-radius:7px;
+  position:relative;
+  transition:width 0.9s cubic-bezier(.22,1,.36,1);
+  background:linear-gradient(90deg,var(--c1),var(--c2));
+}
+.rpg-bar-fill::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(255,255,255,0.2) 0%,transparent 60%);
+  border-radius:inherit;
+}
+/* shimmer on bars */
+@keyframes barShimmer{from{transform:translateX(-100%)}to{transform:translateX(200%)}}
+.rpg-bar-fill::before{
+  content:'';position:absolute;top:0;left:0;width:40%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);
+  animation:barShimmer 2.5s ease-in-out infinite;
+}
+.rpg-bar-val{
+  font-size:13px;font-weight:700;font-family:var(--font-sans);
+  width:38px;text-align:right;flex-shrink:0;
+}
+.rpg-total-row{
+  margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid rgba(201,168,76,0.2);
+  display:flex;align-items:center;gap:10px;
+}
+.rpg-total-label{font-family:var(--font-display);font-size:15px;color:var(--gold2);width:140px;flex-shrink:0;}
+.rpg-total-val{font-family:var(--font-sans);font-size:28px;font-weight:300;color:var(--gold);}
+.rpg-alch{
+  font-family:var(--font-serif);font-style:italic;font-size:13px;
+  color:rgba(201,168,76,0.6);margin-top:8px;text-align:center;
+  letter-spacing:0.03em;
+}
+.rpg-export-btn{
+  font-size:12px;padding:4px 12px;border-radius:12px;
+  background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);
+  color:var(--gold);cursor:pointer;font-family:var(--font-sans);
+  transition:all 0.15s;
+}
+.rpg-export-btn:hover{background:rgba(201,168,76,0.2);color:var(--gold2);}
+
+/* ── SOCIAL CARD EXPORT ── */
+.social-export-panel{
+  background:rgba(14,11,6,0.98);border:1px solid rgba(201,168,76,0.2);
+  border-radius:var(--radius-lg);padding:1.25rem;margin-top:1rem;
+}
+.social-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:10px;margin-top:0.875rem;
+}
+.social-card-btn{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  padding:1rem 0.75rem;
+  background:rgba(255,255,255,0.02);border:1px solid var(--border);
+  border-radius:var(--radius);cursor:pointer;transition:all 0.15s;
+  font-family:var(--font-sans);
+}
+.social-card-btn:hover{
+  border-color:rgba(201,168,76,0.4);background:rgba(201,168,76,0.05);
+  transform:translateY(-2px);
+}
+.social-card-icon{font-size:24px;}
+.social-card-label{font-size:12px;color:var(--text2);text-align:center;line-height:1.4;}
+.social-card-size{font-size:10px;color:var(--text3);letter-spacing:0.06em;}
+
+/* ── ADMIN SOLO EVAL ── */
+.admin-eval-note{
+  background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.25);
+  border-radius:var(--radius);padding:0.875rem 1rem;margin-bottom:1rem;
+  font-family:var(--font-sans);font-size:13px;color:var(--text2);line-height:1.6;
+}
 /* SCROLLBAR */
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
@@ -1853,6 +1957,10 @@ function renderEvalForm(sub){
     </div>
     <div class="eval-progress-bar"><div class="eval-progress-fill" id="evalProgressFill" style="width:0%"></div></div>
     </div>`;
+  // Admin note if admin is evaluating
+  if(currentUser&&currentUser.id==='admin'){
+    html+=`<div class="admin-eval-note">⚙️ <strong>Modo Avaliação Direta (Admin):</strong> Sua avaliação será registrada como juiz único e contará com peso total na nota final — equivalente a três juízes.</div>`;
+  }
   // Legend bar for MA/BA/AT/PA/NA
   html+=`<div class="eval-legend">
     <strong style="color:var(--text2);margin-right:4px">Legenda:</strong>
@@ -1872,6 +1980,7 @@ function renderEvalForm(sub){
   html+=renderQSection('Profundidade Literária','profQ',PQ,V10,false);
   Object.keys(MQ[sub.modal]||{}).forEach(cat=>html+=renderQSection(cat,'mq_'+slugify(cat),MQ[sub.modal][cat],V10,false,cat));
   html+=renderTensivitySection(currentEvalData.tensivity);
+  html+=buildRpgBarPanel(currentEvalData,sub.modal,currentUser?currentUser.name:'');
   html+=`<div class="card" style="border-color:var(--border2);margin-top:0.875rem">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
     <div style="font-family:var(--font-display);font-size:22px;color:var(--gold2)">Nota Final</div>
@@ -1989,7 +2098,7 @@ function renderQSection(title,key,questions,vals,is20,modalCat){
   }).join('');
   const sum=Object.values(answers).reduce((a,b)=>a+b,0);
   const scoreDisp=answered>0?Math.min(10,Math.max(0,5+sum)).toFixed(2):'—';
-  return`<div class="eval-section" id="sec_${sk}"><div class="eval-section-header"><div><span class="eval-section-title">${title}</span><div style="font-size:14px;color:var(--text3);font-family:var(--font-sans);margin-top:1px">${answered}/${questions.length}</div></div><span class="eval-section-score" id="score_${sk}">${scoreDisp}</span></div><div class="eval-section-body">${rows}</div></div>`;
+  return`<div class="eval-section" id="sec_${sk}"><div class="eval-section-header"><div><span class="eval-section-title">${title}</span><div style="font-size:15px;color:var(--text3);font-family:var(--font-sans);margin-top:1px">${answered}/${questions.length}</div></div><span class="eval-section-score" id="score_${sk}">${scoreDisp}</span></div><div class="eval-section-body">${rows}</div></div>`;
 }
 function setQ(sk,modalCat,idx,val,lbl){
   let answers;
@@ -2132,8 +2241,12 @@ function calcFinalScore(){
   return parseFloat((sc.reduce((a,b)=>a+b,0)/sc.length).toFixed(2));
 }
 function finalizeEval(){
-  // ISOLAÇÃO: impede salvar avaliação com judgeId errado
-  if(!currentUser||!currentEvalData||currentEvalData.judgeId!==currentUser.id){
+  // ISOLAÇÃO: verifica ownership — admin pode avaliar diretamente
+  if(!currentUser||!currentEvalData){
+    alert('Sessão inválida. Faça login novamente.');
+    return;
+  }
+  if(currentEvalData.judgeId!==currentUser.id){
     alert('Erro de isolação: os dados desta avaliação não pertencem ao avaliador atual. Selecione a submissão novamente.');
     return;
   }
@@ -2167,6 +2280,163 @@ function finalizeEval(){
   alert(`Avaliação salva! Nota final: ${final!=null?final.toFixed(2):'—'}`);
 }
 
+
+// ════════════════════════════════════════
+// RPG SCORE BARS
+// ════════════════════════════════════════
+function buildRpgBarPanel(evalData, subModal, judgeLabel){
+  if(!evalData) return '';
+  const sub=currentEvalSub||{modal:subModal};
+  const cats=[];
+  // Grammar
+  let gs=10-(evalData.confirmedErrors||[]).length*0.1;
+  (evalData.manualErrors||[]).forEach(m=>{if(!m.isBonusScore)gs+=(typeof m==='object'?m.score:-0.5);});
+  cats.push({label:'Gramática',score:Math.max(0,Math.min(10,gs))});
+  // Main categories
+  [['Retórica','retQ'],['Lógica','logQ'],['Originalidade','origQ'],['Profundidade','profQ']].forEach(([l,k])=>{
+    const vs=Object.values(evalData[k]||{});
+    if(vs.length) cats.push({label:l,score:Math.min(10,Math.max(0,5+vs.reduce((a,b)=>a+b,0)))});
+  });
+  // Modal categories
+  Object.keys(MQ[sub.modal]||{}).forEach(cat=>{
+    const vs=Object.values((evalData.modalQ||{})[cat]||{});
+    if(vs.length) cats.push({label:cat,score:Math.min(10,Math.max(0,5+vs.reduce((a,b)=>a+b,0)))});
+  });
+  if(!cats.length) return '';
+  const avg=cats.reduce((a,b)=>a+b.score,0)/cats.length;
+  const alch=getAlchPhrase(avg,0,{id:'none'});
+  const rows=cats.map(c=>{
+    const pct=c.score*10;
+    let c1,c2;
+    if(c.score>=8){c1='#2d6e3e';c2='#5ab870';}
+    else if(c.score>=6){c1='#7a5a10';c2='#c9a84c';}
+    else if(c.score>=4){c1='#7a4010';c2='#d4864a';}
+    else{c1='#6e1a1a';c2='#c02020';}
+    return`<div class="rpg-bar-row">
+      <div class="rpg-bar-label">${c.label}</div>
+      <div class="rpg-bar-track">
+        <div class="rpg-bar-fill" style="width:${pct}%;--c1:${c1};--c2:${c2}"></div>
+      </div>
+      <div class="rpg-bar-val" style="color:${c2}">${c.score.toFixed(1)}</div>
+    </div>`;
+  }).join('');
+  const totalC=avg>=8?'#5ab870':avg>=6?'var(--gold)':'#e06060';
+  return`<div class="rpg-bar-panel" id="rpgBarPanel">
+    <div class="rpg-panel-title">
+      <span>⚔ Ficha de Avaliação${judgeLabel?` — ${judgeLabel}`:''}</span>
+      <button class="rpg-export-btn" onclick="exportRpgBar()">⬇ Exportar PNG</button>
+    </div>
+    ${rows}
+    <div class="rpg-total-row">
+      <div class="rpg-total-label">Nota Final</div>
+      <div class="rpg-total-val" style="color:${totalC}">${avg.toFixed(2)}</div>
+      <div style="flex:1;margin-left:1rem;font-family:var(--font-sans);font-size:12px;color:var(--text3)">
+        ${cats.length} categorias avaliadas
+      </div>
+    </div>
+    <div class="rpg-alch">✦ ${alch} ✦</div>
+  </div>`;
+}
+
+function exportRpgBar(){
+  // Draw RPG bar panel onto canvas and export PNG
+  const panel=document.getElementById('rpgBarPanel');
+  if(!panel){alert('Painel não encontrado.');return;}
+  const W=700,PADDING=32,BAR_H=18,ROW_H=36,HEADER_H=80;
+  const cats=[];
+  const evalData=currentEvalData;
+  const sub=currentEvalSub||{modal:'conto'};
+  let gs=10-(evalData.confirmedErrors||[]).length*0.1;
+  (evalData.manualErrors||[]).forEach(m=>{if(!m.isBonusScore)gs+=(typeof m==='object'?m.score:-0.5);});
+  cats.push({label:'Gramática',score:Math.max(0,Math.min(10,gs))});
+  [['Retórica','retQ'],['Lógica','logQ'],['Originalidade','origQ'],['Profundidade','profQ']].forEach(([l,k])=>{
+    const vs=Object.values(evalData[k]||{});
+    if(vs.length) cats.push({label:l,score:Math.min(10,Math.max(0,5+vs.reduce((a,b)=>a+b,0)))});
+  });
+  Object.keys(MQ[sub.modal]||{}).forEach(cat=>{
+    const vs=Object.values((evalData.modalQ||{})[cat]||{});
+    if(vs.length) cats.push({label:cat,score:Math.min(10,Math.max(0,5+vs.reduce((a,b)=>a+b,0)))});
+  });
+  const avg=cats.length?cats.reduce((a,b)=>a+b.score,0)/cats.length:0;
+  const H=HEADER_H+(cats.length*ROW_H)+80;
+  const canvas=document.createElement('canvas');
+  canvas.width=W*2;canvas.height=H*2;
+  const ctx=canvas.getContext('2d');
+  ctx.scale(2,2);
+  // Background
+  const bg=ctx.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,'#100c06');bg.addColorStop(1,'#0a0804');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+  // Border
+  ctx.strokeStyle='rgba(201,168,76,0.5)';ctx.lineWidth=1.5;
+  roundRect(ctx,8,8,W-16,H-16,8);ctx.stroke();
+  ctx.strokeStyle='rgba(201,168,76,0.2)';ctx.lineWidth=1;
+  roundRect(ctx,14,14,W-28,H-28,5);ctx.stroke();
+  // Title
+  ctx.fillStyle='#e8c96a';ctx.font='bold 18px Georgia,serif';ctx.textAlign='left';
+  ctx.fillText('⚔ Ficha de Avaliação — Veritas Literário',PADDING,42);
+  ctx.fillStyle='rgba(201,168,76,0.4)';ctx.font='12px Georgia,serif';
+  ctx.fillText(sub.titulo?`"${sub.titulo}"`:' ',PADDING,60);
+  // Separator
+  ctx.strokeStyle='rgba(201,168,76,0.25)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(PADDING,70);ctx.lineTo(W-PADDING,70);ctx.stroke();
+  // Bars
+  cats.forEach((c,i)=>{
+    const y=HEADER_H+i*ROW_H;
+    const barX=PADDING+148,barW=W-barX-PADDING-52;
+    const fillW=barW*(c.score/10);
+    let c1,c2;
+    if(c.score>=8){c1='#2d6e3e';c2='#5ab870';}
+    else if(c.score>=6){c1='#7a5a10';c2='#c9a84c';}
+    else if(c.score>=4){c1='#7a4010';c2='#d4864a';}
+    else{c1='#6e1a1a';c2='#c02020';}
+    // Label
+    ctx.fillStyle='rgba(180,170,155,0.7)';ctx.font='12px "Source Sans 3",sans-serif';
+    ctx.textAlign='left';ctx.fillText(c.label,PADDING,y+BAR_H/2+4);
+    // Track
+    ctx.fillStyle='rgba(255,255,255,0.04)';
+    roundRect(ctx,barX,y,barW,BAR_H,BAR_H/2);ctx.fill();
+    // Fill
+    if(fillW>0){
+      const grad=ctx.createLinearGradient(barX,0,barX+fillW,0);
+      grad.addColorStop(0,c1);grad.addColorStop(1,c2);
+      ctx.fillStyle=grad;
+      roundRect(ctx,barX,y,fillW,BAR_H,BAR_H/2);ctx.fill();
+      // Shimmer
+      ctx.fillStyle='rgba(255,255,255,0.12)';
+      roundRect(ctx,barX,y,fillW,BAR_H/2,BAR_H/4);ctx.fill();
+    }
+    // Value
+    ctx.fillStyle=c2;ctx.font='bold 13px "Source Sans 3",sans-serif';
+    ctx.textAlign='right';ctx.fillText(c.score.toFixed(1),W-PADDING,y+BAR_H/2+4);
+  });
+  // Total
+  const totalY=HEADER_H+cats.length*ROW_H+12;
+  ctx.strokeStyle='rgba(201,168,76,0.2)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(PADDING,totalY);ctx.lineTo(W-PADDING,totalY);ctx.stroke();
+  const totalC=avg>=8?'#5ab870':avg>=6?'#c9a84c':'#e06060';
+  ctx.fillStyle='#e8c96a';ctx.font='bold 14px Georgia,serif';ctx.textAlign='left';
+  ctx.fillText('Nota Final',PADDING,totalY+28);
+  ctx.fillStyle=totalC;ctx.font='bold 28px Georgia,serif';
+  ctx.fillText(avg.toFixed(2),PADDING+120,totalY+32);
+  // Alch phrase
+  const alch=getAlchPhrase(avg,0,{id:'none'});
+  ctx.fillStyle='rgba(201,168,76,0.45)';ctx.font='italic 12px Georgia,serif';
+  ctx.textAlign='center';ctx.fillText('✦ '+alch+' ✦',W/2,totalY+54);
+  // Export
+  const link=document.createElement('a');
+  const subTitle=(sub.titulo||'avaliacao').replace(/[^a-zA-Z0-9]/g,'_');
+  link.download=`ficha_${subTitle}.png`;
+  link.href=canvas.toDataURL('image/png');link.click();
+}
+
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);
+  ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);
+  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);
+  ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);
+  ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
+}
 // ════════════════════════════════════════
 // RANKING
 // ════════════════════════════════════════
@@ -2488,8 +2758,8 @@ function renderRevisao(){
   let html='';
   subs.forEach(sub=>{
     const ev=DB.eventos.find(e=>e.id===sub.eventoId);
-    // CORREÇÃO: fallback
-    const avs=(DB.avaliacoes||[]).filter(a=>a.subId===sub.id&&a.judgeId!=='admin');
+    // Show ALL evaluations in revisao including admin's
+    const avs=(DB.avaliacoes||[]).filter(a=>a.subId===sub.id);
     const sc=avs.map(a=>a.finalScore).filter(x=>x!=null);
     const avg=sc.length?(sc.reduce((a,b)=>a+b,0)/sc.length).toFixed(2):'—';
     const mB=sub.modal==='poesia'?'badge-gold':sub.modal==='cronica'?'badge-blue':'badge-green';
@@ -3251,8 +3521,9 @@ function doLogin(){
   document.getElementById('navServidor').style.display=u.id==='admin'?'':'none';
   const navRev=document.getElementById('navRevisao');if(navRev)navRev.style.display=u.id==='admin'?'':'none';
   const btnS=document.getElementById('btnSenhas');if(btnS)btnS.style.display=u.id==='admin'?'':'none';
+  // Admin can also evaluate directly (as solo judge)
   const navAv=document.querySelector('[data-page="avaliar"]');
-  if(navAv) navAv.style.display=u.id==='admin'?'none':'';
+  if(navAv) navAv.style.display=''; // always visible
   applyCustomization();
   renderAll();
   updateMobNav();
@@ -3843,8 +4114,64 @@ function buildAuthorScorePanel(evId,authorName){
         <div class="part-stat"><div class="part-stat-val">${avs.length}</div><div class="part-stat-lbl">Avaliações</div></div>
         <div class="part-stat"><div class="part-stat-val">${sub.wc||'—'}</div><div class="part-stat-lbl">Palavras</div></div>
       </div>
-      ${judgeRows?`<div style="margin-bottom:0.875rem">${judgeRows}</div>`:''}
+      ${avs.map(av=>{
+      // Build mini RPG bar per judge
+      const jCats=[];
+      let jGs=10-(av.confirmedErrors||[]).length*0.1;
+      (av.manualErrors||[]).forEach(m=>{if(!m.isBonusScore)jGs+=(typeof m==='object'?m.score:-0.5);});
+      jCats.push({label:'Gramática',score:Math.max(0,Math.min(10,jGs))});
+      [['Retórica','retQ'],['Lógica','logQ'],['Originalidade','origQ'],['Profundidade','profQ']].forEach(([l,k])=>{
+        const vs=Object.values(av[k]||{});if(vs.length)jCats.push({label:l,score:Math.min(10,Math.max(0,5+vs.reduce((a,b)=>a+b,0)))});
+      });
+      Object.keys(MQ[sub.modal]||{}).forEach(cat=>{
+        const vs=Object.values((av.modalQ||{})[cat]||{});if(vs.length)jCats.push({label:cat,score:Math.min(10,Math.max(0,5+vs.reduce((a,b)=>a+b,0)))});
+      });
+      const jAvg=jCats.length?jCats.reduce((a,b)=>a+b.score,0)/jCats.length:null;
+      const rows=jCats.map(c=>{
+        const pct=c.score*10;
+        const barC=c.score>=8?'#5ab870':c.score>=6?'#c9a84c':c.score>=4?'#d4864a':'#c02020';
+        return`<div class="rpg-bar-row" style="margin-bottom:6px">
+          <div class="rpg-bar-label" style="font-size:11px;width:120px">${c.label}</div>
+          <div class="rpg-bar-track" style="height:10px"><div class="rpg-bar-fill" style="width:${pct}%;--c1:${c.score>=8?'#2d6e3e':c.score>=6?'#7a5a10':c.score>=4?'#7a4010':'#6e1a1a'};--c2:${barC}"></div></div>
+          <div class="rpg-bar-val" style="font-size:11px;color:${barC}">${c.score.toFixed(1)}</div>
+        </div>`;
+      }).join('');
+      return`<div style="margin-bottom:12px;padding:10px;background:rgba(255,255,255,0.015);border:1px solid var(--border);border-radius:var(--radius)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-family:var(--font-sans);font-size:13px;color:var(--text2)">${av.judgeName||av.judgeId}</span>
+          <strong style="color:var(--gold);font-size:16px">${av.finalScore!=null?av.finalScore.toFixed(2):'—'}</strong>
+        </div>
+        ${rows}
+        ${av.feedback?`<div style="margin-top:6px;padding:6px 10px;background:rgba(201,168,76,0.04);border-left:2px solid rgba(201,168,76,0.3);font-size:12px;font-family:var(--font-serif);font-style:italic;color:var(--text3);line-height:1.5">"${av.feedback}"</div>`:''}
+      </div>`;
+    }).join('')}
       ${catRows?`<div><div style="font-size:10px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">Por categoria</div>${catRows}</div>`:''}
+      <div class="social-export-panel">
+        <div style="font-family:var(--font-display);font-size:14px;color:var(--gold2);margin-bottom:4px">📲 Compartilhar nas redes</div>
+        <div style="font-size:12px;color:var(--text3);font-family:var(--font-sans);margin-bottom:10px">Baixe imagens prontas para Instagram, stories e mais</div>
+        <div class="social-grid">
+          <div class="social-card-btn" onclick="exportSocialCard('score','${sub.id}','${authorName}')">
+            <div class="social-card-icon">🏆</div>
+            <div class="social-card-label">Nota Final</div>
+            <div class="social-card-size">1080 × 1080</div>
+          </div>
+          <div class="social-card-btn" onclick="exportSocialCard('story','${sub.id}','${authorName}')">
+            <div class="social-card-icon">📱</div>
+            <div class="social-card-label">Story</div>
+            <div class="social-card-size">1080 × 1920</div>
+          </div>
+          <div class="social-card-btn" onclick="exportSocialCard('banner','${sub.id}','${authorName}')">
+            <div class="social-card-icon">🖼</div>
+            <div class="social-card-label">Banner</div>
+            <div class="social-card-size">1200 × 630</div>
+          </div>
+          <div class="social-card-btn" onclick="exportSocialCard('badge','${sub.id}','${authorName}')">
+            <div class="social-card-icon">✦</div>
+            <div class="social-card-label">Badge de Título</div>
+            <div class="social-card-size">800 × 800</div>
+          </div>
+        </div>
+      </div>
     </div>`;
   });
   return html;
@@ -3887,6 +4214,119 @@ function buildAuthorGlobalPanel(authorName){
     </div>
     ${histRows?`<div><div style="font-size:10px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">Histórico de Pódios</div>${histRows}</div>`:''}
   </div>`;
+}
+
+// ════════════════════════════════════════
+// SOCIAL CARD EXPORT
+// ════════════════════════════════════════
+function exportSocialCard(type, subId, authorName){
+  const sub=(DB.submissoes||[]).find(s=>s.id===subId);
+  const avs=(DB.avaliacoes||[]).filter(a=>a.subId===subId);
+  const scores=avs.map(a=>a.finalScore).filter(x=>x!=null);
+  const avg=scores.length?scores.reduce((a,b)=>a+b,0)/scores.length:null;
+  const ev=sub?(DB.eventos||[]).find(e=>e.id===sub.eventoId):null;
+  const ranked=ev?getRanked(ev.id):[];
+  const pos=ranked.findIndex(r=>r.id===subId);
+  const rank=pos>=0?pos+1:null;
+  const alch=avg!=null?getAlchPhrase(avg,rank?rank-1:4,{id:'none'}):'';
+  const participant=(DB.participants||{})[authorName]||(DB.participants||{})[Object.keys(DB.participants||{}).find(k=>k&&k.toLowerCase()===authorName.toLowerCase())];
+  const tier=getTier(participant?.tierId||'none');
+  const TIER_CSS_C={'acolito_madeira':'#a0785a','acolito_ferro':'#8a9aa8','acolito_chumbo':'#7a7a8a','veterano_bronze':'#d4864a','veterano_prata':'#c0c0c0','veterano_ouro':'#e8c96a','escritor_topazio':'#f0c860','escritor_turmalina':'#c070c8','escritor_safira':'#60a0f0','escritor_rubi':'#f06060','escritor_esmeralda':'#50c878','escritor_diamante':'#b8f0ff'};
+  const tierColor=TIER_CSS_C[tier.id]||'#8a8278';
+  // Canvas configs per type
+  const configs={
+    score:{w:1080,h:1080,label:'Nota — Square (1080×1080)'},
+    story:{w:1080,h:1920,label:'Story (1080×1920)'},
+    banner:{w:1200,h:630,label:'Banner OG (1200×630)'},
+    badge:{w:800,h:800,label:'Badge Título (800×800)'},
+  };
+  const cfg=configs[type]||configs.score;
+  const canvas=document.createElement('canvas');
+  canvas.width=cfg.w;canvas.height=cfg.h;
+  const ctx=canvas.getContext('2d');
+  const W=cfg.w,H=cfg.h;
+  // Background
+  const bg=ctx.createRadialGradient(W*0.2,H*0.3,0,W*0.5,H*0.5,Math.max(W,H)*0.85);
+  bg.addColorStop(0,'#1c1008');bg.addColorStop(0.5,'#100c07');bg.addColorStop(1,'#0a0806');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+  // Border
+  ctx.strokeStyle='rgba(139,26,26,0.7)';ctx.lineWidth=W*0.005;ctx.strokeRect(W*0.02,H*0.015,W*0.96,H*0.97);
+  ctx.strokeStyle='rgba(201,168,76,0.5)';ctx.lineWidth=W*0.003;ctx.strokeRect(W*0.028,H*0.022,W*0.944,H*0.956);
+  // Corner ornaments
+  [[W*0.04,H*0.04],[W*0.96,H*0.04],[W*0.04,H*0.96],[W*0.96,H*0.96]].forEach(([x,y])=>{
+    ctx.strokeStyle='rgba(201,168,76,0.6)';ctx.lineWidth=2;
+    const s=W*0.04;
+    ctx.beginPath();ctx.moveTo(x-s,y);ctx.lineTo(x+s,y);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x,y-s);ctx.lineTo(x,y+s);ctx.stroke();
+  });
+  if(type==='badge'){
+    // Badge: large tier name centred
+    ctx.fillStyle='rgba(201,168,76,0.1)';ctx.beginPath();ctx.arc(W/2,H*0.45,W*0.3,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle=tierColor;ctx.lineWidth=3;ctx.stroke();
+    ctx.fillStyle=tierColor;ctx.font=`bold ${W*0.07}px Georgia,serif`;ctx.textAlign='center';
+    const tLines=(tier.label||'Sem Título').split(' ');
+    tLines.forEach((l,i)=>ctx.fillText(l,W/2,H*0.38+i*W*0.09));
+    ctx.fillStyle='rgba(201,168,76,0.4)';ctx.font=`italic ${W*0.04}px Georgia,serif`;
+    ctx.fillText('✦ Veritas Literário ✦',W/2,H*0.68);
+    ctx.fillStyle='rgba(180,170,155,0.7)';ctx.font=`${W*0.035}px Georgia,serif`;
+    ctx.fillText(authorName,W/2,H*0.76);
+  } else if(type==='score'||type==='story'){
+    // Title block
+    const cy=type==='story'?H*0.18:H*0.22;
+    ctx.fillStyle='rgba(201,168,76,0.35)';ctx.font=`${W*0.03}px Georgia,serif`;ctx.textAlign='center';
+    ctx.fillText('✦  ✦  ✦',W/2,cy*0.55);
+    ctx.fillStyle='#e8c96a';ctx.font=`bold ${W*0.065}px Georgia,serif`;
+    const titulo=sub?(sub.titulo.length>22?sub.titulo.substring(0,22)+'…':sub.titulo):'';
+    ctx.fillText(titulo,W/2,cy);
+    ctx.fillStyle='rgba(168,160,152,0.8)';ctx.font=`italic ${W*0.035}px Georgia,serif`;
+    ctx.fillText(authorName,W/2,cy+W*0.05);
+    // Separator
+    ctx.strokeStyle='rgba(139,26,26,0.5)';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(W*0.15,cy+W*0.075);ctx.lineTo(W*0.85,cy+W*0.075);ctx.stroke();
+    // Score
+    if(avg!=null){
+      const scoreY=type==='story'?H*0.42:H*0.52;
+      ctx.fillStyle='rgba(201,168,76,0.08)';ctx.beginPath();ctx.arc(W/2,scoreY,W*0.18,0,Math.PI*2);ctx.fill();
+      ctx.strokeStyle='rgba(201,168,76,0.3)';ctx.lineWidth=2;ctx.stroke();
+      ctx.fillStyle='#f5dfa0';ctx.font=`bold ${W*0.16}px Georgia,serif`;ctx.textAlign='center';
+      ctx.fillText(avg.toFixed(2),W/2,scoreY+W*0.06);
+      ctx.fillStyle='rgba(201,168,76,0.5)';ctx.font=`${W*0.025}px Georgia,serif`;
+      ctx.fillText('NOTA FINAL',W/2,scoreY+W*0.115);
+    }
+    if(rank){
+      const medals=['🥇','🥈','🥉'];
+      const mY=type==='story'?H*0.65:H*0.78;
+      ctx.font=`${W*0.08}px sans-serif`;ctx.fillText(medals[rank-1]||'',W/2,mY);
+      ctx.fillStyle='rgba(201,168,76,0.6)';ctx.font=`${W*0.025}px Georgia,serif`;
+      ctx.fillText(`${rank}º lugar`,W/2,mY+W*0.04);
+    }
+    // Alch phrase
+    const alchY=type==='story'?H*0.79:H*0.89;
+    ctx.fillStyle='rgba(201,168,76,0.4)';ctx.font=`italic ${W*0.022}px Georgia,serif`;ctx.textAlign='center';
+    ctx.fillText('✦ '+alch+' ✦',W/2,alchY);
+  } else if(type==='banner'){
+    // Landscape banner
+    ctx.fillStyle='#e8c96a';ctx.font=`bold ${W*0.07}px Georgia,serif`;ctx.textAlign='left';
+    const titulo=sub?(sub.titulo.length>30?sub.titulo.substring(0,30)+'…':sub.titulo):'';
+    ctx.fillText(titulo,W*0.06,H*0.38);
+    ctx.fillStyle='rgba(168,160,152,0.8)';ctx.font=`italic ${W*0.038}px Georgia,serif`;
+    ctx.fillText(authorName,W*0.06,H*0.52);
+    if(avg!=null){
+      ctx.fillStyle='rgba(201,168,76,0.15)';ctx.beginPath();ctx.arc(W*0.82,H*0.5,H*0.3,0,Math.PI*2);ctx.fill();
+      ctx.strokeStyle='rgba(201,168,76,0.3)';ctx.lineWidth=2;ctx.stroke();
+      ctx.fillStyle='#f5dfa0';ctx.font=`bold ${H*0.32}px Georgia,serif`;ctx.textAlign='center';
+      ctx.fillText(avg.toFixed(2),W*0.82,H*0.56);
+    }
+    ctx.fillStyle='rgba(201,168,76,0.35)';ctx.font=`italic ${W*0.022}px Georgia,serif`;
+    ctx.textAlign='left';ctx.fillText('✦ '+alch+' ✦',W*0.06,H*0.75);
+    ctx.fillStyle='rgba(106,98,88,0.6)';ctx.font=`${W*0.018}px Georgia,serif`;
+    ctx.fillText('Veritas Literário',W*0.06,H*0.88);
+  }
+  // Download
+  const link=document.createElement('a');
+  const safeName=(authorName||'autor').replace(/[^a-zA-Z0-9]/g,'_');
+  link.download=`veritas_${type}_${safeName}.jpg`;
+  link.href=canvas.toDataURL('image/jpeg',0.92);link.click();
 }
 // ════════════════════════════════════════
 // ARCHIVE SYSTEM
