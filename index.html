@@ -525,6 +525,127 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 .q-opt-compact.sel-AT{background:rgba(150,140,100,0.15);border-color:#6a6040;color:#a09060;}
 .q-opt-compact.sel-PA{background:rgba(180,140,40,0.2);border-color:#907020;color:var(--gold);}
 .q-opt-compact.sel-NA{background:rgba(181,34,34,0.2);border-color:var(--crimson);color:#e06060;}
+
+/* ── ILLUMINATED QUESTION SELECTION ── */
+.q-row-compact.answered{border-color:rgba(58,138,80,0.3);background:rgba(58,138,80,0.03);}
+.q-opt-compact{
+  flex:1;min-width:36px;padding:5px 2px;
+  border:1px solid var(--border2);border-radius:5px;
+  font-size:11px;font-weight:700;font-family:var(--font-sans);
+  letter-spacing:0.05em;cursor:pointer;text-align:center;
+  background:rgba(255,255,255,0.02);color:var(--text3);
+  transition:all 0.14s;position:relative;
+}
+.q-opt-compact:hover{background:rgba(255,255,255,0.07);color:var(--text2);transform:translateY(-1px);}
+/* Selected states — bright, clear, unambiguous */
+.q-opt-compact.sel-MA{
+  background:linear-gradient(135deg,rgba(58,138,80,0.45),rgba(40,110,60,0.4));
+  border-color:#3a8a50;color:#7ee89e;
+  box-shadow:0 0 10px rgba(58,138,80,0.35),inset 0 1px 0 rgba(255,255,255,0.1);
+  transform:translateY(-2px);
+}
+.q-opt-compact.sel-BA{
+  background:linear-gradient(135deg,rgba(70,150,85,0.35),rgba(50,120,65,0.3));
+  border-color:#4a8a55;color:#90d8a0;
+  box-shadow:0 0 8px rgba(70,150,85,0.25);
+  transform:translateY(-1px);
+}
+.q-opt-compact.sel-AT{
+  background:linear-gradient(135deg,rgba(130,120,80,0.3),rgba(110,100,60,0.25));
+  border-color:#9a9060;color:#d0c880;
+  box-shadow:0 0 6px rgba(150,140,80,0.2);
+}
+.q-opt-compact.sel-PA{
+  background:linear-gradient(135deg,rgba(201,168,76,0.35),rgba(170,130,50,0.3));
+  border-color:#c9a84c;color:#f0d880;
+  box-shadow:0 0 8px rgba(201,168,76,0.3),inset 0 1px 0 rgba(255,255,255,0.08);
+  transform:translateY(-1px);
+}
+.q-opt-compact.sel-NA{
+  background:linear-gradient(135deg,rgba(181,34,34,0.4),rgba(140,20,20,0.35));
+  border-color:#c02020;color:#ff8080;
+  box-shadow:0 0 10px rgba(181,34,34,0.35),inset 0 1px 0 rgba(255,255,255,0.08);
+  transform:translateY(-2px);
+}
+/* Selected label badge */
+.q-row-compact .q-sel-indicator{
+  font-size:10px;font-family:var(--font-sans);font-weight:700;
+  padding:1px 6px;border-radius:10px;display:none;
+  margin-left:4px;vertical-align:middle;
+}
+.q-row-compact.answered .q-sel-indicator{display:inline-block;}
+
+/* ── TENSIVITY CHART ── */
+.tensiv-chart-wrap{
+  margin-top:1rem;padding:1rem;
+  background:rgba(255,255,255,0.015);
+  border:1px solid var(--border);border-radius:var(--radius);
+}
+.tensiv-canvas-title{
+  font-size:11px;color:var(--text3);font-family:var(--font-sans);
+  letter-spacing:0.1em;text-transform:uppercase;text-align:center;
+  margin-bottom:8px;
+}
+.tensiv-radar-wrap{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;}
+.tensiv-legend{font-family:var(--font-sans);font-size:12px;}
+.tensiv-legend-item{display:flex;align-items:center;gap:6px;margin-bottom:5px;color:var(--text2);}
+.tensiv-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.tensiv-bars{flex:1;min-width:200px;}
+.tensiv-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+.tensiv-bar-lbl{font-size:11px;color:var(--text3);font-family:var(--font-sans);width:110px;flex-shrink:0;}
+.tensiv-bar-track{flex:1;height:8px;background:rgba(255,255,255,0.04);border-radius:4px;overflow:hidden;}
+.tensiv-bar-fill{height:100%;border-radius:4px;transition:width 0.8s ease;}
+.tensiv-bar-val{font-size:11px;color:var(--gold);font-family:var(--font-sans);width:28px;text-align:right;flex-shrink:0;}
+
+/* ── RICH PASTE MODAL ── */
+#modalRichPaste .modal{width:min(820px,96vw);max-height:92vh;display:flex;flex-direction:column;}
+.rich-toolbar{display:flex;gap:4px;flex-wrap:wrap;align-items:center;
+  padding:6px 8px;background:rgba(255,255,255,0.02);
+  border:1px solid var(--border2);border-bottom:none;
+  border-radius:var(--radius) var(--radius) 0 0;}
+.rtb{background:rgba(255,255,255,0.04);border:1px solid var(--border2);
+  color:var(--text2);border-radius:4px;padding:4px 10px;cursor:pointer;
+  font-size:13px;font-family:var(--font-sans);transition:all 0.12s;line-height:1.4;
+  min-width:32px;text-align:center;}
+.rtb:hover{background:rgba(201,168,76,0.1);border-color:rgba(201,168,76,0.4);color:var(--gold);}
+.rtb.active{background:rgba(201,168,76,0.18);border-color:var(--gold);color:var(--gold2);font-weight:700;}
+.rtb-sep{width:1px;height:22px;background:var(--border2);margin:0 3px;flex-shrink:0;}
+#richPasteFrame{
+  width:100%;flex:1;min-height:300px;
+  border:1px solid var(--border2);border-radius:0;
+  background:#fafaf5;outline:none;
+  padding:20px 24px;font-family:Georgia,serif;font-size:16px;line-height:1.9;
+  color:#1a1208;overflow-y:auto;resize:vertical;
+}
+#richPasteFrame:focus{border-color:rgba(201,168,76,0.5);}
+#richPasteFrame p{margin-bottom:0.8em;}
+.wc-bar{font-size:12px;color:var(--text3);font-family:var(--font-sans);
+  padding:5px 10px;display:flex;gap:10px;align-items:center;
+  border:1px solid var(--border2);border-top:none;
+  border-radius:0 0 var(--radius) var(--radius);
+  background:rgba(255,255,255,0.02);}
+
+/* ── PARTICIPANT SCORE PANEL ── */
+.part-score-panel{
+  background:linear-gradient(135deg,rgba(20,16,8,0.98),rgba(14,11,6,0.99));
+  border:1px solid rgba(201,168,76,0.25);border-radius:var(--radius-lg);
+  padding:1.25rem;margin-bottom:1.25rem;
+}
+.part-score-header{
+  font-family:var(--font-display);font-size:17px;color:var(--gold2);
+  margin-bottom:1rem;padding-bottom:0.625rem;border-bottom:1px solid var(--border);
+}
+.part-stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-bottom:1rem;}
+.part-stat{background:rgba(255,255,255,0.02);border:1px solid var(--border);
+  border-radius:var(--radius);padding:10px 12px;text-align:center;}
+.part-stat-val{font-size:26px;font-weight:300;font-family:var(--font-sans);color:var(--gold);line-height:1.1;}
+.part-stat-lbl{font-size:10px;color:var(--text3);font-family:var(--font-sans);
+  letter-spacing:0.06em;margin-top:4px;text-transform:uppercase;}
+.part-cat-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.part-cat-name{font-size:12px;color:var(--text3);font-family:var(--font-sans);width:130px;flex-shrink:0;}
+.part-cat-bar{flex:1;height:6px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden;}
+.part-cat-fill{height:100%;border-radius:3px;background:var(--gold);}
+.part-cat-val{font-size:12px;color:var(--gold);font-family:var(--font-sans);width:32px;text-align:right;flex-shrink:0;}
 /* SCROLLBAR */
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
@@ -853,8 +974,9 @@ database.ref('.info/connected').on('value', (snap) => {
       <button class="toolbar-btn" onclick="tbIndent('subTexto')" title="Indentar parágrafo">⇥</button>
       <button class="toolbar-btn" onclick="tbNewPara('subTexto')" title="Novo parágrafo">¶</button>
       <div class="toolbar-sep"></div>
-      <button class="toolbar-btn" onclick="tbCleanPaste('{ta}')" title="Limpar formatação invisível">✦ Limpar</button>
-      <button class="toolbar-btn" onclick="tbClear('{ta}')" title="Apagar todo o texto" style="color:var(--crimson2)">🗑 Apagar</button>
+      <button class="toolbar-btn" onclick="openRichPaste('detailSubTexto')" style="color:var(--gold)">📋 Colar formatado</button>
+      <button class="toolbar-btn" onclick="tbCleanPaste('detailSubTexto')" title="Limpar formatação invisível">✦ Limpar</button>
+      <button class="toolbar-btn" onclick="tbClear('detailSubTexto')" title="Apagar todo o texto" style="color:var(--crimson2)">🗑 Apagar</button>
     </div>
       <textarea id="subTexto" rows="10" placeholder="Cole o texto aqui..." oninput="updateWordCount()" class="toolbar-textarea"></textarea>
       <div style="font-size:15px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">Palavras: <span id="wordCount" style="color:var(--gold)">0</span> / <span id="wordLimit">4000</span></div>
@@ -1336,8 +1458,9 @@ function renderEventDetailAddForm(){
       <button class="toolbar-btn" onclick="tbIndent('detailSubTexto')" title="Indentar parágrafo">⇥</button>
       <button class="toolbar-btn" onclick="tbNewPara('detailSubTexto')" title="Novo parágrafo">¶</button>
       <div class="toolbar-sep"></div>
-      <button class="toolbar-btn" onclick="tbCleanPaste('{ta}')" title="Limpar formatação invisível">✦ Limpar</button>
-      <button class="toolbar-btn" onclick="tbClear('{ta}')" title="Apagar todo o texto" style="color:var(--crimson2)">🗑 Apagar</button>
+      <button class="toolbar-btn" onclick="openRichPaste('detailSubTexto')" style="color:var(--gold)">📋 Colar formatado</button>
+      <button class="toolbar-btn" onclick="tbCleanPaste('detailSubTexto')" title="Limpar formatação invisível">✦ Limpar</button>
+      <button class="toolbar-btn" onclick="tbClear('detailSubTexto')" title="Apagar todo o texto" style="color:var(--crimson2)">🗑 Apagar</button>
     </div>
       <textarea id="detailSubTexto" rows="11" placeholder="Cole o texto aqui..." oninput="updateDetailWordCount()" class="toolbar-textarea"></textarea>
       <div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-top:4px">
@@ -1874,20 +1997,122 @@ function setQ(sk,modalCat,idx,val,lbl){
   else{currentEvalData[sk]=currentEvalData[sk]||{};answers=currentEvalData[sk];}
   answers[idx]=val;
   updateEvalProgress();
+  // Update visual — works for both .q-opt and .q-opt-compact
   const sec=document.getElementById('sec_'+sk);
   if(sec){
-    const rows=sec.querySelectorAll('.question-row');
-    if(rows[idx])rows[idx].querySelectorAll('.q-opt').forEach((btn,oi)=>{btn.className='q-opt';if(OL[oi]===lbl)btn.classList.add('sel-'+lbl);});
+    // Find the row containing this question (compact grid layout)
+    const allRows=sec.querySelectorAll('.q-row-compact,.question-row');
+    if(allRows[idx]){
+      const row=allRows[idx];
+      // Clear all selection classes and add new one
+      row.querySelectorAll('.q-opt-compact,.q-opt').forEach((btn,oi)=>{
+        btn.className=btn.classList.contains('q-opt-compact')?'q-opt-compact':'q-opt';
+        if(OL[oi]===lbl) btn.classList.add('sel-'+lbl);
+      });
+      // Mark row as answered
+      row.classList.add('answered');
+    }
+    // Update running score in section header
     const sum=Object.values(answers).reduce((a,b)=>a+b,0);
-    const se=document.getElementById('score_'+sk);if(se)se.textContent=Math.min(10,Math.max(0,5+sum)).toFixed(2);
-    const hd=sec.querySelector('.eval-section-header > div > div:last-child');if(hd)hd.textContent=Object.keys(answers).length+'/'+sec.querySelectorAll('.question-row').length;
+    const scoreEl=sec.closest('.eval-section')?.querySelector('.eval-section-score');
+    if(scoreEl) scoreEl.textContent=Math.min(10,Math.max(0,5+sum)).toFixed(2);
   }
 }
 function renderTensivitySection(t){
   if(!t) return '';
   const eS=Array.from({length:10},(_,i)=>`<div class="tensiv-seg ${i<t.ext?'on':''}"></div>`).join('');
   const iS=Array.from({length:10},(_,i)=>`<div class="tensiv-seg ${i<t.intv?'on':''}"></div>`).join('');
-  return`<div class="eval-section"><div class="eval-section-header"><span class="eval-section-title">Tensividade Semiótica</span><span class="eval-section-score">${t.ext}·${t.intv}</span></div><div class="eval-section-body"><div class="tensiv-grid"><div class="tensiv-meter"><div class="tensiv-label">Extensividade</div><div class="tensiv-val">${t.ext}</div><div class="tensiv-desc">${t.extDesc}</div><div class="tensiv-segs">${eS}</div><div style="font-size:14px;color:var(--text3);font-family:var(--font-sans);margin-top:7px">${t.words}p · ${t.sentences}f · ${t.unique} únicas</div></div><div class="tensiv-meter"><div class="tensiv-label">Intensividade</div><div class="tensiv-val">${t.intv}</div><div class="tensiv-desc">${t.intvDesc}</div><div class="tensiv-segs">${iS}</div><div style="font-size:14px;color:var(--text3);font-family:var(--font-sans);margin-top:7px">Densidade léxica: ${t.lexDensity}%</div></div></div><div style="margin-top:0.875rem;padding:0.65rem;background:rgba(255,255,255,0.01);border-radius:var(--radius);font-size:15px;font-family:var(--font-sans);color:var(--text3);line-height:1.7"><strong style="color:var(--text2)">Zilberberg:</strong> Extensividade = amplitude e variedade discursiva; Intensividade = concentração e densidade expressiva.</div></div></div>`;
+  // SVG Polar / quadrant chart (Zilberberg space: ext=X, intv=Y)
+  const cx=100,cy=100,r=80;
+  const ex=t.ext/10,iy=t.intv/10;
+  // point in tensivity space (ext→right, intv→up)
+  const px=cx-r+ex*r*2;
+  const py=cy+r-iy*r*2;
+  // Quadrant labels
+  const svgChart=`<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+    <!-- grid -->
+    <rect x="20" y="20" width="160" height="160" rx="4" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <!-- axes -->
+    <line x1="100" y1="20" x2="100" y2="180" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
+    <line x1="20" y1="100" x2="180" y2="100" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
+    <!-- grid rings -->
+    ${[0.25,0.5,0.75].map(f=>`<ellipse cx="100" cy="100" rx="${f*80}" ry="${f*80}" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="3,3"/>`).join('')}
+    <!-- quadrant labels -->
+    <text x="28" y="36" fill="rgba(201,168,76,0.4)" font-size="8" font-family="Georgia,serif">Tênue</text>
+    <text x="136" y="36" fill="rgba(201,168,76,0.4)" font-size="8" font-family="Georgia,serif">Tônico</text>
+    <text x="28" y="176" fill="rgba(201,168,76,0.4)" font-size="8" font-family="Georgia,serif">Átono</text>
+    <text x="124" y="176" fill="rgba(201,168,76,0.4)" font-size="8" font-family="Georgia,serif">Saturado</text>
+    <!-- axis labels -->
+    <text x="100" y="16" fill="rgba(168,160,152,0.6)" font-size="7" font-family="Georgia" text-anchor="middle">+ Intens.</text>
+    <text x="100" y="196" fill="rgba(168,160,152,0.6)" font-size="7" font-family="Georgia" text-anchor="middle">- Intens.</text>
+    <text x="16" y="103" fill="rgba(168,160,152,0.6)" font-size="7" font-family="Georgia" text-anchor="middle">- Ext.</text>
+    <text x="186" y="103" fill="rgba(168,160,152,0.6)" font-size="7" font-family="Georgia" text-anchor="middle">+ Ext.</text>
+    <!-- glow zone -->
+    <radialGradient id="tglow" cx="${px/200}" cy="${py/200}" r="0.25">
+      <stop offset="0%" stop-color="rgba(201,168,76,0.5)"/>
+      <stop offset="100%" stop-color="rgba(201,168,76,0)"/>
+    </radialGradient>
+    <ellipse cx="${px}" cy="${py}" rx="22" ry="22" fill="url(#tglow)"/>
+    <!-- crosshair -->
+    <line x1="${px}" y1="${py-14}" x2="${px}" y2="${py+14}" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+    <line x1="${px-14}" y1="${py}" x2="${px+14}" y2="${py}" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+    <!-- point -->
+    <circle cx="${px}" cy="${py}" r="6" fill="#c9a84c" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+    <!-- coordinates -->
+    <text x="${px}" y="${py<30?py+18:py-10}" fill="#e8c96a" font-size="9" font-family="Georgia,serif" text-anchor="middle">(${t.ext},${t.intv})</text>
+  </svg>`;
+  // Bar chart for sub-metrics
+  const metrics=[
+    {lbl:'Extensividade',val:t.ext,max:10,color:'#c9a84c'},
+    {lbl:'Intensividade',val:t.intv,max:10,color:'#c9a84c'},
+    {lbl:'Palavras',val:Math.min(10,Math.round(t.words/100)),max:10,color:'rgba(180,160,100,0.7)'},
+    {lbl:'Dens. Léxica',val:Math.round(parseFloat(t.lexDensity)/10),max:10,color:'rgba(160,140,80,0.7)'},
+    {lbl:'Vocab. Único',val:Math.min(10,Math.round(t.unique/50)),max:10,color:'rgba(140,120,60,0.7)'},
+  ];
+  const bars=metrics.map(m=>`<div class="tensiv-bar-row">
+    <div class="tensiv-bar-lbl">${m.lbl}</div>
+    <div class="tensiv-bar-track"><div class="tensiv-bar-fill" style="width:${m.val*10}%;background:${m.color}"></div></div>
+    <div class="tensiv-bar-val">${m.val}</div>
+  </div>`).join('');
+  return`<div class="eval-section">
+    <div class="eval-section-header">
+      <span class="eval-section-title">Tensividade Semiótica</span>
+      <span class="eval-section-score">${t.ext}·${t.intv}</span>
+    </div>
+    <div class="eval-section-body">
+      <div class="tensiv-grid">
+        <div class="tensiv-meter">
+          <div class="tensiv-label">Extensividade</div>
+          <div class="tensiv-val">${t.ext}</div>
+          <div class="tensiv-desc">${t.extDesc}</div>
+          <div class="tensiv-segs">${eS}</div>
+          <div style="font-size:13px;color:var(--text3);font-family:var(--font-sans);margin-top:7px">${t.words} pal · ${t.sentences} fra · ${t.unique} únicas</div>
+        </div>
+        <div class="tensiv-meter">
+          <div class="tensiv-label">Intensividade</div>
+          <div class="tensiv-val">${t.intv}</div>
+          <div class="tensiv-desc">${t.intvDesc}</div>
+          <div class="tensiv-segs">${iS}</div>
+          <div style="font-size:13px;color:var(--text3);font-family:var(--font-sans);margin-top:7px">Densidade léxica: ${t.lexDensity}%</div>
+        </div>
+      </div>
+      <div class="tensiv-chart-wrap">
+        <div class="tensiv-canvas-title">Espaço de Tensividade — Zilberberg</div>
+        <div class="tensiv-radar-wrap">
+          ${svgChart}
+          <div class="tensiv-bars" style="flex:1">${bars}</div>
+        </div>
+        <div style="margin-top:0.75rem;font-size:11px;font-family:var(--font-sans);color:var(--text3);line-height:1.7">
+          <strong style="color:var(--text2)">Leitura:</strong>
+          Ponto no quadrante <em>${t.ext>=5&&t.intv>=5?'Tônico (alta amplitude + alta densidade)':t.ext<5&&t.intv>=5?'Tênue (baixa amplitude + alta densidade)':t.ext>=5&&t.intv<5?'Saturado (alta amplitude + baixa densidade)':'Átono (baixa amplitude + baixa densidade)'}</em>.
+          ${t.ext>=7&&t.intv>=7?'Texto com grande riqueza discursiva e alta concentração expressiva.':t.ext<=3&&t.intv<=3?'Texto contido e direto, com economia de recursos.':t.ext>=7?'Texto de amplo alcance discursivo com expressão difusa.':t.intv>=7?'Texto concentrado e intenso em vocabulário específico.':'Perfil equilibrado entre amplitude e densidade.'}
+        </div>
+      </div>
+      <div style="margin-top:0.75rem;padding:0.65rem;background:rgba(255,255,255,0.01);border-radius:var(--radius);font-size:13px;font-family:var(--font-sans);color:var(--text3);line-height:1.7">
+        <strong style="color:var(--text2)">Zilberberg:</strong> Extensividade = amplitude e variedade discursiva (eixo X); Intensividade = concentração e densidade expressiva (eixo Y).
+      </div>
+    </div>
+  </div>`;
 }
 function calcFinalScore(){
   const d=currentEvalData,sub=currentEvalSub;
@@ -3292,6 +3517,11 @@ function enterParticipantPortal(){
   }
   const titleEl=document.getElementById('partEventsTitle');
   if(titleEl) titleEl.style.display='flex';
+  // Global author stats panel
+  const gp=buildAuthorGlobalPanel(name);
+  const existG=document.getElementById('partGlobalPanel');
+  if(existG) existG.remove();
+  if(gp){const gd=document.createElement('div');gd.id='partGlobalPanel';gd.style.cssText='width:100%;max-width:900px;margin:0 auto 1.5rem';gd.innerHTML=gp;document.getElementById('partEventsTitle').before(gd);}
   const grid=document.getElementById('partGrid');
   grid.innerHTML=allEvents.map(ev=>{
     const evSubs=mySubs.filter(s=>s.eventoId===ev.id);
@@ -3311,6 +3541,7 @@ function showPartEventPortal(evId,authorName){
   const cont=document.getElementById('partPortalContent');
   const ev=(DB.eventos||[]).find(e=>e.id===evId);
   if(!ev||!cont) return;
+  const scorePanel=buildAuthorScorePanel(evId,authorName);
   const html=buildParticipantPortalHTML(evId,authorName);
   const header=`<div style="display:flex;align-items:center;gap:12px;margin:1.5rem 0 1rem;flex-wrap:wrap">
     <button class="btn btn-sm" onclick="document.getElementById('partPortalContent').innerHTML='';document.getElementById('partGrid').scrollIntoView({behavior:'smooth'})">← Voltar</button>
@@ -3319,7 +3550,7 @@ function showPartEventPortal(evId,authorName){
       <div style="font-size:13px;color:var(--text3);font-family:var(--font-sans)">${ev.finalized?'✦ Finalizado':'Em andamento'}</div>
     </div>
   </div>`;
-  cont.innerHTML=header+html;
+  cont.innerHTML=header+scorePanel+html;
   cont.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
@@ -3378,6 +3609,284 @@ function tbClear(taId){
   ta.value='';
   ta.dispatchEvent(new Event('input'));
   ta.focus();
+}
+
+// ════════════════════════════════════════
+// RICH PASTE ENGINE
+// ════════════════════════════════════════
+let _richTarget=null;
+
+function openRichPaste(targetId){
+  _richTarget=targetId;
+  let wordLimit=4000;
+  if(targetId==='detailSubTexto'&&typeof currentDetailEvId!=='undefined'){
+    const ev=(DB.eventos||[]).find(e=>e.id===currentDetailEvId);
+    if(ev) wordLimit=ev.words;
+  } else {
+    const sel=document.getElementById('subEvento');
+    if(sel&&sel.value){const ev=(DB.eventos||[]).find(e=>e.id===sel.value);if(ev)wordLimit=ev.words;}
+  }
+  document.getElementById('richWCLimit').textContent='/ '+wordLimit+' palavras';
+  document.getElementById('richWCStatus').textContent='';
+  document.getElementById('richPasteErr').classList.add('hidden');
+  const frame=document.getElementById('richPasteFrame');
+  // Pre-populate from existing textarea
+  const ta=document.getElementById(targetId);
+  if(ta&&ta.value.trim()){
+    frame.innerHTML=ta.value.split('\n').map(l=>l.trim()?`<p style="text-align:justify">${l}</p>`:'<p><br></p>').join('');
+  } else {
+    frame.innerHTML='<p style="text-align:justify"><br></p>';
+  }
+  // Default justify
+  ['left','center','right'].forEach(a=>document.getElementById('rtb-'+a)?.classList.remove('active'));
+  document.getElementById('rtb-justify')?.classList.add('active');
+  updateRichWC();
+  showModal('modalRichPaste');
+  setTimeout(()=>frame.focus(),120);
+}
+
+function handleRichPaste(e){
+  e.preventDefault();
+  const frame=document.getElementById('richPasteFrame');
+  let html='';
+  if(e.clipboardData.types.includes('text/html')){
+    html=e.clipboardData.getData('text/html');
+    // Strip Word/PDF/browser garbage, keep structure
+    html=html
+      .replace(/<head[^>]*>[\s\S]*?<\/head>/gi,'')
+      .replace(/<o:p[^>]*>[\s\S]*?<\/o:p>/gi,'')
+      .replace(/<w:[^>]+>[\s\S]*?<\/w:[^>]+>/gi,'')
+      .replace(/<m:[^>]+>[\s\S]*?<\/m:[^>]+>/gi,'')
+      .replace(/<!--[\s\S]*?-->/g,'')
+      .replace(/<style[^>]*>[\s\S]*?<\/style>/gi,'')
+      .replace(/<script[^>]*>[\s\S]*?<\/script>/gi,'')
+      .replace(/class="[^"]*Mso[^"]*"/gi,'')
+      .replace(/class="[^"]*Apple[^"]*"/gi,'')
+      .replace(/style="[^"]*mso-[^;]*;?/gi,'style="')
+      .replace(/style="[^"]*font-family[^;]*;?/gi,'style="')
+      .replace(/style="[^"]*color:[^;]*;?/gi,'style="')
+      .replace(/style="[^"]*margin[^;]*;?/gi,'style="')
+      .replace(/style=""/gi,'')
+      .replace(/<font[^>]*>/gi,'').replace(/<\/font>/gi,'')
+      .replace(/<span>\s*<\/span>/gi,'')
+      .replace(/<div[^>]*>([\s\S]*?)<\/div>/gi,'<p>$1</p>')
+      .replace(/\s{2,}/g,' ');
+    // Apply justify to all paragraphs
+    html=html.replace(/<p([^>]*)>/gi,'<p$1 style="text-align:justify">');
+    const tmp=document.createElement('div');
+    tmp.innerHTML=html;
+    // Insert cleaned HTML
+    const sel2=window.getSelection();
+    const range=sel2.getRangeAt(0);
+    range.deleteContents();
+    const frag=document.createRange().createContextualFragment(tmp.innerHTML);
+    range.insertNode(frag);
+  } else {
+    const text=e.clipboardData.getData('text/plain');
+    const paras=text.split(/\n\n+/).map(p=>p.replace(/\n/g,' ').trim()).filter(Boolean);
+    const frag=document.createRange().createContextualFragment(
+      paras.map(p=>`<p style="text-align:justify">${p}</p>`).join('')
+    );
+    const sel3=window.getSelection();
+    const range3=sel3.getRangeAt(0);
+    range3.deleteContents();
+    range3.insertNode(frag);
+  }
+  updateRichWC();
+}
+
+function updateRichWC(){
+  const frame=document.getElementById('richPasteFrame');
+  const text=frame?frame.innerText||'':'';
+  const wc=text.trim()?text.trim().split(/\s+/).length:0;
+  const el=document.getElementById('richWC');
+  if(el) el.textContent=wc;
+  const limitTxt=document.getElementById('richWCLimit').textContent;
+  const limit=parseInt(limitTxt.replace(/\D/g,''))||4000;
+  const status=document.getElementById('richWCStatus');
+  if(status){
+    if(wc>limit){status.textContent='⚠ '+( wc-limit)+' acima do limite';status.style.color='#e06060';}
+    else if(wc>limit*0.9){status.textContent='Próximo do limite';status.style.color='var(--gold)';}
+    else{status.textContent='';status.style.color='';}
+  }
+}
+
+function rtbExec(cmd){
+  document.getElementById('richPasteFrame').focus();
+  document.execCommand(cmd,false,null);
+}
+
+function rtbAlign(align){
+  document.getElementById('richPasteFrame').focus();
+  document.execCommand('justify'+align.charAt(0).toUpperCase()+align.slice(1),false,null);
+  ['left','center','right','justify'].forEach(a=>{
+    document.getElementById('rtb-'+a)?.classList.toggle('active',a===align);
+  });
+}
+
+function rtbSetFontSize(val){
+  if(!val) return;
+  document.getElementById('richPasteFrame').focus();
+  document.execCommand('fontSize',false,val);
+}
+
+function rtbStripInvisible(){
+  const frame=document.getElementById('richPasteFrame');
+  frame.innerHTML=frame.innerHTML
+    .replace(/[\u200B-\u200D\uFEFF\u00AD\u2028\u2029]/g,'')
+    .replace(/&nbsp;/g,' ')
+    .replace(/ {2,}/g,' ');
+  updateRichWC();
+  const btn=event.target;
+  const orig=btn.textContent;
+  btn.textContent='✓ Limpo';btn.style.color='#5ab870';
+  setTimeout(()=>{btn.textContent=orig;btn.style.color='';},1500);
+}
+
+function rtbClearAll(){
+  if(!confirm('Apagar todo o conteúdo do editor?')) return;
+  document.getElementById('richPasteFrame').innerHTML='<p style="text-align:justify"><br></p>';
+  updateRichWC();
+  document.getElementById('richPasteFrame').focus();
+}
+
+function applyRichPaste(){
+  const frame=document.getElementById('richPasteFrame');
+  const errEl=document.getElementById('richPasteErr');
+  errEl.classList.add('hidden');
+  // Extract plain text preserving paragraph breaks
+  const clone=frame.cloneNode(true);
+  clone.querySelectorAll('p,div,h1,h2,h3,h4,li').forEach(el=>el.insertAdjacentText('afterend','\n'));
+  clone.querySelectorAll('br').forEach(el=>el.replaceWith('\n'));
+  let text=clone.innerText||clone.textContent||'';
+  text=text.replace(/\r\n/g,'\n').replace(/\r/g,'\n');
+  text=text.replace(/[\u200B-\u200D\uFEFF\u00AD]/g,'');
+  text=text.replace(/[ \t]+$/gm,'');
+  text=text.replace(/\n{3,}/g,'\n\n').trim();
+  if(!text){errEl.textContent='O editor está vazio.';errEl.classList.remove('hidden');return;}
+  const ta=document.getElementById(_richTarget);
+  if(ta){ta.value=text;ta.dispatchEvent(new Event('input'));}
+  closeModal('modalRichPaste');
+}
+
+// ════════════════════════════════════════
+// DELETE ARCHIVED EVENT
+// ════════════════════════════════════════
+function deleteArchivedEvent(evId){
+  const ev=(DB.eventos||[]).find(e=>e.id===evId);
+  if(!ev) return;
+  const subIds=(DB.submissoes||[]).filter(s=>s.eventoId===evId).map(s=>s.id);
+  const avCount=(DB.avaliacoes||[]).filter(a=>subIds.includes(a.subId)).length;
+  if(!confirm(`Excluir permanentemente "${ev.nome}"?\n\n• ${subIds.length} submissão(ões)\n• ${avCount} avaliação(ões)\n\n⚠️ Irreversível.`)) return;
+  const ei=DB.eventos.findIndex(e=>e.id===evId);
+  if(ei>=0) DB.eventos.splice(ei,1);
+  DB.submissoes=(DB.submissoes||[]).filter(s=>s.eventoId!==evId);
+  DB.avaliacoes=(DB.avaliacoes||[]).filter(a=>!subIds.includes(a.subId));
+  if(DB.annotations) subIds.forEach(id=>{delete DB.annotations[id];});
+  saveDB();renderArchivedEventos();renderEventos();populateAllSelects();
+  alert(`"${ev.nome}" excluído.`);
+}
+
+// ════════════════════════════════════════
+// PARTICIPANT SCORE PANELS
+// ════════════════════════════════════════
+function buildAuthorScorePanel(evId,authorName){
+  const ev=(DB.eventos||[]).find(e=>e.id===evId);
+  if(!ev) return '';
+  const lower=authorName.toLowerCase();
+  const mySubs=(DB.submissoes||[]).filter(s=>s.eventoId===evId&&s.autor.toLowerCase()===lower);
+  if(!mySubs.length) return '';
+  const ranked=getRanked(evId);
+  let html='';
+  mySubs.forEach(sub=>{
+    const rankPos=ranked.findIndex(r=>r.id===sub.id);
+    const pos=rankPos>=0?rankPos+1:null;
+    const avs=(DB.avaliacoes||[]).filter(a=>a.subId===sub.id&&a.judgeId!=='admin');
+    const scores=avs.map(a=>a.finalScore).filter(x=>x!=null);
+    const avg=scores.length?scores.reduce((a,b)=>a+b,0)/scores.length:null;
+    if(!avs.length) return;
+    // Per-category average
+    const catSums={},catCounts={};
+    avs.forEach(av=>{
+      const addCat=(label,obj)=>{
+        if(!obj) return;
+        const vals=Object.values(obj);
+        if(!vals.length) return;
+        const sum=vals.reduce((a,b)=>a+b,0);
+        catSums[label]=(catSums[label]||0)+Math.min(10,Math.max(0,5+sum));
+        catCounts[label]=(catCounts[label]||0)+1;
+      };
+      addCat('Retórica',av.retQ);addCat('Lógica',av.logQ);
+      addCat('Originalidade',av.origQ);addCat('Profundidade',av.profQ);
+      if(av.modalQ) Object.entries(av.modalQ).forEach(([c,q])=>addCat(c,q));
+    });
+    const catRows=Object.entries(catSums).map(([name,sum])=>{
+      const a=sum/(catCounts[name]||1);
+      const color=a>=8?'#5ab870':a>=6?'var(--gold)':'var(--crimson2)';
+      return`<div class="part-cat-row">
+        <div class="part-cat-name">${name}</div>
+        <div class="part-cat-bar"><div class="part-cat-fill" style="width:${a*10}%;background:${color}"></div></div>
+        <div class="part-cat-val">${a.toFixed(1)}</div>
+      </div>`;
+    }).join('');
+    const judgeRows=avs.map(av=>`<div style="display:flex;justify-content:space-between;font-family:var(--font-sans);font-size:13px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04)">
+      <span style="color:var(--text3)">${av.judgeName||av.judgeId}</span>
+      <strong style="color:var(--gold)">${av.finalScore!=null?av.finalScore.toFixed(2):'—'}</strong>
+    </div>`).join('');
+    const medalEmoji=pos?(['🥇','🥈','🥉'][pos-1]||'#'+pos):'';
+    html+=`<div class="part-score-panel">
+      <div class="part-score-header">📊 Seus resultados — ${sub.titulo}</div>
+      ${pos?`<div style="font-size:22px;margin-bottom:0.75rem">${medalEmoji} <span style="font-family:var(--font-sans);font-size:18px;color:var(--gold2)">${pos}º lugar</span></div>`:''}
+      <div class="part-stat-grid">
+        ${avg!=null?`<div class="part-stat"><div class="part-stat-val">${avg.toFixed(2)}</div><div class="part-stat-lbl">Nota Final</div></div>`:''}
+        ${pos?`<div class="part-stat"><div class="part-stat-val">${pos}º</div><div class="part-stat-lbl">Colocação</div></div>`:''}
+        <div class="part-stat"><div class="part-stat-val">${avs.length}</div><div class="part-stat-lbl">Avaliações</div></div>
+        <div class="part-stat"><div class="part-stat-val">${sub.wc||'—'}</div><div class="part-stat-lbl">Palavras</div></div>
+      </div>
+      ${judgeRows?`<div style="margin-bottom:0.875rem">${judgeRows}</div>`:''}
+      ${catRows?`<div><div style="font-size:10px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">Por categoria</div>${catRows}</div>`:''}
+    </div>`;
+  });
+  return html;
+}
+
+function buildAuthorGlobalPanel(authorName){
+  const lower=authorName.toLowerCase();
+  const participant=(DB.participants||{})[authorName]
+    ||(DB.participants||{})[Object.keys(DB.participants||{}).find(k=>k.toLowerCase()===lower)||''];
+  const mySubs=(DB.submissoes||[]).filter(s=>s.autor.toLowerCase()===lower);
+  if(!mySubs.length) return '';
+  const allScores=[];
+  mySubs.forEach(sub=>{
+    (DB.avaliacoes||[]).filter(a=>a.subId===sub.id&&a.judgeId!=='admin').forEach(av=>{
+      if(av.finalScore!=null) allScores.push(av.finalScore);
+    });
+  });
+  const globalAvg=allScores.length?allScores.reduce((a,b)=>a+b,0)/allScores.length:null;
+  const tier=getTier(participant?.tierId||'none');
+  const TIER_CSS={'none':'color:var(--text3)','acolito_madeira':'color:#a0785a','acolito_ferro':'color:#8a9aa8','acolito_chumbo':'color:#7a7a8a','veterano_bronze':'color:#d4864a','veterano_prata':'color:#c0c0c0','veterano_ouro':'color:var(--gold2)','escritor_topazio':'color:#f0c860','escritor_turmalina':'color:#c070c8','escritor_safira':'color:#60a0f0','escritor_rubi':'color:#f06060','escritor_esmeralda':'color:#50c878','escritor_diamante':'color:#b8f0ff'};
+  const history=[];
+  (DB.eventos||[]).filter(ev=>ev.finalized).forEach(ev=>{
+    const ranked=getRanked(ev.id);
+    const pos=ranked.findIndex(r=>r.autor.toLowerCase()===lower);
+    if(pos>=0) history.push({evNome:ev.nome,pos:pos+1,score:ranked[pos].avg,titulo:ranked[pos].titulo});
+  });
+  const histRows=history.sort((a,b)=>a.pos-b.pos).slice(0,6).map(item=>`<div style="display:flex;justify-content:space-between;align-items:center;font-family:var(--font-sans);font-size:13px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04)">
+    <div><span>${['🥇','🥈','🥉'][item.pos-1]||'#'+item.pos}</span> <span style="color:var(--text2)">${item.titulo}</span> <span style="color:var(--text3);font-size:11px">· ${item.evNome}</span></div>
+    <strong style="color:var(--gold);margin-left:8px">${item.score.toFixed(2)}</strong>
+  </div>`).join('');
+  return`<div class="part-score-panel">
+    <div class="part-score-header">✦ Perfil Global — ${authorName}</div>
+    <div style="margin-bottom:0.875rem;font-family:var(--font-display);font-size:17px;${TIER_CSS[tier.id]||'color:var(--text3)'}">${tier.id!=='none'?tier.label:'Sem título ainda'}</div>
+    <div class="part-stat-grid">
+      ${globalAvg!=null?`<div class="part-stat"><div class="part-stat-val">${globalAvg.toFixed(2)}</div><div class="part-stat-lbl">Média Geral</div></div>`:''}
+      <div class="part-stat"><div class="part-stat-val">${participant?.firsts||0}</div><div class="part-stat-lbl">🥇 1ºs</div></div>
+      <div class="part-stat"><div class="part-stat-val">${participant?.seconds||0}</div><div class="part-stat-lbl">🥈 2ºs</div></div>
+      <div class="part-stat"><div class="part-stat-val">${participant?.thirds||0}</div><div class="part-stat-lbl">🥉 3ºs</div></div>
+      <div class="part-stat"><div class="part-stat-val">${mySubs.length}</div><div class="part-stat-lbl">Obras</div></div>
+    </div>
+    ${histRows?`<div><div style="font-size:10px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">Histórico de Pódios</div>${histRows}</div>`:''}
+  </div>`;
 }
 // ════════════════════════════════════════
 // ARCHIVE SYSTEM
@@ -3468,6 +3977,7 @@ function renderArchivedEventos(){
         <button class="btn btn-sm" onclick="openEventDetail('${ev.id}')">📂 Ver Obras</button>
         <button class="btn btn-sm" onclick="copyPublicLink('${ev.id}')" style="font-size:13px">🔗 Link</button>
         <button class="btn btn-sm" onclick="unarchiveEvent('${ev.id}')" style="font-size:13px;color:var(--text3)">↩ Desarquivar</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteArchivedEvent('${ev.id}')" style="font-size:13px">🗑 Excluir</button>
       </div>
     </div>`;
   }).join('');
@@ -4068,6 +4578,51 @@ window.addEventListener('DOMContentLoaded',()=>{
   <div class="mob-more-item" id="mobLogoutItem" onclick="doLogout()" style="color:var(--crimson2)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> Sair</div>
 </div>
 
+
+<!-- ═══ RICH PASTE MODAL ═══ -->
+<div id="modalRichPaste" class="modal-overlay hidden" onclick="closeModalClick(event,'modalRichPaste')">
+  <div class="modal" style="display:flex;flex-direction:column;max-height:92vh;width:min(820px,96vw)">
+    <button class="modal-close" onclick="closeModal('modalRichPaste')">✕</button>
+    <h3>📋 Colar e Formatar Texto</h3>
+    <div style="font-size:13px;color:var(--text2);font-family:var(--font-sans);margin-bottom:10px;line-height:1.6">
+      Cole aqui diretamente do Word, Google Docs ou PDF. A formatação de parágrafos é preservada. Ajuste o alinhamento e clique em "Usar este texto".
+    </div>
+    <div class="rich-toolbar">
+      <button class="rtb" onmousedown="event.preventDefault();rtbExec('bold')" title="Negrito"><strong>B</strong></button>
+      <button class="rtb" onmousedown="event.preventDefault();rtbExec('italic')" title="Itálico"><em>I</em></button>
+      <button class="rtb" onmousedown="event.preventDefault();rtbExec('underline')" title="Sublinhado"><u>U</u></button>
+      <div class="rtb-sep"></div>
+      <button class="rtb" id="rtb-left"    onmousedown="event.preventDefault();rtbAlign('left')"    title="Esquerda">≡⠀</button>
+      <button class="rtb" id="rtb-center"  onmousedown="event.preventDefault();rtbAlign('center')"  title="Centralizar">⠀≡⠀</button>
+      <button class="rtb" id="rtb-right"   onmousedown="event.preventDefault();rtbAlign('right')"   title="Direita">⠀≡</button>
+      <button class="rtb active" id="rtb-justify" onmousedown="event.preventDefault();rtbAlign('justify')" title="Justificado">▤</button>
+      <div class="rtb-sep"></div>
+      <select id="rtbFontSel" onchange="rtbSetFontSize(this.value)"
+        style="font-size:12px;padding:3px 5px;background:rgba(255,255,255,0.05);border:1px solid var(--border2);color:var(--text2);border-radius:4px;cursor:pointer">
+        <option value="">Tamanho…</option>
+        <option value="3">12px</option><option value="4">14px</option>
+        <option value="5" selected>16px</option><option value="6">18px</option><option value="7">24px</option>
+      </select>
+      <div class="rtb-sep"></div>
+      <button class="rtb" onmousedown="event.preventDefault();rtbStripInvisible()" title="Limpar chars invisíveis" style="font-size:11px">✦ Limpar inv.</button>
+      <button class="rtb" onmousedown="event.preventDefault();rtbClearAll()" title="Apagar tudo" style="color:var(--crimson2);font-size:11px">🗑 Apagar</button>
+    </div>
+    <div id="richPasteFrame" contenteditable="true"
+      onpaste="handleRichPaste(event)"
+      oninput="updateRichWC()"
+      style="min-height:320px;flex:1"></div>
+    <div class="wc-bar">
+      <span>Palavras: <strong id="richWC" style="color:var(--gold)">0</strong></span>
+      <span id="richWCLimit" style="color:var(--text3)"></span>
+      <span id="richWCStatus" style="margin-left:auto"></span>
+    </div>
+    <div id="richPasteErr" class="alert alert-err hidden" style="margin-top:8px"></div>
+    <div class="btn-group" style="margin-top:1rem;flex-shrink:0">
+      <button class="btn btn-primary" onclick="applyRichPaste()">✓ Usar este texto</button>
+      <button class="btn" onclick="closeModal('modalRichPaste')">Cancelar</button>
+    </div>
+  </div>
+</div>
 
 <!-- ═══ PARTICIPANT PORTAL SCREEN ═══ -->
 <button class="part-back-btn" id="partBackBtn" onclick="closeParticipantScreen()" style="display:none">← Voltar</button>
