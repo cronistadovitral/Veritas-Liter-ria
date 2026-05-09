@@ -750,6 +750,152 @@ tr:hover td{background:rgba(201,168,76,0.02);}
   border-radius:var(--radius);padding:0.875rem 1rem;margin-bottom:1rem;
   font-family:var(--font-sans);font-size:13px;color:var(--text2);line-height:1.6;
 }
+
+/* ── RELICS / BADGES ── */
+.relic-grid{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;}
+.relic{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:3px 10px;border-radius:12px;
+  font-size:11px;font-family:var(--font-sans);font-weight:600;
+  border:1px solid;cursor:default;
+  transition:transform 0.15s;
+}
+.relic:hover{transform:translateY(-2px);}
+.relic-locked{opacity:0.25;filter:grayscale(1);}
+.relic-icon{font-size:14px;}
+
+/* ── DYNAMIC TITLE ── */
+.dynamic-title{
+  font-family:var(--font-serif);font-style:italic;
+  font-size:14px;color:rgba(201,168,76,0.7);
+  margin-top:4px;letter-spacing:0.03em;
+}
+
+/* ── HALL OF FAME ── */
+.hall-card{
+  background:linear-gradient(135deg,rgba(26,18,6,0.99),rgba(16,12,4,0.99));
+  border:1px solid rgba(201,168,76,0.35);
+  border-radius:var(--radius-lg);padding:1.25rem;
+  position:relative;overflow:hidden;
+  transition:border-color 0.2s,transform 0.15s;
+}
+.hall-card:hover{border-color:rgba(201,168,76,0.65);transform:translateY(-2px);}
+.hall-card::before{
+  content:'✦';position:absolute;right:16px;top:12px;
+  font-size:42px;opacity:0.04;font-family:var(--font-display);
+  pointer-events:none;
+}
+.hall-score-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 12px;border-radius:16px;font-size:14px;
+  background:linear-gradient(135deg,rgba(201,168,76,0.15),rgba(201,168,76,0.08));
+  border:1px solid rgba(201,168,76,0.35);
+  color:var(--gold2);font-weight:700;font-family:var(--font-sans);
+  margin-bottom:8px;
+}
+.hall-filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem;align-items:center;}
+
+/* ── BLIND REVIEW ── */
+.blind-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:2px 10px;border-radius:10px;font-size:11px;
+  background:rgba(181,34,34,0.15);border:1px solid rgba(181,34,34,0.35);
+  color:#e06060;font-family:var(--font-sans);font-weight:600;
+}
+
+/* ── MARKDOWN FEEDBACK ── */
+.md-toolbar{
+  display:flex;gap:3px;flex-wrap:wrap;
+  padding:4px 6px;background:rgba(255,255,255,0.02);
+  border:1px solid var(--border2);border-bottom:none;
+  border-radius:var(--radius) var(--radius) 0 0;
+}
+.md-btn{
+  background:rgba(255,255,255,0.04);border:1px solid var(--border2);
+  color:var(--text3);border-radius:3px;padding:2px 8px;
+  font-size:12px;cursor:pointer;font-family:var(--font-sans);
+  transition:all 0.12s;
+}
+.md-btn:hover{background:rgba(201,168,76,0.1);color:var(--gold);border-color:rgba(201,168,76,0.3);}
+.md-feedback-preview{
+  padding:10px 12px;
+  background:rgba(255,255,255,0.015);border:1px solid var(--border);
+  border-radius:0 0 var(--radius) var(--radius);
+  font-family:var(--font-serif);font-size:15px;line-height:1.7;
+  color:var(--text2);display:none;
+  min-height:60px;
+}
+.md-feedback-preview.visible{display:block;}
+.md-feedback-preview strong{color:var(--text);}
+.md-feedback-preview em{color:rgba(201,168,76,0.8);}
+.md-feedback-preview blockquote{
+  border-left:3px solid var(--gold);padding-left:10px;
+  margin:6px 0;color:var(--text3);font-style:italic;
+}
+.md-feedback-preview ul{padding-left:20px;}
+.feedback-tabs{display:flex;gap:0;margin-bottom:0;}
+.feedback-tab{
+  padding:5px 14px;font-size:12px;font-family:var(--font-sans);
+  cursor:pointer;border:1px solid var(--border2);
+  color:var(--text3);background:rgba(255,255,255,0.02);
+  transition:all 0.12s;
+}
+.feedback-tab:first-child{border-radius:var(--radius) 0 0 0;}
+.feedback-tab:last-child{border-radius:0 var(--radius) 0 0;}
+.feedback-tab.active{background:rgba(255,255,255,0.06);color:var(--text2);border-bottom-color:transparent;}
+.textarea-feedback-wrap textarea{border-radius:0 0 var(--radius) var(--radius)!important;border-top:none!important;}
+
+/* ── READER PERGAMINHO ── */
+#readerOverlay.pergaminho{background:#f2ece0;}
+#readerOverlay.pergaminho .reader-topbar{background:rgba(236,226,205,0.98);border-bottom-color:rgba(120,90,50,0.2);}
+#readerOverlay.pergaminho #readerBody{background:#f7f2e8;}
+#readerOverlay.pergaminho .reader-text-wrap p{
+  color:#2a1f0e;
+  text-shadow:none;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 29px,
+      rgba(180,150,100,0.15) 29px,
+      rgba(180,150,100,0.15) 30px
+    );
+  line-height:30px;
+  padding:0 2px;
+}
+#readerOverlay.pergaminho .reader-title{color:#5a3a10;}
+#readerOverlay.pergaminho .reader-font-btn{
+  background:rgba(120,80,30,0.1);border-color:rgba(120,80,30,0.3);color:#5a3a10;
+}
+#readerOverlay.pergaminho .page-marker-label{color:#9a7040;}
+#readerOverlay.pergaminho .page-marker-line{background:rgba(160,110,60,0.4);}
+#readerOverlay.pergaminho .annotated-para.has-note{border-left-color:#9a7040;}
+#readerOverlay.pergaminho .annotation-dot{background:#9a7040;}
+#readerOverlay.pergaminho .reader-annot-panel{
+  background:rgba(230,218,195,0.98);border-left-color:rgba(120,90,50,0.25);
+}
+#readerOverlay.pergaminho .annot-panel-header{color:#5a3a10;}
+#readerOverlay.pergaminho .annot-item{
+  background:rgba(200,175,130,0.25);border-color:rgba(120,90,50,0.2);
+}
+#readerOverlay.pergaminho .annot-item-text{color:#3a2810;}
+#readerOverlay.pergaminho .annot-item-note{color:#7a5a30;}
+
+/* ── ANIMATED RPG BARS ── */
+@keyframes rpgFillIn{from{width:0!important}to{}}
+@keyframes rpgFadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.rpg-bar-panel.animate .rpg-bar-fill{animation:rpgFillIn 1s cubic-bezier(.22,1,.36,1) both;}
+.rpg-bar-panel.animate .rpg-bar-row:nth-child(1) .rpg-bar-fill{animation-delay:0.1s}
+.rpg-bar-panel.animate .rpg-bar-row:nth-child(2) .rpg-bar-fill{animation-delay:0.2s}
+.rpg-bar-panel.animate .rpg-bar-row:nth-child(3) .rpg-bar-fill{animation-delay:0.3s}
+.rpg-bar-panel.animate .rpg-bar-row:nth-child(4) .rpg-bar-fill{animation-delay:0.4s}
+.rpg-bar-panel.animate .rpg-bar-row:nth-child(5) .rpg-bar-fill{animation-delay:0.5s}
+.rpg-bar-panel.animate .rpg-bar-row:nth-child(6) .rpg-bar-fill{animation-delay:0.6s}
+.rpg-bar-panel.animate .rpg-bar-row:nth-child(7) .rpg-bar-fill{animation-delay:0.7s}
+.rpg-bar-panel.animate .rpg-bar-row:nth-child(8) .rpg-bar-fill{animation-delay:0.8s}
+.rpg-bar-panel.animate .rpg-bar-total{animation:rpgFadeUp 0.5s 0.95s both;}
+.rpg-bar-panel.animate .rpg-alch{animation:rpgFadeUp 0.5s 1.1s both;}
+.part-score-panel.animate-in{animation:rpgFadeUp 0.4s ease both;}
 /* SCROLLBAR */
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
@@ -856,7 +1002,8 @@ database.ref('.info/connected').on('value', (snap) => {
     </div>
     <div class="form-group"><label>Senha</label><input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" /></div>
     <div id="loginErr" class="alert alert-err hidden"></div>
-    <button type="submit" class="btn btn-primary" style="width:100%">Entrar</button>
+    <button class="nav-item" data-page="hall" onclick="goTo('hall')">⚜ Acervo Dourado</button>
+        <button type="submit" class="btn btn-primary" style="width:100%">Entrar</button>
     </form>
     <div style="margin-top:1rem;font-size:16px;color:var(--text3);font-family:var(--font-sans);text-align:center;line-height:1.6">
       Em caso de dúvidas, contacte o administrador do concurso.
@@ -970,7 +1117,24 @@ database.ref('.info/connected').on('value', (snap) => {
     </div>
 
     <!-- PARTICIPANTES -->
-    <div id="page-participantes" class="page">
+    
+      <div id="page-hall" class="page">
+        <div class="page-header">
+          <div class="page-title">✦ Acervo Dourado</div>
+          <div class="page-sub">Obras que alcançaram nota acima de 9.0 — a vitrine da excelência</div>
+        </div>
+        <div class="hall-filter-bar">
+          <select id="hallModalFilter" onchange="renderHall()" style="font-size:13px;padding:4px 8px;width:140px">
+            <option value="">Todas as modalidades</option>
+            <option value="conto">Conto</option>
+            <option value="cronica">Crônica</option>
+            <option value="poesia">Poesia</option>
+          </select>
+          <span style="font-family:var(--font-sans);font-size:12px;color:var(--text3)" id="hallCount"></span>
+        </div>
+        <div id="hallList"></div>
+      </div>
+<div id="page-participantes" class="page">
       <div class="page-header"><div class="page-title">Participantes</div><div class="page-sub">Hierarquia e histórico de conquistas</div></div>
       <div id="participantesContent"></div>
     </div>
@@ -1173,6 +1337,7 @@ function _ensureDB(){
   if(!DB.starRatings  || typeof DB.starRatings!=='object'  || Array.isArray(DB.starRatings))  DB.starRatings={};
   if(!DB.customization|| typeof DB.customization!=='object') DB.customization={};
   if(!DB.annotations || typeof DB.annotations!=='object' || Array.isArray(DB.annotations)) DB.annotations={};
+  if(!DB.relics || typeof DB.relics!=='object' || Array.isArray(DB.relics)) DB.relics={};
   if(!Array.isArray(DB.archivedEventos)) DB.archivedEventos=[];
 }
 _ensureDB();
@@ -1185,18 +1350,29 @@ let _fbWriting = false; // guard to prevent listener→saveDB→listener loop
 function saveDB(){
   try{
     localStorage.setItem('veritas_db', JSON.stringify(DB));
-    // BroadcastChannel: sync entre abas na mesma máquina
     if(window._bc) try{ window._bc.postMessage({type:'db_update', ts:Date.now()}); }catch(e){}
-    // Firebase: envia para todos os dispositivos remotos
     if(window.database && !_fbWriting){
-      // CORREÇÃO: chama _ensureDB antes de escrever para garantir estrutura válida
       _ensureDB();
-      database.ref('veritas_db').set(DB).catch(err => {
-        console.warn('Firebase write error:', err.code, err.message);
-      });
+      // Grava o snapshot atual antes do write assíncrono
+      const _writeSnapshot = JSON.stringify(DB);
+      // Marca como escrevendo para o listener ignorar o eco
+      _fbWriting = true;
+      database.ref('veritas_db').set(DB)
+        .then(()=>{
+          // Write confirmado — só agora libera o listener
+          // Mas mantém o snapshot para comparação, não o DB ao vivo
+          _lastWrittenSnapshot = _writeSnapshot;
+          _fbWriting = false;
+        })
+        .catch(err => {
+          console.warn('Firebase write error:', err.code, err.message);
+          _fbWriting = false;
+        });
     }
-  }catch(e){ console.error('saveDB error:', e); }
+  }catch(e){ console.error('saveDB error:', e); _fbWriting = false; }
 }
+// Snapshot do último dado escrito no Firebase pelo próprio app
+let _lastWrittenSnapshot = null;
 
 // CORREÇÃO: Listener Firebase com try/catch completo e onError callback
 function _startFirebaseListener(){
@@ -1208,7 +1384,13 @@ function _startFirebaseListener(){
       if(!remoteDB || typeof remoteDB !== 'object' || Array.isArray(remoteDB)) return;
       const remoteStr = JSON.stringify(remoteDB);
       const localStr  = JSON.stringify(DB);
+      // Ignora eco do próprio write (mesmo dado que acabamos de enviar)
       if(remoteStr === localStr) return;
+      if(_lastWrittenSnapshot && remoteStr === _lastWrittenSnapshot){
+        // Este é o eco do nosso próprio write — ignora completamente
+        return;
+      }
+      // Dado genuinamente externo (outro dispositivo/aba) — aplica
       _fbWriting = true;
       DB = remoteDB;
       // CORREÇÃO: garante todas as chaves após sync remoto
@@ -1339,6 +1521,7 @@ function goTo(page){
   if(ni) ni.classList.add('active');
   if(page==='avaliar') populateEvalSelect();
   if(page==='ranking'){populateRankingSelect();renderRanking();}
+  if(page==='hall') renderHall();
   if(page==='participantes') renderParticipantes();
   if(page==='publico') renderPublicoPage();
   if(page==='customizar') renderCustomizer();
@@ -1445,18 +1628,22 @@ function confirmFinalizeEvent(){
   const ev=DB.eventos.find(e=>e.id===pendingFinalizeId);
   if(ev) ev.finalized=true;
   updateParticipantAfterEvent(pendingFinalizeId);
-  saveDB();closeModal('modalFinalizeEvent');renderEventos();pendingFinalizeId=null;
-  // Trigger dramatic ranking reveal
+  const _finalizedEvId = pendingFinalizeId; // salva antes de zerar
+  saveDB();
+  closeModal('modalFinalizeEvent');
+  renderEventos();
+  pendingFinalizeId = null;
+  // Navega para o ranking e seleciona o evento recém-finalizado
   goTo('ranking');
   setTimeout(()=>{
-    const sel=document.getElementById('rankingEvento');
-    if(sel&&pendingFinalizeId===null){
-      // populate and select the just-finalized event
-      populateRankingSelect();
+    populateRankingSelect();
+    const sel = document.getElementById('rankingEvento');
+    if(sel && _finalizedEvId){
+      sel.value = _finalizedEvId;
     }
     renderRanking();
-  },200);
-  setTimeout(()=>alert('✦ Pódio sagrado! Os campeões foram coroados.'),400);
+    setTimeout(()=>alert('✦ Pódio sagrado! Os campeões foram coroados.'), 200);
+  }, 250);
 }
 // ════════════════════════════════════════
 // EVENT DETAIL (click-through to submissions)
@@ -1949,7 +2136,7 @@ function loadEvaluation(){
 function renderEvalForm(sub){
   const ev=DB.eventos.find(e=>e.id===sub.eventoId);
   let html=`<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.875rem">
-    <div><div style="font-family:var(--font-display);font-size:24px;color:var(--gold2)">${sub.titulo}</div><div style="font-size:15px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">${sub.autor} · ${ev?ev.nome:'?'} · ${sub.modal}</div></div>
+    <div><div style="font-family:var(--font-display);font-size:24px;color:var(--gold2)">${sub.titulo}</div><div style="font-size:15px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">${_blindMode?'<span style="filter:blur(5px);user-select:none">████████</span>':sub.autor} · ${ev?ev.nome:'?'} · ${sub.modal}</div></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
       <button class="btn btn-sm" onclick="openReader(currentEvalSub)" style="border-color:var(--gold);color:var(--gold)">📖 Ler em tela cheia</button>
       <span id="autosaveIndicator">—</span>
@@ -2436,6 +2623,103 @@ function roundRect(ctx,x,y,w,h,r){
   ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);
   ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);
   ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
+}
+
+// ════════════════════════════════════════
+// RELICS / BADGES SYSTEM
+// ════════════════════════════════════════
+const RELICS_DEF = [
+  {id:'engrenagem_ouro',   icon:'⚙️',  label:'Engrenagem de Ouro',    color:'#c9a84c', border:'rgba(201,168,76,0.5)',   desc:'Nota máxima em Lógica'},
+  {id:'pena_retora',       icon:'🖊',  label:'Pena Retórica',          color:'#60a0f0', border:'rgba(96,160,240,0.5)',   desc:'Nota máxima em Retórica'},
+  {id:'esmeralda_viva',    icon:'💚',  label:'Esmeralda Viva',         color:'#50c878', border:'rgba(80,200,120,0.5)',   desc:'Nota máxima em Originalidade'},
+  {id:'tinteiro_imortal',  icon:'🖋',  label:'Tinteiro Imortal',       color:'#c070c8', border:'rgba(192,112,200,0.5)', desc:'3 ou mais concursos consecutivos'},
+  {id:'coroa_primeira',    icon:'👑',  label:'Coroa do Primeiro',      color:'#f0c860', border:'rgba(240,200,96,0.5)',   desc:'Primeiro lugar em um concurso'},
+  {id:'tripla_coroa',      icon:'🌟',  label:'Tripla Coroa',           color:'#f5dfa0', border:'rgba(245,223,160,0.5)', desc:'Três primeiros lugares distintos'},
+  {id:'filosofo',          icon:'📜',  label:'Filósofo das Palavras',  color:'#b8f0ff', border:'rgba(184,240,255,0.5)', desc:'Nota máxima em Profundidade'},
+  {id:'sublime',           icon:'✨',  label:'O Sublime',              color:'#ff8080', border:'rgba(255,128,128,0.5)', desc:'Nota geral acima de 9.0'},
+  {id:'persistencia',      icon:'⚔️',  label:'Aço da Persistência',   color:'#d4864a', border:'rgba(212,134,74,0.5)',  desc:'5 ou mais obras submetidas'},
+  {id:'excelencia_pura',   icon:'💎',  label:'Excelência Pura',        color:'#b8f0ff', border:'rgba(184,240,255,0.8)', desc:'Primeira obra acima de 9.5'},
+];
+
+function checkAndGrantRelics(authorName){
+  if(!DB.relics) DB.relics={};
+  if(!DB.relics[authorName]) DB.relics[authorName]=[];
+  const granted=DB.relics[authorName];
+  const grant=id=>{if(!granted.includes(id)){granted.push(id);return true;}return false;};
+  const lower=authorName.toLowerCase();
+  const mySubs=(DB.submissoes||[]).filter(s=>s.autor.toLowerCase()===lower);
+  const myAvs=(DB.avaliacoes||[]).filter(a=>{
+    const s=(DB.submissoes||[]).find(x=>x.id===a.subId);
+    return s&&s.autor.toLowerCase()===lower;
+  });
+  // Per-sub scores
+  const subScores={};
+  myAvs.forEach(av=>{
+    if(!subScores[av.subId]) subScores[av.subId]={scores:[],retQ:[],logQ:[],origQ:[],profQ:[]};
+    if(av.finalScore!=null) subScores[av.subId].scores.push(av.finalScore);
+    ['retQ','logQ','origQ','profQ'].forEach(k=>{
+      const vs=Object.values(av[k]||{});
+      if(vs.length) subScores[av.subId][k].push(Math.min(10,Math.max(0,5+vs.reduce((a,b)=>a+b,0))));
+    });
+  });
+  let changed=false;
+  Object.values(subScores).forEach(ss=>{
+    const avg=ss.scores.length?ss.scores.reduce((a,b)=>a+b,0)/ss.scores.length:null;
+    const catAvg=k=>ss[k].length?ss[k].reduce((a,b)=>a+b,0)/ss[k].length:null;
+    if(catAvg('logQ')>=9.5) changed=grant('engrenagem_ouro')||changed;
+    if(catAvg('retQ')>=9.5) changed=grant('pena_retora')||changed;
+    if(catAvg('origQ')>=9.5) changed=grant('esmeralda_viva')||changed;
+    if(catAvg('profQ')>=9.5) changed=grant('filosofo')||changed;
+    if(avg!=null&&avg>=9.0) changed=grant('sublime')||changed;
+    if(avg!=null&&avg>=9.5) changed=grant('excelencia_pura')||changed;
+  });
+  if(mySubs.length>=5) changed=grant('persistencia')||changed;
+  // Victories
+  const firsts=(DB.participants||{})[authorName]?.firsts||0;
+  if(firsts>=1) changed=grant('coroa_primeira')||changed;
+  if(firsts>=3) changed=grant('tripla_coroa')||changed;
+  // 3 consecutive events
+  const evIds=[...new Set(mySubs.map(s=>s.eventoId))];
+  if(evIds.length>=3) changed=grant('tinteiro_imortal')||changed;
+  if(changed){DB.relics[authorName]=granted;saveDB();}
+  return granted;
+}
+
+function renderRelics(granted){
+  if(!granted||!granted.length) return '<div style="font-size:12px;color:var(--text3);font-family:var(--font-sans)">Nenhuma relíquia conquistada ainda.</div>';
+  return`<div class="relic-grid">${RELICS_DEF.map(r=>{
+    const has=granted.includes(r.id);
+    return`<div class="relic${has?'':' relic-locked'}" style="color:${r.color};border-color:${r.border};background:${r.color}18" title="${r.desc}">
+      <span class="relic-icon">${r.icon}</span>${r.label}
+    </div>`;
+  }).join('')}</div>`;
+}
+
+// Dynamic title based on strongest category
+function getDynamicTitle(authorName){
+  const lower=authorName.toLowerCase();
+  const catSums={ret:0,log:0,orig:0,prof:0};
+  const catN={ret:0,log:0,orig:0,prof:0};
+  (DB.avaliacoes||[]).forEach(av=>{
+    const s=(DB.submissoes||[]).find(x=>x.id===av.subId);
+    if(!s||s.autor.toLowerCase()!==lower) return;
+    ['retQ','logQ','origQ','profQ'].forEach((k,i)=>{
+      const vs=Object.values(av[k]||{});
+      if(vs.length){
+        const key=['ret','log','orig','prof'][i];
+        catSums[key]+=Math.min(10,Math.max(0,5+vs.reduce((a,b)=>a+b,0)));
+        catN[key]++;
+      }
+    });
+  });
+  const avgs=Object.entries(catSums).map(([k,v])=>({k,avg:catN[k]?v/catN[k]:0})).filter(x=>x.avg>0);
+  if(!avgs.length) return null;
+  avgs.sort((a,b)=>b.avg-a.avg);
+  const best=avgs[0];
+  const tierLabel=(DB.participants||{})[authorName]?.tierId||'none';
+  const prefix=tierLabel.startsWith('escritor')?'Grão-Mestre':tierLabel.startsWith('veterano')?'Mestre':'Aprendiz';
+  const catName={ret:'da Retórica',log:'da Lógica',orig:'da Originalidade',prof:'da Profundidade'}[best.k]||'das Palavras';
+  return`${prefix} ${catName}`;
 }
 // ════════════════════════════════════════
 // RANKING
@@ -3792,7 +4076,9 @@ function enterParticipantPortal(){
   const gp=buildAuthorGlobalPanel(name);
   const existG=document.getElementById('partGlobalPanel');
   if(existG) existG.remove();
-  if(gp){const gd=document.createElement('div');gd.id='partGlobalPanel';gd.style.cssText='width:100%;max-width:900px;margin:0 auto 1.5rem';gd.innerHTML=gp;document.getElementById('partEventsTitle').before(gd);}
+  if(gp){const gd=document.createElement('div');gd.id='partGlobalPanel';gd.style.cssText='width:100%;max-width:900px;margin:0 auto 1.5rem';gd.innerHTML=gp;document.getElementById('partEventsTitle').before(gd);
+    setTimeout(()=>{gd.querySelectorAll('.rpg-bar-panel').forEach(p=>p.classList.add('animate'));gd.querySelectorAll('.part-score-panel').forEach(p=>p.classList.add('animate-in'));},80);
+  }
   const grid=document.getElementById('partGrid');
   grid.innerHTML=allEvents.map(ev=>{
     const evSubs=mySubs.filter(s=>s.eventoId===ev.id);
@@ -3823,6 +4109,11 @@ function showPartEventPortal(evId,authorName){
   </div>`;
   cont.innerHTML=header+scorePanel+html;
   cont.scrollIntoView({behavior:'smooth',block:'start'});
+  // Trigger RPG bar animations
+  setTimeout(()=>{
+    cont.querySelectorAll('.rpg-bar-panel').forEach(p=>p.classList.add('animate'));
+    cont.querySelectorAll('.part-score-panel').forEach(p=>p.classList.add('animate-in'));
+  },80);
 }
 
 // ════════════════════════════════════════
@@ -4142,7 +4433,7 @@ function buildAuthorScorePanel(evId,authorName){
           <strong style="color:var(--gold);font-size:16px">${av.finalScore!=null?av.finalScore.toFixed(2):'—'}</strong>
         </div>
         ${rows}
-        ${av.feedback?`<div style="margin-top:6px;padding:6px 10px;background:rgba(201,168,76,0.04);border-left:2px solid rgba(201,168,76,0.3);font-size:12px;font-family:var(--font-serif);font-style:italic;color:var(--text3);line-height:1.5">"${av.feedback}"</div>`:''}
+        ${av.feedback?`<div style="margin-top:6px;padding:6px 10px;background:rgba(201,168,76,0.04);border-left:2px solid rgba(201,168,76,0.3);font-size:12px;font-family:var(--font-serif);font-style:italic;color:var(--text3);line-height:1.5">${renderMarkdown(av.feedback)}</div>`:''}
       </div>`;
     }).join('')}
       ${catRows?`<div><div style="font-size:10px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">Por categoria</div>${catRows}</div>`:''}
@@ -4204,7 +4495,12 @@ function buildAuthorGlobalPanel(authorName){
   </div>`).join('');
   return`<div class="part-score-panel">
     <div class="part-score-header">✦ Perfil Global — ${authorName}</div>
-    <div style="margin-bottom:0.875rem;font-family:var(--font-display);font-size:17px;${TIER_CSS[tier.id]||'color:var(--text3)'}">${tier.id!=='none'?tier.label:'Sem título ainda'}</div>
+    <div style="margin-bottom:4px;font-family:var(--font-display);font-size:17px;${TIER_CSS[tier.id]||'color:var(--text3)'}">
+      ${tier.id!=='none'?tier.label:'Sem título ainda'}
+    </div>
+    <div class="dynamic-title">${getDynamicTitle(authorName)||''}</div>
+    <div style="margin:12px 0 4px;font-size:11px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.08em;text-transform:uppercase">Relíquias</div>
+    ${renderRelics(checkAndGrantRelics(authorName))}
     <div class="part-stat-grid">
       ${globalAvg!=null?`<div class="part-stat"><div class="part-stat-val">${globalAvg.toFixed(2)}</div><div class="part-stat-lbl">Média Geral</div></div>`:''}
       <div class="part-stat"><div class="part-stat-val">${participant?.firsts||0}</div><div class="part-stat-lbl">🥇 1ºs</div></div>
@@ -4327,6 +4623,123 @@ function exportSocialCard(type, subId, authorName){
   const safeName=(authorName||'autor').replace(/[^a-zA-Z0-9]/g,'_');
   link.download=`veritas_${type}_${safeName}.jpg`;
   link.href=canvas.toDataURL('image/jpeg',0.92);link.click();
+}
+
+// ════════════════════════════════════════
+// HALL OF FAME
+// ════════════════════════════════════════
+function renderHall(){
+  const el=document.getElementById('hallList');
+  const modalFilter=document.getElementById('hallModalFilter')?.value||'';
+  if(!el) return;
+  // Collect all subs with avg >= 9.0
+  const results=[];
+  (DB.submissoes||[]).forEach(sub=>{
+    if(modalFilter&&sub.modal!==modalFilter) return;
+    const avs=(DB.avaliacoes||[]).filter(a=>a.subId===sub.id&&a.judgeId!=='admin');
+    const scores=avs.map(a=>a.finalScore).filter(x=>x!=null);
+    if(!scores.length) return;
+    const avg=scores.reduce((a,b)=>a+b,0)/scores.length;
+    if(avg<9.0) return;
+    const ev=(DB.eventos||[]).find(e=>e.id===sub.eventoId);
+    results.push({sub,avg,ev,avs});
+  });
+  results.sort((a,b)=>b.avg-a.avg);
+  const countEl=document.getElementById('hallCount');
+  if(countEl) countEl.textContent=results.length+' obra'+(results.length!==1?'s':'');
+  if(!results.length){
+    el.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:14px;padding:2rem;text-align:center">Nenhuma obra atingiu 9.0 ainda. O Acervo aguarda os dignos.</div>';
+    return;
+  }
+  el.innerHTML=results.map(({sub,avg,ev,avs},i)=>{
+    const mB=sub.modal==='poesia'?'badge-gold':sub.modal==='cronica'?'badge-blue':'badge-green';
+    const alch=getAlchPhrase(avg,i,{id:'none'});
+    const feedbacks=avs.filter(a=>a.feedback).map(a=>`<div style="padding:6px 10px;border-left:2px solid rgba(201,168,76,0.3);margin-bottom:4px;font-size:13px;font-family:var(--font-serif);font-style:italic;color:var(--text3)">"${renderMarkdown(a.feedback)}"<span style="font-size:11px;font-style:normal;margin-left:6px;color:var(--text3)">— ${a.judgeName||a.judgeId}</span></div>`).join('');
+    const medal=i===0?'🏆':i===1?'🥇':i===2?'🥈':'✦';
+    return`<div class="hall-card" style="margin-bottom:1rem;animation:rpgFadeUp 0.4s ${i*0.08}s both">
+      <div class="hall-score-badge">${medal} ${avg.toFixed(2)}</div>
+      <div style="font-family:var(--font-display);font-size:20px;color:var(--gold2);margin-bottom:4px">${sub.titulo}</div>
+      <div style="font-size:13px;color:var(--text3);font-family:var(--font-sans);margin-bottom:8px">
+        ${sub.autor} · <span class="badge ${mB}">${sub.modal}</span> · ${ev?ev.nome:'?'}
+      </div>
+      <div class="alch-phrase" style="margin-bottom:8px">${alch}</div>
+      ${feedbacks?`<div style="margin-top:8px">${feedbacks}</div>`:''}
+      <button class="btn btn-sm" onclick="viewSub('${sub.id}')" style="margin-top:10px">📖 Ler obra</button>
+    </div>`;
+  }).join('');
+}
+
+// ════════════════════════════════════════
+// MARKDOWN FEEDBACK
+// ════════════════════════════════════════
+function renderMarkdown(text){
+  if(!text) return '';
+  return text
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>')
+    .replace(/^- (.+)$/gm,'<li>$1</li>')
+    .replace(/(<li>.*<\/li>)/gs,'<ul>$1</ul>')
+    .replace(/`(.+?)`/g,'<code style="background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:3px;font-size:0.9em">$1</code>')
+    .replace(/\n/g,'<br>');
+}
+function mdInsert(taId,before,after){
+  const ta=document.getElementById(taId);if(!ta) return;
+  const s=ta.selectionStart,e=ta.selectionEnd;
+  const sel=ta.value.substring(s,e)||'texto';
+  ta.setRangeText(before+sel+after,s,e,'select');
+  ta.dispatchEvent(new Event('input'));
+  updateFeedbackPreview();
+}
+function updateFeedbackPreview(){
+  const ta=document.getElementById('evalFeedback');
+  const prev=document.getElementById('feedbackPreview');
+  if(!ta||!prev) return;
+  prev.innerHTML=renderMarkdown(ta.value);
+}
+function switchFeedbackTab(tab){
+  const ta=document.getElementById('evalFeedback');
+  const prev=document.getElementById('feedbackPreview');
+  document.querySelectorAll('.feedback-tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===tab));
+  if(tab==='preview'){
+    updateFeedbackPreview();
+    if(ta) ta.style.display='none';
+    if(prev) prev.classList.add('visible');
+  } else {
+    if(ta) ta.style.display='';
+    if(prev) prev.classList.remove('visible');
+  }
+}
+
+// ════════════════════════════════════════
+// BLIND REVIEW TOGGLE
+// ════════════════════════════════════════
+let _blindMode=false;
+function toggleBlindMode(){
+  _blindMode=!_blindMode;
+  const btn=document.getElementById('btnBlindMode');
+  if(btn){
+    btn.textContent=_blindMode?'👁 Revelar Autor':'🙈 Modo Cego';
+    btn.style.borderColor=_blindMode?'rgba(181,34,34,0.5)':'rgba(201,168,76,0.3)';
+    btn.style.color=_blindMode?'#e06060':'var(--gold)';
+  }
+  // Rerender with blind mode
+  if(currentEvalSub) renderEvalForm(currentEvalSub);
+}
+
+// ════════════════════════════════════════
+// PERGAMINHO / SEPIA READER
+// ════════════════════════════════════════
+let _pergaminhoMode=false;
+function togglePergaminhoMode(){
+  _pergaminhoMode=!_pergaminhoMode;
+  const overlay=document.getElementById('readerOverlay');
+  const btn=document.getElementById('btnPergaminho');
+  overlay.classList.toggle('pergaminho',_pergaminhoMode);
+  overlay.classList.toggle('sepia',false); // remove sepia if active
+  if(btn) btn.textContent=_pergaminhoMode?'🌙':'📜';
+  btn.title=_pergaminhoMode?'Modo Escuro':'Modo Pergaminho';
 }
 // ════════════════════════════════════════
 // ARCHIVE SYSTEM
@@ -5104,6 +5517,7 @@ window.addEventListener('DOMContentLoaded',()=>{
       <button class="reader-font-btn" onclick="readerFontAdj(2)">A+</button>
       <button class="reader-font-btn" onclick="toggleAnnotPanel()" title="Anotações">💬</button>
       <button class="reader-font-btn" onclick="toggleSepiaMode()" title="Modo Sépia" id="btnSepia">🌙</button>
+      <button class="reader-font-btn" onclick="togglePergaminhoMode()" title="Modo Pergaminho" id="btnPergaminho">📜</button>
       <button class="btn btn-primary btn-sm" onclick="closeReader()">✕ Fechar</button>
     </div>
     <div style="width:100%;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px">
