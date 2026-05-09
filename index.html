@@ -3187,7 +3187,7 @@ function openParticipantPortal(evId){
 }
 
 function buildParticipantPortalHTML(evId,authorFilter){
-  const ev=DB.eventos.find(e=>e.id===evId);if(!ev) return '';
+  const ev=(DB.eventos||[]).find(e=>e.id===evId);if(!ev) return '';
   // CORREÇÃO: fallback
   const subs=(DB.submissoes||[]).filter(s=>s.eventoId===evId);
   const ranked=getRanked(evId);
@@ -3207,7 +3207,8 @@ function buildParticipantPortalHTML(evId,authorFilter){
       const tierCss=TIER_CSS[tier.id]||'color:var(--text3)';
       // Individual judge scores
       // CORREÇÃO: fallback
-      const judgeAvs=(DB.avaliacoes||[]).filter(a=>a.subId===s.id&&a.judgeId!=='admin');
+      const _allJA1=(DB.avaliacoes||[]).filter(a=>a.subId===s.id);
+      const judgeAvs=_allJA1.filter(a=>a.judgeId!=='admin').length>0?_allJA1.filter(a=>a.judgeId!=='admin'):_allJA1;
       const judgeScoreHTML=judgeAvs.map(av=>`<span class="judge-score-pill">${av.judgeName||av.judgeId}: <strong style="color:var(--gold)">${av.finalScore!=null?av.finalScore.toFixed(2):'—'}</strong></span>`).join('');
       html+=`<div class="pub-card" style="border-color:rgba(201,168,76,0.35);margin-bottom:0.875rem">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
@@ -3224,7 +3225,7 @@ function buildParticipantPortalHTML(evId,authorFilter){
           </div>
         </div>
         <div class="judge-score-row">${judgeScoreHTML}</div>
-        ${buildScoreBreakdown(s,DB.avaliacoes.filter(a=>a.subId===s.id))}
+        ${buildScoreBreakdown(s,(DB.avaliacoes||[]).filter(a=>a.subId===s.id))}
         ${buildCertBadge(evId,i+1,s)}
         <div style="margin-top:10px">
           <button class="btn btn-sm" onclick="toggleReadText('rt_${s.id}')">📖 Ler texto</button>
@@ -3243,7 +3244,8 @@ function buildParticipantPortalHTML(evId,authorFilter){
     subs.forEach(s=>{
       const isRanked=ranked.find(r=>r.id===s.id);
       // CORREÇÃO: fallback
-      const judgeAvs=(DB.avaliacoes||[]).filter(a=>a.subId===s.id&&a.judgeId!=='admin');
+      const _allJA2=(DB.avaliacoes||[]).filter(a=>a.subId===s.id);
+      const judgeAvs=_allJA2.filter(a=>a.judgeId!=='admin').length>0?_allJA2.filter(a=>a.judgeId!=='admin'):_allJA2;
       const sc=judgeAvs.map(a=>a.finalScore).filter(x=>x!=null);
       const avg=sc.length?sc.reduce((a,b)=>a+b,0)/sc.length:null;
       const tier=getTier(((DB.participants||{})[s.autor]||{}).tierId||'none');
@@ -4085,22 +4087,37 @@ function showPartEventPortal(evId,authorName){
   const cont=document.getElementById('partPortalContent');
   const ev=(DB.eventos||[]).find(e=>e.id===evId);
   if(!ev||!cont) return;
-  const scorePanel=buildAuthorScorePanel(evId,authorName);
-  const html=buildParticipantPortalHTML(evId,authorName);
-  const header=`<div style="display:flex;align-items:center;gap:12px;margin:1.5rem 0 1rem;flex-wrap:wrap">
-    <button class="btn btn-sm" onclick="document.getElementById('partPortalContent').innerHTML='';document.getElementById('partGrid').scrollIntoView({behavior:'smooth'})">← Voltar</button>
-    <div>
-      <div style="font-family:var(--font-display);font-size:22px;color:var(--gold2)">${ev.nome}</div>
-      <div style="font-size:13px;color:var(--text3);font-family:var(--font-sans)">${ev.finalized?'✦ Finalizado':'Em andamento'}</div>
-    </div>
-  </div>`;
-  cont.innerHTML=header+scorePanel+html;
+  // Loading state
+  cont.innerHTML='<div style="text-align:center;padding:3rem;color:var(--text3);font-family:var(--font-sans)">⏳ Carregando...</div>';
   cont.scrollIntoView({behavior:'smooth',block:'start'});
-  // Trigger RPG bar animations
+  // Use setTimeout so loading state renders before heavy computation
   setTimeout(()=>{
-    cont.querySelectorAll('.rpg-bar-panel').forEach(p=>p.classList.add('animate'));
-    cont.querySelectorAll('.part-score-panel').forEach(p=>p.classList.add('animate-in'));
-  },80);
+    try{
+      const scorePanel=buildAuthorScorePanel(evId,authorName)||'';
+      const portalHtml=buildParticipantPortalHTML(evId,authorName)||'';
+      const header=`<div style="display:flex;align-items:center;gap:12px;margin:1.5rem 0 1rem;flex-wrap:wrap">
+        <button class="btn btn-sm" onclick="document.getElementById('partPortalContent').innerHTML='';document.getElementById('partGrid').scrollIntoView({behavior:'smooth'})">← Voltar</button>
+        <div>
+          <div style="font-family:var(--font-display);font-size:22px;color:var(--gold2)">${ev.nome}</div>
+          <div style="font-size:13px;color:var(--text3);font-family:var(--font-sans)">${ev.finalized?'✦ Finalizado':'Em andamento'}</div>
+        </div>
+      </div>`;
+      cont.innerHTML=header+scorePanel+portalHtml;
+      setTimeout(()=>{
+        cont.querySelectorAll('.rpg-bar-panel').forEach(p=>p.classList.add('animate'));
+        cont.querySelectorAll('.part-score-panel').forEach(p=>p.classList.add('animate-in'));
+      },80);
+    }catch(err){
+      console.error('showPartEventPortal error:',err);
+      cont.innerHTML=`<div style="padding:2rem">
+        <button class="btn btn-sm" onclick="document.getElementById('partPortalContent').innerHTML='';document.getElementById('partGrid').scrollIntoView({behavior:'smooth'})" style="margin-bottom:1rem">← Voltar</button>
+        <div style="color:var(--crimson2);font-family:var(--font-sans);font-size:14px">
+          <strong>Erro ao carregar:</strong> ${err.message}<br>
+          <span style="color:var(--text3);font-size:12px">Abra o console (F12) para mais detalhes.</span>
+        </div>
+      </div>`;
+    }
+  },30);
 }
 
 // ════════════════════════════════════════
