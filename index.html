@@ -2929,7 +2929,7 @@ function renderPublicViewContent(evId){
           </div>
         </div>
         <div id="rt_${s.id}" style="display:none;margin-top:10px">
-          <div class="text-preview" style="max-height:220px">${s.texto.split('\n').map(l=>`<p>${l||'&nbsp;'}</p>`).join('')}</div>
+          <div class="text-preview" style="max-height:220px">${(s.texto||'').split('\n').map(function(l){return '<p>'+(l||'&nbsp;')+'</p>';}).join('')}</div>
         </div>
       </div>`;
     });
@@ -2950,7 +2950,7 @@ function renderPublicViewContent(evId){
           </div>
         </div>
         <div id="rt_${s.id}" style="display:none;margin-top:10px">
-          <div class="text-preview" style="max-height:200px">${s.texto.split('\n').map(l=>`<p>${l||'&nbsp;'}</p>`).join('')}</div>
+          <div class="text-preview" style="max-height:200px">${(s.texto||'').split('\n').map(l=>'<p>'+(l||'&nbsp;')+'</p>').join('')}</div>
         </div>
       </div>`;
     });
@@ -2980,9 +2980,11 @@ function buildScoreBreakdown(sub,avs){
   // Collect feedbacks from all judges
   // CORREÇÃO: garante que avs é array
   const _avsSafe=Array.isArray(avs)?avs:[];
-  const judgeAvs=_avsSafe.filter(a=>a.judgeId!=='admin');
-  const feedbacks=judgeAvs.filter(a=>a.feedback&&a.feedback.trim()).map(a=>({judge:a.judgeName,text:a.feedback}));
-  if(!avs.length) return '';
+  // Use non-admin judges; fall back to admin if sole evaluator
+  const _nonAdmin=_avsSafe.filter(a=>a.judgeId!=='admin');
+  const judgeAvs=_nonAdmin.length>0?_nonAdmin:_avsSafe;
+  const feedbacks=judgeAvs.filter(a=>a.feedback&&a.feedback.trim()).map(a=>({judge:a.judgeName||a.judgeId,text:a.feedback}));
+  if(!_avsSafe.length) return '';
   // Average scores per category across all judges
   const cats=['Gramática','Retórica','Lógica','Originalidade','Profundidade Literária',...Object.keys(MQ[sub.modal]||{})];
   const catScores=cats.map(cat=>{
@@ -3003,7 +3005,7 @@ function buildScoreBreakdown(sub,avs){
   if(feedbacks.length){
     html2+=`<div style="margin-top:8px;padding:8px 10px;background:rgba(201,168,76,0.04);border:1px solid rgba(201,168,76,0.15);border-radius:var(--radius)">
       <div style="font-size:15px;color:var(--gold);font-family:var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px">Feedback dos Avaliadores</div>
-      ${feedbacks.map(fb=>`<div style="font-size:18px;color:var(--text2);font-family:var(--font-serif);font-style:italic;margin-bottom:6px;line-height:1.6">"${fb.text}"<span style="font-size:15px;color:var(--text3);font-family:var(--font-sans);font-style:normal;margin-left:8px">— ${fb.judge}</span></div>`).join('')}
+      ${feedbacks.map(fb=>{const safeTxt=renderMarkdown(fb.text||'');return`<div style="font-size:18px;color:var(--text2);font-family:var(--font-serif);font-style:italic;margin-bottom:6px;line-height:1.6">${safeTxt}<span style="font-size:15px;color:var(--text3);font-family:var(--font-sans);font-style:normal;margin-left:8px">— ${fb.judge||''}</span></div>`;}).join('')}
     </div>`;
   }
   return html2;
@@ -3231,7 +3233,7 @@ function buildParticipantPortalHTML(evId,authorFilter){
           <button class="btn btn-sm" onclick="toggleReadText('rt_${s.id}')">📖 Ler texto</button>
         </div>
         <div id="rt_${s.id}" style="display:none;margin-top:10px">
-          <div class="text-preview" style="max-height:240px">${s.texto.split('\n').map(l=>`<p>${l||'&nbsp;'}</p>`).join('')}</div>
+          <div class="text-preview" style="max-height:240px">${(s.texto||'').split('\n').map(function(l){return '<p>'+(l||'&nbsp;')+'</p>';}).join('')}</div>
         </div>
       </div>`;
     });
@@ -3269,7 +3271,7 @@ function buildParticipantPortalHTML(evId,authorFilter){
           <button class="btn btn-sm" onclick="toggleReadText('rt2_${s.id}')">📖 Ler texto</button>
         </div>
         <div id="rt2_${s.id}" style="display:none;margin-top:8px">
-          <div class="text-preview" style="max-height:200px">${s.texto.split('\n').map(l=>`<p>${l||'&nbsp;'}</p>`).join('')}</div>
+          <div class="text-preview" style="max-height:200px">${(s.texto||'').split('\n').map(function(l){return '<p>'+(l||'&nbsp;')+'</p>';}).join('')}</div>
         </div>
       </div>`;
     });
