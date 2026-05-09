@@ -4362,16 +4362,29 @@ function deleteArchivedEvent(evId){
 // ════════════════════════════════════════
 function renderMarkdown(text){
   if(!text) return '';
-  return String(text)
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g,'<em>$1</em>')
-    .replace(/`(.+?)`/g,'<code style="background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:3px;font-size:0.9em">$1</code>')
-    .replace(/^> (.+)$/gm,'<blockquote style="border-left:2px solid rgba(201,168,76,0.4);padding-left:8px;margin:4px 0;font-style:italic">$1</blockquote>')
-    .replace(/^- (.+)$/gm,'<li style="margin-left:16px">$1</li>')
-    .replace(/(<li[^>]*>.*<\/li>)/s,'<ul style="padding:0;margin:4px 0">$1</ul>')
-    .replace(/
-/g,'<br>');
+  var t=String(text)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  // Bold, italic, code
+  t=t.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+  t=t.replace(/\*([^*]+)\*/g,'<em>$1</em>');
+  t=t.replace(/`([^`]+)`/g,'<code style="background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:3px;font-size:0.9em">$1</code>');
+  // Blockquote and list — line by line
+  var lines=t.split('\n');
+  var out=[],inList=false;
+  lines.forEach(function(line){
+    if(line.match(/^&gt; /)){
+      if(inList){out.push('</ul>');inList=false;}
+      out.push('<blockquote style="border-left:2px solid rgba(201,168,76,0.4);padding-left:8px;margin:4px 0;font-style:italic">'+line.replace(/^&gt; /,'')+'</blockquote>');
+    } else if(line.match(/^- /)){
+      if(!inList){out.push('<ul style="padding:0 0 0 16px;margin:4px 0">');inList=true;}
+      out.push('<li>'+line.replace(/^- /,'')+'</li>');
+    } else {
+      if(inList){out.push('</ul>');inList=false;}
+      out.push(line);
+    }
+  });
+  if(inList) out.push('</ul>');
+  return out.join('<br>');
 }
 
 function buildAuthorScorePanel(evId,authorName){
