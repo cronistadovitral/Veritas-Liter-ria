@@ -1357,14 +1357,16 @@ function saveDB(){
       const _writeSnapshot = JSON.stringify(DB);
       // Marca como escrevendo para o listener ignorar o eco
       _fbWriting = true;
+      // Safety: release lock after 8s max (handles tab-in-background / Firebase timeout)
+      const _fbWriteTimer = setTimeout(()=>{ _fbWriting=false; }, 8000);
       database.ref('veritas_db').set(DB)
         .then(()=>{
-          // Write confirmado — só agora libera o listener
-          // Mas mantém o snapshot para comparação, não o DB ao vivo
+          clearTimeout(_fbWriteTimer);
           _lastWrittenSnapshot = _writeSnapshot;
           _fbWriting = false;
         })
         .catch(err => {
+          clearTimeout(_fbWriteTimer);
           console.warn('Firebase write error:', err.code, err.message);
           _fbWriting = false;
         });
@@ -2730,9 +2732,13 @@ function populateRankingSelect(){
 sel.innerHTML='<option value="">—</option>'+(DB.eventos||[]).map(e=>`<option value="${e.id}">${e.nome}${e.finalized?' ✦':''}</option>`).join('');
 }
 function getRanked(evId){
-  // CORREÇÃO: fallback
   return (DB.submissoes||[]).filter(s=>s.eventoId===evId).map(s=>{
-    const avs=(DB.avaliacoes||[]).filter(a=>a.subId===s.id&&a.judgeId!=='admin');
+    // Inclui todas as avaliações (inclusive admin como juiz único)
+    const allAvs=(DB.avaliacoes||[]).filter(a=>a.subId===s.id);
+    const nonAdminAvs=allAvs.filter(a=>a.judgeId!=='admin');
+    // Se há avaliações de juízes normais, usa apenas elas
+    // Se só há avaliação do admin, usa a do admin (avaliação única)
+    const avs=nonAdminAvs.length>0?nonAdminAvs:allAvs;
     const sc=avs.map(a=>a.finalScore).filter(x=>x!=null);
     return{...s,avg:sc.length?sc.reduce((a,b)=>a+b,0)/sc.length:null,avCount:avs.length};
   }).filter(s=>s.avg!=null).sort((a,b)=>b.avg-a.avg);
@@ -4363,7 +4369,10 @@ function buildAuthorScorePanel(evId,authorName){
   mySubs.forEach(sub=>{
     const rankPos=ranked.findIndex(r=>r.id===sub.id);
     const pos=rankPos>=0?rankPos+1:null;
-    const avs=(DB.avaliacoes||[]).filter(a=>a.subId===sub.id&&a.judgeId!=='admin');
+    // Inclui admin quando é o único avaliador (avaliação solo)
+    const allSubAvs=(DB.avaliacoes||[]).filter(a=>a.subId===sub.id);
+    const nonAdminSubAvs=allSubAvs.filter(a=>a.judgeId!=='admin');
+    const avs=nonAdminSubAvs.length>0?nonAdminSubAvs:allSubAvs;
     const scores=avs.map(a=>a.finalScore).filter(x=>x!=null);
     const avg=scores.length?scores.reduce((a,b)=>a+b,0)/scores.length:null;
     if(!avs.length) return;
@@ -4476,7 +4485,11 @@ function buildAuthorGlobalPanel(authorName){
   if(!mySubs.length) return '';
   const allScores=[];
   mySubs.forEach(sub=>{
-    (DB.avaliacoes||[]).filter(a=>a.subId===sub.id&&a.judgeId!=='admin').forEach(av=>{
+    // Inclui admin quando é o único avaliador
+    const allSubAvs2=(DB.avaliacoes||[]).filter(a=>a.subId===sub.id);
+    const nonAdmin2=allSubAvs2.filter(a=>a.judgeId!=='admin');
+    const useAvs2=nonAdmin2.length>0?nonAdmin2:allSubAvs2;
+    useAvs2.forEach(av=>{
       if(av.finalScore!=null) allScores.push(av.finalScore);
     });
   });
