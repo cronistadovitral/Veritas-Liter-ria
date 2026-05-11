@@ -945,6 +945,8 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 <!-- Firebase Config -->
 <script>
+var _blindMode=false;
+var _pergaminhoMode=false;
 // ════════════════════════════════════════
 // FIREBASE CONFIG
 // ════════════════════════════════════════
@@ -1550,25 +1552,8 @@ function previewEvCover(inp){
   };
   r.readAsDataURL(f);
 }
-function saveEvento(){
-  const nome=document.getElementById('evNome').value.trim();
-  const desc=document.getElementById('evDesc').value.trim();
-  const start=document.getElementById('evStart').value;
-  const end=document.getElementById('evEnd').value;
-  const max=parseInt(document.getElementById('evMax').value)||10;
-  const words=parseInt(document.getElementById('evWords').value)||4000;
-  const tierMin=document.getElementById('evTierMin').value;
-  const err=document.getElementById('evErr');
-  if(!nome){err.textContent='Nome obrigatório.';err.classList.remove('hidden');return;}
-  err.classList.add('hidden');
-  // Generate public token
-  const token='ev_'+Math.random().toString(36).substr(2,9);
-  DB.eventos.push({id:'ev_'+Date.now(),nome,desc,start,end,max,words,tierMin,finalized:false,cover:pendingEvCover||null,token,criado:new Date().toISOString()});
-  pendingEvCover=null;
-  saveDB();closeModal('modalNewEvent');renderEventos();populateAllSelects();
-  document.getElementById('evNome').value='';document.getElementById('evDesc').value='';
-  document.getElementById('evCoverInput').value='';document.getElementById('evCoverPreview').style.display='none';
-}
+// saveEvento: see definition below
+
 function renderEventos(){
   const el=document.getElementById('eventosList');
   const isAdmin=currentUser&&currentUser.id==='admin';
@@ -2853,26 +2838,7 @@ function renderCertList(){
 // ════════════════════════════════════════
 // ÁREA PÚBLICA
 // ════════════════════════════════════════
-function renderPublicoPage(){
-  const cont=document.getElementById('publicoContent');
-  if(!DB.eventos.length){cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:18px">Nenhum evento disponível.</div>';return;}
-  let html='<div style="margin-bottom:1rem;font-size:18px;font-family:var(--font-sans);color:var(--text3)">Clique em um evento para ver como o participante visualiza. O link pode ser compartilhado.</div>';
-  html+=DB.eventos.map(ev=>{
-    const subs=DB.submissoes.filter(s=>s.eventoId===ev.id).length;
-    const ranked=getRanked(ev.id);
-    return`<div class="pub-card">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
-        <div><div style="font-family:var(--font-display);font-size:21px;color:var(--gold2)">${ev.nome}</div><div style="font-size:15px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">${subs} submissões · ${ev.finalized?'Finalizado':'Em curso'}</div></div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap">
-          <button class="btn btn-sm" onclick="openPublicView('${ev.id}')">👁 Simular Visualização</button>
-          <button class="btn btn-sm" onclick="copyPublicLink('${ev.id}')">🔗 Copiar Link</button>
-        </div>
-      </div>
-      ${ev.finalized&&ranked.length?`<div style="margin-top:10px;font-size:16px;font-family:var(--font-sans);color:var(--text3)">Vencedores: ${ranked.slice(0,3).map((s,i)=>`<strong style="color:var(--gold2)">${s.titulo}</strong> (${['1º','2º','3º'][i]})`).join(', ')}</div>`:''}
-    </div>`;
-  }).join('');
-  cont.innerHTML=html;
-}
+// renderPublicoPage: see definition below
 
 function openPublicView(evId){
   const ev=DB.eventos.find(e=>e.id===evId);if(!ev) return;
@@ -3227,13 +3193,15 @@ function buildParticipantPortalHTML(evId,authorFilter){
           </div>
         </div>
         <div class="judge-score-row">${judgeScoreHTML}</div>
-        ${buildScoreBreakdown(s,(DB.avaliacoes||[]).filter(a=>a.subId===s.id))}
         ${buildCertBadge(evId,i+1,s)}
-        <div style="margin-top:10px">
-          <button class="btn btn-sm" onclick="toggleReadText('rt_${s.id}')">📖 Ler texto</button>
+        <div style="margin-top:12px">
+          <div class="text-preview" style="max-height:320px">${(s.texto||'').split('\n').map(function(l){return '<p>'+(l||'&nbsp;')+'</p>';}).join('')}</div>
         </div>
-        <div id="rt_${s.id}" style="display:none;margin-top:10px">
-          <div class="text-preview" style="max-height:240px">${(s.texto||'').split('\n').map(function(l){return '<p>'+(l||'&nbsp;')+'</p>';}).join('')}</div>
+        <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-sm" onclick="toggleReadText('rb_${s.id}')" style="border-color:rgba(201,168,76,0.3);color:var(--gold)">📊 Ver avaliação detalhada</button>
+        </div>
+        <div id="rb_${s.id}" style="display:none;margin-top:10px">
+          ${buildScoreBreakdown(s,(DB.avaliacoes||[]).filter(a=>a.subId===s.id))}
         </div>
       </div>`;
     });
@@ -3446,17 +3414,10 @@ function loadHtml2Canvas(cb){
 function exportRankingImage(){
   const evId=document.getElementById('rankingEvento').value;
   if(!evId){alert('Selecione um evento primeiro.');return;}
-  loadHtml2Canvas(()=>{
-    const el=document.getElementById('rankingContent');
-    if(!el||!el.children.length){alert('Gere o ranking primeiro.');return;}
-    html2canvas(el,{backgroundColor:'#0d0b09',scale:2,useCORS:true,logging:false}).then(canvas=>{
-      const link=document.createElement('a');
-      const ev=DB.eventos.find(e=>e.id===evId);
-      link.download=`ranking_${(ev?ev.nome:'evento').replace(/\s/g,'_')}.png`;
-      link.href=canvas.toDataURL('image/png');
-      link.click();
-    });
-  });
+  const ev=(DB.eventos||[]).find(e=>e.id===evId);if(!ev) return;
+  const ranked=getRanked(evId);
+  if(!ranked.length){alert('Nenhuma obra avaliada ainda.');return;}
+  _drawRankingCanvas(ev,ranked,'png');
 }
 
 function exportInstagramBanner(){
@@ -3464,75 +3425,138 @@ function exportInstagramBanner(){
   if(!evId){alert('Selecione um evento primeiro.');return;}
   const ev=(DB.eventos||[]).find(e=>e.id===evId);if(!ev) return;
   const ranked=getRanked(evId);
-  const W=1080,H=1080;
+  if(!ranked.length){alert('Nenhuma obra avaliada ainda.');return;}
+  _drawRankingCanvas(ev,ranked,'jpg');
+}
+
+// ════════════════════════════════════════
+// SHARED RANKING CANVAS ENGINE
+// Draws ALL ranked entries — vivid colors, adaptive height
+// ════════════════════════════════════════
+function _drawRankingCanvas(ev,ranked,fmt){
+  const W=1080;
+  const HEADER_H=230;   // logo + title + separator
+  const ROW_H=130;      // height per entry
+  const FOOTER_H=60;
+  const H=HEADER_H + ranked.length*ROW_H + FOOTER_H + 20;
+
   const canvas=document.createElement('canvas');
-  canvas.width=W*2;canvas.height=H*2;
+  canvas.width=W*2; canvas.height=H*2;
   const ctx=canvas.getContext('2d');
   ctx.scale(2,2);
 
+  // ── Background ──
   drawOilBackground(ctx,W,H,'gold');
   drawOilBorder(ctx,W,H);
 
-  // Header ornament
-  oilText(ctx,'✦  ✦  ✦',W/2,90,{size:22,color:'rgba(201,168,76,0.45)',weight:'normal'});
-  oilText(ctx,ev.nome.length>26?ev.nome.substring(0,26)+'…':ev.nome,W/2,165,{size:52,color:'#f0d880',weight:'bold'});
-  // Separator
-  ctx.strokeStyle='rgba(139,26,26,0.6)';ctx.lineWidth=2;
-  ctx.beginPath();ctx.moveTo(80,188);ctx.lineTo(1000,188);ctx.stroke();
-  ctx.strokeStyle='rgba(201,168,76,0.25)';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(120,195);ctx.lineTo(960,195);ctx.stroke();
-  oilText(ctx,'Resultados Oficiais',W/2,228,{size:24,color:'rgba(201,168,76,0.45)',weight:'normal',family:'Georgia,serif'});
+  // ── Header ──
+  oilText(ctx,'✦  ✦  ✦',W/2,62,{size:18,color:'rgba(201,168,76,0.4)',weight:'normal'});
+  const evNome=ev.nome.length>30?ev.nome.substring(0,30)+'…':ev.nome;
+  oilText(ctx,evNome,W/2,128,{size:48,color:'#f0d880',weight:'bold'});
+  oilText(ctx,'Resultados Oficiais',W/2,162,{size:20,color:'rgba(201,168,76,0.5)',weight:'normal',family:'Georgia,serif'});
+  // separator
+  ctx.strokeStyle='rgba(139,26,26,0.7)';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(60,180);ctx.lineTo(W-60,180);ctx.stroke();
+  ctx.strokeStyle='rgba(201,168,76,0.3)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(100,187);ctx.lineTo(W-100,187);ctx.stroke();
 
-  // Podium entries — oil painting label blocks
-  const podColors=['#e8c96a','#d0d0d0','#d4864a'];
-  const labels=['PRIMEIRO LUGAR','SEGUNDO LUGAR','TERCEIRO LUGAR'];
-  ranked.slice(0,3).forEach((s,i)=>{
-    const y=270+i*242;
-    const baseAlpha=0.08-i*0.01;
-    // Entry background — like a gilded frame
-    const rg=ctx.createLinearGradient(60,y,1020,y+210);
-    rg.addColorStop(0,podColors[i]+(Math.round(baseAlpha*255).toString(16).padStart(2,'0')));
-    rg.addColorStop(1,'transparent');
-    ctx.fillStyle=rg;roundRect(ctx,60,y,960,210,12);ctx.fill();
-    ctx.strokeStyle=podColors[i]+'55';ctx.lineWidth=1.5;roundRect(ctx,60,y,960,210,12);ctx.stroke();
-    // Left accent bar
-    ctx.fillStyle=podColors[i]+'cc';roundRect(ctx,60,y,6,210,3);ctx.fill();
-    // Position label
-    ctx.fillStyle=podColors[i];ctx.font='bold 11px Georgia,serif';ctx.textAlign='left';ctx.globalAlpha=0.7;
-    ctx.fillText(labels[i],88,y+26);ctx.globalAlpha=1;
-    // Title
-    oilText(ctx,s.titulo.length>30?s.titulo.substring(0,30)+'…':s.titulo,88,y+78,{size:34,color:'#e8e0d0',weight:'bold',align:'left',shadow:false});
+  // ── Entry colors ──
+  const COLORS=[
+    {main:'#e8c96a',dim:'#c9a04a',bg:'rgba(232,201,106,0.14)'},  // gold
+    {main:'#d8d8d8',dim:'#b0b0b0',bg:'rgba(200,200,200,0.10)'},  // silver
+    {main:'#e0904a',dim:'#c07030',bg:'rgba(212,134,74,0.12)'},   // bronze
+    {main:'#90c8f0',dim:'#6098c0',bg:'rgba(120,180,220,0.10)'},  // blue
+    {main:'#a0e0a0',dim:'#70b870',bg:'rgba(120,200,120,0.10)'},  // green
+    {main:'#e090c0',dim:'#b060a0',bg:'rgba(180,100,160,0.10)'},  // purple
+    {main:'#f0c0a0',dim:'#c09080',bg:'rgba(220,160,120,0.10)'},  // peach
+    {main:'#c0e8f0',dim:'#80b8c8',bg:'rgba(160,210,230,0.10)'},  // cyan
+    {main:'#e8e0a0',dim:'#c0b870',bg:'rgba(220,210,120,0.10)'},  // lime
+    {main:'#d0a0e0',dim:'#a070c0',bg:'rgba(180,130,200,0.10)'},  // lavender
+  ];
+  const medals=['🥇','🥈','🥉'];
+  const posLabels=['1º LUGAR','2º LUGAR','3º LUGAR','4º LUGAR','5º LUGAR',
+                   '6º LUGAR','7º LUGAR','8º LUGAR','9º LUGAR','10º LUGAR'];
+
+  ranked.forEach((s,i)=>{
+    const y=HEADER_H+i*ROW_H;
+    const col=COLORS[i%COLORS.length];
+
+    // Row background
+    const rg=ctx.createLinearGradient(40,y,W-40,y+ROW_H);
+    rg.addColorStop(0,col.bg);rg.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=rg;
+    roundRect(ctx,40,y+4,W-80,ROW_H-8,10);ctx.fill();
+
+    // Left accent stripe
+    ctx.fillStyle=col.main+'cc';
+    roundRect(ctx,40,y+4,5,ROW_H-8,3);ctx.fill();
+
+    // Position badge
+    ctx.fillStyle=col.dim;
+    ctx.font='bold 11px Georgia,serif';
+    ctx.textAlign='left';ctx.globalAlpha=0.9;
+    ctx.fillText(posLabels[i]||String(i+1)+'º',64,y+26);
+    ctx.globalAlpha=1;
+
+    // Title — vivid, high contrast
+    const titulo=s.titulo.length>34?s.titulo.substring(0,34)+'…':s.titulo;
+    ctx.font='bold 26px Georgia,serif';
+    ctx.fillStyle=col.main;
+    ctx.shadowColor=col.main;ctx.shadowBlur=6;
+    ctx.fillText(titulo,64,y+62);
+    ctx.shadowBlur=0;
+
     // Author
-    ctx.font='italic 22px Georgia,serif';ctx.fillStyle='rgba(180,160,120,0.85)';ctx.fillText(s.autor,88,y+115);
-    // Score — right side with glow
-    const sc=s.avg.toFixed(2);
-    ctx.shadowColor=podColors[i];ctx.shadowBlur=20;
-    ctx.font='bold 58px Georgia,serif';ctx.fillStyle=podColors[i];ctx.textAlign='right';
-    ctx.fillText(sc,990,y+120);ctx.shadowBlur=0;
-    ctx.font='13px Georgia,serif';ctx.fillStyle=podColors[i]+'88';ctx.fillText('nota final',990,y+148);
+    ctx.font='italic 18px Georgia,serif';
+    ctx.fillStyle='rgba(220,210,185,0.9)';
+    ctx.fillText(s.autor,64,y+90);
+
     // Alch phrase
-    const alch=getAlchPhrase(s.avg,i,getTier(((DB.participants||{})[s.autor]||{}).tierId||'none'));
-    ctx.font='italic 15px Georgia,serif';ctx.fillStyle='rgba(201,168,76,0.4)';ctx.textAlign='left';
-    ctx.fillText('✦ '+alch,88,y+168);
+    const alch=typeof getAlchPhrase==='function'?
+      getAlchPhrase(s.avg,i,typeof getTier==='function'?getTier(((DB.participants||{})[s.autor]||{}).tierId||'none'):{id:'none'}):'';
+    ctx.font='italic 13px Georgia,serif';
+    ctx.fillStyle=col.dim+'aa';
+    ctx.fillText('✦ '+alch,64,y+112);
+
+    // Score — RIGHT side, large and bright
+    const scoreStr=s.avg.toFixed(2);
+    ctx.font='bold 46px Georgia,serif';
+    ctx.textAlign='right';
+    ctx.fillStyle=col.main;
+    ctx.shadowColor=col.main;ctx.shadowBlur=12;
+    ctx.fillText(scoreStr,W-50,y+72);
+    ctx.shadowBlur=0;
+    ctx.font='12px Georgia,serif';
+    ctx.fillStyle=col.dim+'99';
+    ctx.fillText('nota final',W-50,y+94);
+
+    // Divider between entries
+    if(i<ranked.length-1){
+      ctx.strokeStyle='rgba(201,168,76,0.12)';ctx.lineWidth=1;
+      ctx.setLineDash([4,6]);
+      ctx.beginPath();ctx.moveTo(64,y+ROW_H);ctx.lineTo(W-64,y+ROW_H);ctx.stroke();
+      ctx.setLineDash([]);
+    }
   });
 
-  // Footer
+  // ── Footer ──
+  const fy=HEADER_H+ranked.length*ROW_H+20;
   ctx.strokeStyle='rgba(201,168,76,0.2)';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(80,1020);ctx.lineTo(1000,1020);ctx.stroke();
-  oilText(ctx,'Veritas Literário  •  cronistadovitral.substack.com',W/2,1052,{size:17,color:'rgba(201,168,76,0.3)',weight:'normal'});
+  ctx.beginPath();ctx.moveTo(60,fy);ctx.lineTo(W-60,fy);ctx.stroke();
+  oilText(ctx,'Veritas Literário  •  cronistadovitral.substack.com',W/2,fy+32,
+    {size:14,color:'rgba(201,168,76,0.35)',weight:'normal'});
 
+  // ── Download ──
   const link=document.createElement('a');
-  link.download=`banner_ranking_${ev.nome.replace(/\s/g,'_')}.jpg`;
-  link.href=canvas.toDataURL('image/jpeg',0.92);link.click();
+  const safeName=ev.nome.replace(/[^a-zA-Z0-9]/g,'_');
+  link.download='ranking_'+safeName+'.'+(fmt||'jpg');
+  link.href=canvas.toDataURL(fmt==='png'?'image/png':'image/jpeg',0.93);
+  link.click();
 }
 
-function roundRect(ctx,x,y,w,h,r){
-  ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);
-  ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);
-  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);
-  ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);
-  ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
-}
+
+// roundRect: see definition above
+
 
 // ════════════════════════════════════════
 // FIREBASE INTEGRATION PAGE
@@ -3997,6 +4021,17 @@ function getAnnotSummaryForEval(subId){
 }
 
 
+
+function togglePergaminhoMode(){
+  _pergaminhoMode=!_pergaminhoMode;
+  const overlay=document.getElementById('readerOverlay');
+  const btn=document.getElementById('btnPergaminho');
+  if(overlay){
+    overlay.classList.toggle('pergaminho',_pergaminhoMode);
+    overlay.classList.remove('sepia');
+  }
+  if(btn) btn.textContent=_pergaminhoMode?'🌙':'📜';
+}
 function toggleSepiaMode(){
   const overlay=document.getElementById('readerOverlay');
   const btn=document.getElementById('btnSepia');
@@ -4362,6 +4397,34 @@ function deleteArchivedEvent(evId){
 // ════════════════════════════════════════
 // MARKDOWN RENDERER (used in feedback display)
 // ════════════════════════════════════════
+
+function mdInsert(taId,before,after){
+  const ta=document.getElementById(taId);if(!ta) return;
+  const s=ta.selectionStart,e=ta.selectionEnd;
+  const sel=ta.value.substring(s,e)||'texto';
+  ta.setRangeText(before+sel+(after||''),s,e,'select');
+  ta.dispatchEvent(new Event('input'));
+  if(typeof updateFeedbackPreview==='function') updateFeedbackPreview();
+}
+function updateFeedbackPreview(){
+  const ta=document.getElementById('evalFeedback');
+  const prev=document.getElementById('feedbackPreview');
+  if(!ta||!prev) return;
+  prev.innerHTML=typeof renderMarkdown==='function'?renderMarkdown(ta.value):ta.value;
+}
+function switchFeedbackTab(tab){
+  const ta=document.getElementById('evalFeedback');
+  const prev=document.getElementById('feedbackPreview');
+  document.querySelectorAll('.feedback-tab').forEach(t=>t.classList.toggle('active',t.dataset&&t.dataset.tab===tab));
+  if(tab==='preview'){
+    if(typeof updateFeedbackPreview==='function') updateFeedbackPreview();
+    if(ta) ta.style.display='none';
+    if(prev) prev.classList.add('visible');
+  } else {
+    if(ta) ta.style.display='';
+    if(prev) prev.classList.remove('visible');
+  }
+}
 function renderMarkdown(text){
   if(!text) return '';
   var t=String(text)
@@ -4868,6 +4931,53 @@ function cloneEvent(evId){
   alert(`Evento "${clone.nome}" criado com sucesso!\nEdite as datas e demais detalhes antes de publicar.`);
 }
 
+
+function renderHall(){
+  const el=document.getElementById('hallList');
+  const countEl=document.getElementById('hallCount');
+  const modalFilter=document.getElementById('hallModalFilter')?document.getElementById('hallModalFilter').value:'';
+  if(!el) return;
+  const results=[];
+  (DB.submissoes||[]).forEach(function(sub){
+    if(modalFilter&&sub.modal!==modalFilter) return;
+    const allAvs=(DB.avaliacoes||[]).filter(function(a){return a.subId===sub.id;});
+    const nonAdmin=allAvs.filter(function(a){return a.judgeId!=='admin';});
+    const avs=nonAdmin.length>0?nonAdmin:allAvs;
+    const scores=avs.map(function(a){return a.finalScore;}).filter(function(x){return x!=null;});
+    if(!scores.length) return;
+    const avg=scores.reduce(function(a,b){return a+b;},0)/scores.length;
+    if(avg<9.0) return;
+    const ev=(DB.eventos||[]).find(function(e){return e.id===sub.eventoId;});
+    results.push({sub:sub,avg:avg,ev:ev,avs:avs});
+  });
+  results.sort(function(a,b){return b.avg-a.avg;});
+  if(countEl) countEl.textContent=results.length+' obra'+(results.length!==1?'s':'');
+  if(!results.length){
+    el.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:14px;padding:2rem;text-align:center;border:1px dashed var(--border);border-radius:var(--radius)">Nenhuma obra atingiu 9.0 ainda. O Acervo aguarda os dignos.</div>';
+    return;
+  }
+  const medals=['🏆','🥇','🥈'];
+  el.innerHTML=results.map(function(item,i){
+    var s=item.sub,ev=item.ev,avs=item.avs,avg=item.avg;
+    var mB=s.modal==='poesia'?'badge-gold':s.modal==='cronica'?'badge-blue':'badge-green';
+    var alch=typeof getAlchPhrase==='function'?getAlchPhrase(avg,i,{id:'none'}):'';
+    var feedbacks=avs.filter(function(a){return a.feedback;}).map(function(a){
+      return '<div style="padding:6px 10px;border-left:2px solid rgba(201,168,76,0.3);margin-bottom:4px;font-size:13px;font-family:var(--font-serif);font-style:italic;color:var(--text3)">'+
+        (typeof renderMarkdown==='function'?renderMarkdown(a.feedback):a.feedback)+
+        '<span style="font-size:11px;font-style:normal;margin-left:6px;color:var(--text3)">— '+(a.judgeName||a.judgeId||'')+'</span></div>';
+    }).join('');
+    var medal=medals[i]||'✦';
+    return '<div class="hall-card" style="margin-bottom:1rem">'+
+      '<div class="hall-score-badge">'+medal+' '+avg.toFixed(2)+'</div>'+
+      '<div style="font-family:var(--font-display);font-size:20px;color:var(--gold2);margin-bottom:4px">'+s.titulo+'</div>'+
+      '<div style="font-size:13px;color:var(--text3);font-family:var(--font-sans);margin-bottom:8px">'+
+        s.autor+' · <span class="badge '+mB+'">'+s.modal+'</span>'+(ev?' · '+ev.nome:'')+'</div>'+
+      '<div class="alch-phrase" style="margin-bottom:8px">'+alch+'</div>'+
+      (feedbacks?'<div style="margin-top:8px">'+feedbacks+'</div>':'')+
+      '<button class="btn btn-sm" onclick="viewSub(\''+s.id+'\')" style="margin-top:10px">📖 Ler obra</button>'+
+    '</div>';
+  }).join('');
+}
 function renderArchivedEventos(){
   const el=document.getElementById('archivedList');
   if(!el) return;
