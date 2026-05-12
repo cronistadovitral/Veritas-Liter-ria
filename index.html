@@ -896,6 +896,45 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 .rpg-bar-panel.animate .rpg-bar-total{animation:rpgFadeUp 0.5s 0.95s both;}
 .rpg-bar-panel.animate .rpg-alch{animation:rpgFadeUp 0.5s 1.1s both;}
 .part-score-panel.animate-in{animation:rpgFadeUp 0.4s ease both;}
+
+/* ── DASHBOARD ── */
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:1.5rem;}
+.dash-stat{
+  background:linear-gradient(135deg,rgba(26,18,8,0.98),rgba(16,12,6,0.99));
+  border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-lg);
+  padding:1.25rem 1.25rem 1rem;position:relative;overflow:hidden;
+}
+.dash-stat::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 0% 0%,rgba(201,168,76,0.05),transparent 60%);
+  pointer-events:none;}
+.dash-stat-val{font-size:40px;font-weight:300;font-family:var(--font-sans);
+  color:var(--gold);line-height:1;margin-bottom:6px;}
+.dash-stat-lbl{font-size:12px;color:var(--text3);font-family:var(--font-sans);
+  letter-spacing:0.07em;text-transform:uppercase;}
+.dash-stat-icon{position:absolute;right:14px;top:14px;font-size:28px;opacity:0.15;}
+.dash-section{margin-bottom:1.5rem;}
+.dash-section-title{font-family:var(--font-display);font-size:14px;color:var(--gold2);
+  letter-spacing:0.08em;margin-bottom:10px;padding-bottom:6px;
+  border-bottom:1px solid var(--border);}
+.dash-alert{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 14px;border-radius:var(--radius);
+  font-family:var(--font-sans);font-size:13px;
+  margin-bottom:6px;cursor:pointer;transition:all 0.15s;
+}
+.dash-alert:hover{filter:brightness(1.1);}
+.dash-alert.warn{background:rgba(181,34,34,0.1);border:1px solid rgba(181,34,34,0.25);color:#e06060;}
+.dash-alert.info{background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.2);color:var(--gold2);}
+.dash-alert.ok  {background:rgba(58,138,80,0.08);border:1px solid rgba(58,138,80,0.2);color:#5ab870;}
+.dash-judge-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 12px;border-radius:var(--radius);
+  background:rgba(255,255,255,0.02);border:1px solid var(--border);
+  margin-bottom:6px;font-family:var(--font-sans);font-size:13px;
+}
+.dash-progress{height:6px;background:rgba(255,255,255,0.06);border-radius:3px;
+  margin-top:5px;overflow:hidden;}
+.dash-progress-fill{height:100%;border-radius:3px;background:var(--gold);transition:width 0.6s;}
 /* SCROLLBAR */
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
@@ -1025,6 +1064,10 @@ database.ref('.info/connected').on('value', (snap) => {
       </div>
     </div>
     <nav class="nav">
+      <div class="nav-item" onclick="goTo('dashboard')" data-page="dashboard" id="navDashboard" style="display:none">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        <span class="nav-label">Dashboard</span>
+      </div>
       <div class="nav-item active" onclick="goTo('eventos')" data-page="eventos">
         <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
         <span class="nav-label">Eventos</span>
@@ -1078,6 +1121,17 @@ database.ref('.info/connected').on('value', (snap) => {
   </div>
 
   <div class="main">
+
+    <!-- DASHBOARD -->
+    <div id="page-dashboard" class="page">
+      <div class="page-header">
+        <div class="page-title">Dashboard</div>
+        <div class="page-sub">Visão geral do sistema em tempo real</div>
+      </div>
+      <div id="dashContent">
+        <div style="color:var(--text3);font-family:var(--font-sans);font-size:14px">Carregando...</div>
+      </div>
+    </div>
     <!-- EVENTOS -->
     <div id="page-eventos" class="page active">
       <div class="page-header"><div class="page-title">Eventos Literários</div><div class="page-sub">Gerencie concursos</div></div>
@@ -1525,6 +1579,7 @@ function goTo(page){
   if(ni) ni.classList.add('active');
   if(page==='avaliar') populateEvalSelect();
   if(page==='ranking'){populateRankingSelect();renderRanking();}
+  if(page==='dashboard') renderDashboard();
   if(page==='hall') renderHall();
   if(page==='participantes') renderParticipantes();
   if(page==='publico') renderPublicoPage();
@@ -1698,7 +1753,8 @@ function renderEventDetailSubs(){
           <div style="display:flex;gap:5px">
             <button class="btn btn-sm" onclick="viewSubInDetail('${s.id}')">Ler</button>
             <button class="btn btn-primary btn-sm" onclick="evalFromDetail('${s.id}')">Avaliar</button>
-            ${!currentUser||currentUser.id==='admin'?`<button class="btn btn-sm btn-danger" onclick="deleteSubmissao('${s.id}')" title="Excluir submissão">🗑</button>`:''}
+            ${!currentUser||currentUser.id==='admin'?`<button class="btn btn-sm" onclick="openEditSub('${s.id}')" title="Editar submissão" style="border-color:rgba(201,168,76,0.4);color:var(--gold)">✏️</button><button class="btn btn-sm btn-danger" onclick="deleteSubmissao('${s.id}')" title="Excluir submissão">🗑</button>`:''}
+
           </div>
         </div>
       </div>`;
@@ -3820,6 +3876,7 @@ function doLogin(){
   document.getElementById('navServidor').style.display=u.id==='admin'?'':'none';
   const navRev=document.getElementById('navRevisao');if(navRev)navRev.style.display=u.id==='admin'?'':'none';
   const btnS=document.getElementById('btnSenhas');if(btnS)btnS.style.display=u.id==='admin'?'':'none';
+  const navDash=document.getElementById('navDashboard');if(navDash)navDash.style.display=u.id==='admin'?'':'none';
   // Admin can also evaluate directly (as solo judge)
   const navAv=document.querySelector('[data-page="avaliar"]');
   if(navAv) navAv.style.display=''; // always visible
@@ -4872,6 +4929,372 @@ function exportSocialCard(type, subId, authorName){
   link.href=canvas.toDataURL('image/jpeg',0.92);link.click();
 }
 
+
+// ════════════════════════════════════════
+// DASHBOARD
+// ════════════════════════════════════════
+function renderDashboard(){
+  const el=document.getElementById('dashContent');
+  if(!el) return;
+  const eventos=DB.eventos||[];
+  const subs=DB.submissoes||[];
+  const avs=DB.avaliacoes||[];
+  const parts=DB.participants||{};
+
+  const activeEvs=eventos.filter(e=>!e.finalized&&!e.archived);
+  const finalEvs=eventos.filter(e=>e.finalized);
+  const totalAuthors=new Set(subs.map(s=>s.autor)).size;
+  const pending=subs.filter(s=>{
+    const evAv=avs.filter(a=>a.subId===s.id&&a.judgeId!=='admin');
+    return evAv.length<3;
+  }).length;
+  const hallCount=subs.filter(s=>{
+    const sc=avs.filter(a=>a.subId===s.id).map(a=>a.finalScore).filter(x=>x!=null);
+    return sc.length&&sc.reduce((a,b)=>a+b,0)/sc.length>=9.0;
+  }).length;
+
+  // Stats grid
+  let html=`<div class="dash-grid">
+    <div class="dash-stat"><div class="dash-stat-icon">📖</div>
+      <div class="dash-stat-val">${activeEvs.length}</div>
+      <div class="dash-stat-lbl">Concursos Ativos</div></div>
+    <div class="dash-stat"><div class="dash-stat-icon">📜</div>
+      <div class="dash-stat-val">${subs.length}</div>
+      <div class="dash-stat-lbl">Total de Obras</div></div>
+    <div class="dash-stat"><div class="dash-stat-icon">👤</div>
+      <div class="dash-stat-val">${totalAuthors}</div>
+      <div class="dash-stat-lbl">Autores</div></div>
+    <div class="dash-stat"><div class="dash-stat-icon">✦</div>
+      <div class="dash-stat-val">${hallCount}</div>
+      <div class="dash-stat-lbl">No Acervo Dourado</div></div>
+    <div class="dash-stat"><div class="dash-stat-icon">🏆</div>
+      <div class="dash-stat-val">${finalEvs.length}</div>
+      <div class="dash-stat-lbl">Concursos Finalizados</div></div>
+    <div class="dash-stat"><div class="dash-stat-icon">⏳</div>
+      <div class="dash-stat-val">${pending}</div>
+      <div class="dash-stat-lbl">Obras Aguardando Avaliação</div></div>
+  </div>`;
+
+  // Alerts — obras sem avaliação completa por evento ativo
+  html+=`<div class="dash-section"><div class="dash-section-title">⚠ Atenção Necessária</div>`;
+  let hasAlerts=false;
+  activeEvs.forEach(ev=>{
+    const evSubs=subs.filter(s=>s.eventoId===ev.id);
+    evSubs.forEach(sub=>{
+      const judgeAvs=avs.filter(a=>a.subId===sub.id&&a.judgeId!=='admin');
+      if(judgeAvs.length===0){
+        html+=`<div class="dash-alert warn" onclick="goTo('submissoes')">
+          📄 "${sub.titulo}" — <strong>${sub.autor}</strong> ainda não tem nenhuma avaliação (${ev.nome})
+        </div>`;
+        hasAlerts=true;
+      }
+    });
+    // Check event deadline
+    if(ev.end){
+      const daysLeft=Math.ceil((new Date(ev.end)-new Date())/(1000*60*60*24));
+      if(daysLeft>=0&&daysLeft<=7){
+        html+=`<div class="dash-alert warn" onclick="goTo('eventos')">
+          📅 "${ev.nome}" encerra em <strong>${daysLeft===0?'hoje':daysLeft+' dias'}</strong>
+        </div>`;
+        hasAlerts=true;
+      }
+    }
+  });
+  if(!hasAlerts) html+=`<div class="dash-alert ok">✓ Tudo em ordem — sem pendências urgentes</div>`;
+  html+=`</div>`;
+
+  // Judge progress per active event
+  html+=`<div class="dash-section"><div class="dash-section-title">👥 Progresso dos Avaliadores</div>`;
+  activeEvs.forEach(ev=>{
+    const evSubs=subs.filter(s=>s.eventoId===ev.id);
+    if(!evSubs.length) return;
+    html+=`<div style="margin-bottom:12px">
+      <div style="font-size:13px;color:var(--text2);font-family:var(--font-sans);margin-bottom:6px">${ev.nome} <span style="color:var(--text3)">(${evSubs.length} obras)</span></div>`;
+    (DB.users||[]).filter(u=>u.id!=='admin').forEach(u=>{
+      const done=evSubs.filter(sub=>avs.some(a=>a.subId===sub.id&&a.judgeId===u.id)).length;
+      const pct=evSubs.length?Math.round(done/evSubs.length*100):0;
+      const barColor=pct===100?'#5ab870':pct>=50?'var(--gold)':'var(--crimson2)';
+      html+=`<div class="dash-judge-row">
+        <span style="color:var(--text2)">${u.name}</span>
+        <span style="color:var(--text3);font-size:12px">${done}/${evSubs.length} obras</span>
+        <div class="dash-progress" style="width:120px"><div class="dash-progress-fill" style="width:${pct}%;background:${barColor}"></div></div>
+        <span style="color:${barColor};font-size:12px;width:36px;text-align:right">${pct}%</span>
+      </div>`;
+    });
+    html+=`</div>`;
+  });
+  if(!activeEvs.length) html+=`<div style="color:var(--text3);font-family:var(--font-sans);font-size:13px">Nenhum concurso ativo.</div>`;
+  html+=`</div>`;
+
+  // Recent activity
+  const recentAvs=[...avs].sort((a,b)=>new Date(b.savedAt||0)-new Date(a.savedAt||0)).slice(0,6);
+  if(recentAvs.length){
+    html+=`<div class="dash-section"><div class="dash-section-title">🕐 Atividade Recente</div>`;
+    recentAvs.forEach(av=>{
+      const sub=subs.find(s=>s.id===av.subId);
+      const when=av.savedAt?new Date(av.savedAt).toLocaleString('pt-BR'):'—';
+      html+=`<div class="dash-alert info">
+        ✓ <strong>${av.judgeName||av.judgeId}</strong> avaliou "${sub?sub.titulo:'?'}"
+        <span style="margin-left:auto;font-size:11px;opacity:0.7">${when}</span>
+      </div>`;
+    });
+    html+=`</div>`;
+  }
+
+  // Quick actions
+  html+=`<div class="dash-section"><div class="dash-section-title">⚡ Ações Rápidas</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-primary btn-sm" onclick="openNewEvent()">+ Novo Evento</button>
+      <button class="btn btn-sm" onclick="goTo('revisao')" style="border-color:rgba(201,168,76,0.3);color:var(--gold)">📋 Revisão</button>
+      <button class="btn btn-sm" onclick="goTo('ranking')">🏆 Ranking</button>
+      <button class="btn btn-sm" onclick="goTo('hall')">✦ Acervo Dourado</button>
+      <button class="btn btn-sm" onclick="exportAllPDF()" style="border-color:rgba(96,160,240,0.4);color:#90c8f0">📚 Coletânea PDF</button>
+    </div>
+  </div>`;
+
+  el.innerHTML=html;
+}
+
+// ════════════════════════════════════════
+// EDIT SUBMISSION
+// ════════════════════════════════════════
+function openEditSub(subId){
+  const sub=(DB.submissoes||[]).find(s=>s.id===subId);
+  if(!sub){alert('Submissão não encontrada.');return;}
+  document.getElementById('editSubId').value=subId;
+  document.getElementById('editSubTitulo').value=sub.titulo||'';
+  document.getElementById('editSubAutor').value=sub.autor||'';
+  document.getElementById('editSubModal').value=sub.modal||'conto';
+  document.getElementById('editSubLang').value=sub.lang||'pt';
+  document.getElementById('editSubTexto').value=sub.texto||'';
+  const wc=(sub.texto||'').trim().split(/\s+/).filter(Boolean).length;
+  document.getElementById('editSubWC').textContent=wc+' palavras';
+  document.getElementById('editSubErr').classList.add('hidden');
+  showModal('modalEditSub');
+}
+
+function saveEditSub(){
+  const subId=document.getElementById('editSubId').value;
+  const titulo=document.getElementById('editSubTitulo').value.trim();
+  const autor=document.getElementById('editSubAutor').value.trim();
+  const modal=document.getElementById('editSubModal').value;
+  const lang=document.getElementById('editSubLang').value;
+  const texto=document.getElementById('editSubTexto').value.trim();
+  const errEl=document.getElementById('editSubErr');
+  errEl.classList.add('hidden');
+  if(!titulo||!autor||!texto){
+    errEl.textContent='Título, autor e texto são obrigatórios.';
+    errEl.classList.remove('hidden');return;
+  }
+  const sub=(DB.submissoes||[]).find(s=>s.id===subId);
+  if(!sub){errEl.textContent='Submissão não encontrada.';errEl.classList.remove('hidden');return;}
+  sub.titulo=titulo;
+  sub.autor=autor;
+  sub.modal=modal;
+  sub.lang=lang;
+  sub.texto=texto;
+  sub.wc=texto.split(/\s+/).filter(Boolean).length;
+  sub.editedAt=new Date().toISOString();
+  saveDB();
+  closeModal('modalEditSub');
+  renderSubmissoes();
+  if(typeof renderEventDetailSubs==='function'&&typeof currentDetailEvId!=='undefined'&&currentDetailEvId) renderEventDetailSubs();
+  alert('✓ Submissão atualizada com sucesso!');
+}
+
+// ════════════════════════════════════════
+// PDF ANTHOLOGY
+// ════════════════════════════════════════
+function exportAllPDF(){
+  const evId=document.getElementById('rankingEvento')?document.getElementById('rankingEvento').value:'';
+  // Ask which event
+  const eventos=(DB.eventos||[]).filter(e=>e.finalized||((DB.submissoes||[]).some(s=>s.eventoId===e.id)));
+  if(!eventos.length){alert('Nenhum evento com obras disponível.');return;}
+  // Build a simple select dialog
+  const opts=eventos.map((e,i)=>`${i+1}. ${e.nome}${e.finalized?' ✦':''}`).join('\n');
+  const choice=prompt('Escolha o evento para a coletânea (número):\n\n'+opts);
+  if(!choice) return;
+  const idx=parseInt(choice)-1;
+  if(isNaN(idx)||idx<0||idx>=eventos.length){alert('Opção inválida.');return;}
+  generateAnthologyPDF(eventos[idx]);
+}
+
+function generateAnthologyPDF(ev){
+  if(typeof window.jspdf==='undefined'&&typeof window.jsPDF==='undefined'){
+    alert('jsPDF não carregado. Recarregue a página e tente novamente.');return;
+  }
+  const jsPDF=window.jspdf?window.jspdf.jsPDF:window.jsPDF;
+  const ranked=getRanked(ev.id);
+  const allSubs=(DB.submissoes||[]).filter(s=>s.eventoId===ev.id);
+  // Combine: ranked first, then unranked alphabetically
+  const rankedIds=new Set(ranked.map(r=>r.id));
+  const unranked=allSubs.filter(s=>!rankedIds.has(s.id)).sort((a,b)=>a.titulo.localeCompare(b.titulo));
+  const works=[...ranked,...unranked];
+  if(!works.length){alert('Nenhuma obra encontrada neste evento.');return;}
+
+  const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+  const W=210,H=297,M=20; // page width, height, margin
+  const TW=W-M*2; // text width
+  let y=M;
+  const serif='times';
+  const sans='helvetica';
+
+  function newPage(){doc.addPage();y=M;}
+  function checkY(needed){if(y+needed>H-M) newPage();}
+
+  function setFont(name,style,size){doc.setFont(name,style);doc.setFontSize(size);}
+  function drawText(text,x,yy,opts={}){
+    const {align='left',color=[220,200,160],maxW=TW}=opts;
+    doc.setTextColor(...color);
+    doc.text(text,x,yy,{align,maxWidth:maxW});
+  }
+
+  // ── COVER PAGE ──
+  // Background rect
+  doc.setFillColor(13,11,9);doc.rect(0,0,W,H,'F');
+  // Gold border
+  doc.setDrawColor(201,168,76);doc.setLineWidth(0.5);doc.rect(8,8,W-16,H-16);
+  doc.setDrawColor(139,26,26);doc.setLineWidth(1);doc.rect(12,12,W-24,H-24);
+  // Title
+  setFont(serif,'bold',28);doc.setTextColor(232,201,106);
+  doc.text('Veritas Literário',W/2,H*0.3,{align:'center'});
+  setFont(serif,'italic',16);doc.setTextColor(168,148,100);
+  doc.text('Coletânea Literária',W/2,H*0.3+14,{align:'center'});
+  // Line
+  doc.setDrawColor(201,168,76);doc.setLineWidth(0.3);doc.line(M+20,H*0.38,W-M-20,H*0.38);
+  // Event name
+  setFont(serif,'bold',20);doc.setTextColor(220,200,150);
+  const evLines=doc.splitTextToSize(ev.nome,TW-20);
+  doc.text(evLines,W/2,H*0.44,{align:'center'});
+  // Date
+  setFont(sans,'normal',10);doc.setTextColor(120,100,70);
+  doc.text(new Date().toLocaleDateString('pt-BR',{year:'numeric',month:'long'}),W/2,H*0.55,{align:'center'});
+  // Work count
+  setFont(serif,'italic',12);doc.setTextColor(150,130,90);
+  doc.text(works.length+' obra'+(works.length!==1?'s':''),W/2,H*0.62,{align:'center'});
+  // Footer ornament
+  setFont(serif,'normal',14);doc.setTextColor(100,80,40);
+  doc.text('✦  ✦  ✦',W/2,H-30,{align:'center'});
+
+  // ── TABLE OF CONTENTS ──
+  newPage();
+  doc.setFillColor(13,11,9);doc.rect(0,0,W,H,'F');
+  doc.setDrawColor(201,168,76);doc.setLineWidth(0.3);doc.rect(8,8,W-16,H-16);
+  setFont(serif,'bold',18);doc.setTextColor(232,201,106);
+  doc.text('Sumário',W/2,M+10,{align:'center'});
+  doc.setDrawColor(201,168,76);doc.setLineWidth(0.2);doc.line(M,M+14,W-M,M+14);
+  y=M+22;
+  works.forEach((s,i)=>{
+    checkY(10);
+    const pos=ranked.findIndex(r=>r.id===s.id);
+    const medal=pos===0?'🥇 ':pos===1?'🥈 ':pos===2?'🥉 ':String(i+1)+'. ';
+    const avg=pos>=0?(' — '+ranked[pos].avg.toFixed(2)):'';
+    setFont(serif,'normal',10);doc.setTextColor(200,180,130);
+    doc.text(medal+(s.titulo.length>40?s.titulo.substring(0,40)+'…':s.titulo),M,y);
+    setFont(sans,'normal',9);doc.setTextColor(140,120,80);
+    doc.text(s.autor+avg,M+4,y+5);
+    y+=12;
+  });
+
+  // ── WORKS ──
+  works.forEach((s,i)=>{
+    newPage();
+    // Work header page
+    doc.setFillColor(13,11,9);doc.rect(0,0,W,H,'F');
+    doc.setDrawColor(201,168,76);doc.setLineWidth(0.3);doc.rect(8,8,W-16,H-16);
+    doc.setDrawColor(139,26,26);doc.setLineWidth(0.6);doc.rect(10,10,W-20,H-20);
+
+    // Position badge
+    const posR=ranked.findIndex(r=>r.id===s.id);
+    if(posR>=0){
+      const medals=['1º Lugar','2º Lugar','3º Lugar'];
+      setFont(sans,'bold',9);doc.setTextColor(201,168,76);
+      doc.text(medals[posR]||String(posR+1)+'º Lugar',W/2,H*0.25,{align:'center'});
+    }
+    // Title
+    setFont(serif,'bold',22);doc.setTextColor(232,201,106);
+    const tLines=doc.splitTextToSize(s.titulo,TW);
+    doc.text(tLines,W/2,H*0.33,{align:'center'});
+    // Author
+    setFont(serif,'italic',14);doc.setTextColor(180,155,100);
+    doc.text(s.autor,W/2,H*0.33+tLines.length*10+6,{align:'center'});
+    // Modal badge
+    setFont(sans,'normal',9);doc.setTextColor(120,100,60);
+    doc.text(s.modal.toUpperCase()+' · '+(s.lang==='pt'?'PORTUGUÊS':'INGLÊS'),W/2,H*0.33+tLines.length*10+16,{align:'center'});
+    // Score if ranked
+    if(posR>=0){
+      const avg2=ranked[posR].avg.toFixed(2);
+      setFont(serif,'bold',28);doc.setTextColor(201,168,76);
+      doc.text(avg2,W/2,H*0.6,{align:'center'});
+      setFont(sans,'normal',8);doc.setTextColor(120,100,60);
+      doc.text('NOTA FINAL',W/2,H*0.6+8,{align:'center'});
+    }
+    // Alch phrase
+    if(posR>=0&&typeof getAlchPhrase==='function'){
+      const alch=getAlchPhrase(ranked[posR].avg,posR,{id:'none'});
+      setFont(serif,'italic',10);doc.setTextColor(140,115,65);
+      doc.text('✦ '+alch+' ✦',W/2,H*0.72,{align:'center'});
+    }
+    // Ornament
+    setFont(serif,'normal',12);doc.setTextColor(80,65,30);
+    doc.text('— ◈ —',W/2,H-28,{align:'center'});
+
+    // ── Text pages ──
+    newPage();
+    doc.setFillColor(16,14,10);doc.rect(0,0,W,H,'F');
+    // Running header
+    setFont(sans,'normal',7);doc.setTextColor(100,80,50);
+    doc.text(s.titulo,M,12);doc.text(s.autor,W-M,12,{align:'right'});
+    doc.setDrawColor(100,80,50);doc.setLineWidth(0.15);doc.line(M,14,W-M,14);
+    y=22;
+    // Text content
+    const paragraphs=(s.texto||'').split('\n').filter(l=>l.trim());
+    paragraphs.forEach(para=>{
+      setFont(serif,'normal',11);doc.setTextColor(210,195,170);
+      const lines=doc.splitTextToSize(para,TW);
+      checkY(lines.length*6+4);
+      if(y===22&&doc.getPage()>2){
+        // Re-draw header after newPage
+        setFont(sans,'normal',7);doc.setTextColor(100,80,50);
+        doc.text(s.titulo,M,12);doc.text(s.autor,W-M,12,{align:'right'});
+        doc.setDrawColor(100,80,50);doc.setLineWidth(0.15);doc.line(M,14,W-M,14);
+        y=22;
+      }
+      setFont(serif,'normal',11);doc.setTextColor(210,195,170);
+      doc.text(lines,M,y,{lineHeightFactor:1.6});
+      y+=lines.length*6.6+4;
+    });
+
+    // ── Feedback page (if any) ──
+    const avs2=(DB.avaliacoes||[]).filter(a=>a.subId===s.id&&a.feedback&&a.feedback.trim());
+    if(avs2.length){
+      newPage();
+      doc.setFillColor(14,11,8);doc.rect(0,0,W,H,'F');
+      setFont(serif,'bold',13);doc.setTextColor(201,168,76);
+      doc.text('Feedback dos Avaliadores',M,M+8);
+      doc.setDrawColor(201,168,76);doc.setLineWidth(0.2);doc.line(M,M+12,W-M,M+12);
+      y=M+20;
+      avs2.forEach(av=>{
+        checkY(20);
+        setFont(sans,'bold',9);doc.setTextColor(180,150,90);
+        doc.text(av.judgeName||av.judgeId||'Avaliador',M,y);
+        if(av.finalScore!=null){
+          doc.text('Nota: '+av.finalScore.toFixed(2),W-M,y,{align:'right'});
+        }
+        y+=6;
+        setFont(serif,'italic',10);doc.setTextColor(180,165,140);
+        const fbLines=doc.splitTextToSize(av.feedback.replace(/\*\*?|`/g,''),TW-4);
+        checkY(fbLines.length*5.5+8);
+        doc.text(fbLines,M+2,y,{lineHeightFactor:1.5});
+        y+=fbLines.length*5.5+8;
+      });
+    }
+  });
+
+  // Save
+  const safeName=ev.nome.replace(/[^a-zA-Z0-9]/g,'_');
+  doc.save('coletanea_'+safeName+'.pdf');
+}
 // ════════════════════════════════════════
 // ARCHIVE SYSTEM
 // ════════════════════════════════════════
@@ -5781,6 +6204,61 @@ window.addEventListener('DOMContentLoaded',()=>{
     <div style="margin-top:1.25rem;padding:0.875rem;background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius);font-size:12px;color:var(--text3);font-family:var(--font-sans);line-height:1.7">
       <strong style="color:var(--gold2)">Como progredir:</strong> Participe de concursos, submeta obras e conquiste pódios. 
       Cada primeiro lugar, segundo lugar ou terceiro lugar acumula para o seu título.
+    </div>
+  </div>
+</div>
+
+<!-- EDIT SUBMISSION MODAL -->
+<div id="modalEditSub" class="modal-overlay hidden" onclick="closeModalClick(event,'modalEditSub')">
+  <div class="modal" style="width:min(700px,96vw)">
+    <button class="modal-close" onclick="closeModal('modalEditSub')">✕</button>
+    <h3>✏️ Editar Submissão</h3>
+    <input type="hidden" id="editSubId"/>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+      <div class="form-group" style="margin:0">
+        <label>Título</label>
+        <input type="text" id="editSubTitulo" style="font-size:14px"/>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label>Autor</label>
+        <input type="text" id="editSubAutor" style="font-size:14px"/>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+      <div class="form-group" style="margin:0">
+        <label>Modalidade</label>
+        <select id="editSubModal" style="font-size:14px">
+          <option value="conto">Conto</option>
+          <option value="cronica">Crônica</option>
+          <option value="poesia">Poesia</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label>Idioma</label>
+        <select id="editSubLang" style="font-size:14px">
+          <option value="pt">Português</option>
+          <option value="en">Inglês</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Texto Completo</label>
+      <div class="text-toolbar" id="toolbar_editSub">
+        <button class="toolbar-btn" onclick="openRichPaste('editSubTexto')" style="color:var(--gold)">📋 Colar formatado</button>
+        <button class="toolbar-btn" onclick="tbCleanPaste('editSubTexto')" title="Limpar invisíveis">✦ Limpar</button>
+        <button class="toolbar-btn" onclick="tbClear('editSubTexto')" style="color:var(--crimson2)">🗑 Apagar</button>
+      </div>
+      <textarea id="editSubTexto" rows="14" placeholder="Texto completo..." class="toolbar-textarea"
+        oninput="document.getElementById('editSubWC').textContent=this.value.trim().split(/\s+/).filter(Boolean).length+' palavras'"
+        style="font-size:14px"></textarea>
+      <div style="font-size:12px;color:var(--text3);font-family:var(--font-sans);margin-top:4px">
+        <span id="editSubWC">0 palavras</span>
+      </div>
+    </div>
+    <div id="editSubErr" class="alert alert-err hidden"></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="saveEditSub()">💾 Salvar alterações</button>
+      <button class="btn" onclick="closeModal('modalEditSub')">Cancelar</button>
     </div>
   </div>
 </div>
